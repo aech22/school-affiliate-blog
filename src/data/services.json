@@ -112,6 +112,34 @@
       "approved": true,
       "pros": [],
       "cons": []
+    },
+    {
+      "id": "levtech-career",
+      "name": "レバテックキャリア",
+      "subCategory": "career",
+      "tags": ["IT・Webエンジニア専門", "業界に精通したアドバイザー", "大手〜スタートアップまで求人が幅広い", "年収交渉のサポート"],
+      "priceNote": "完全無料",
+      "target": "ITエンジニアとして専門特化の支援で転職したい人",
+      "officialUrl": "https://career.levtech.jp/",
+      "affiliateUrl": "",
+      "asp": "",
+      "approved": false,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "green",
+      "name": "Green（グリーン）",
+      "subCategory": "career",
+      "tags": ["IT/Web業界に特化", "企業から直接スカウトが届く", "カジュアル面談で雰囲気を確認できる", "自分のペースで進めやすい"],
+      "priceNote": "無料",
+      "target": "スカウトを受けつつ自分のペースで転職活動したいIT人材",
+      "officialUrl": "https://www.green-japan.com/",
+      "affiliateUrl": "",
+      "asp": "",
+      "approved": false,
+      "pros": [],
+      "cons": []
     }
   ]
 }

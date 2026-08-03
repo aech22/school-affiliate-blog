@@ -27,11 +27,11 @@
     },
     {
       "slug": "career-agent-comparison",
-      "title": "エンジニア向け転職エージェント比較｜IT特化と大手対策",
+      "title": "エンジニア向け転職エージェント比較｜IT特化・スカウト・大手対策",
       "categorySlug": "career",
       "category": "転職・エージェント",
-      "theme": "エンジニア・IT系の転職を目指す人向けに、転職エージェントをIT特化と大手企業の選考対策の観点で比較する",
-      "serviceIds": ["se-navi", "yumecari-agent"]
+      "theme": "エンジニア・IT系の転職を目指す人向けに、転職エージェント/スカウトをIT特化・スカウト型・大手選考対策の観点で比較する。アフィリエイト有無に関わらず、その分野で定番・評価の高いサービスも含める",
+      "serviceIds": ["levtech-career", "se-navi", "green", "yumecari-agent"]
     },
     {
       "slug": "video-editor-course",
