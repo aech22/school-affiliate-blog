@@ -1,0 +1,7 @@
+---
+// 構造化データ(JSON-LD)を安全に出力する。</script> 混入を防ぐため < をエスケープする。
+interface Props { data: unknown; }
+const { data } = Astro.props;
+const json = JSON.stringify(data).replace(/</g, '\\u003c');
+---
+<script type="application/ld+json" set:html={json} is:inline />

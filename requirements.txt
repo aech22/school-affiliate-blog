@@ -1,0 +1,4 @@
+requests>=2.31
+anthropic>=0.40
+PyYAML>=6.0
+tweepy>=4.14

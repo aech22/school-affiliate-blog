@@ -1,0 +1,86 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import Jsonld from '../components/Jsonld.astro';
+import { GENDERS, categoriesOfGender, categoryBySlug } from '../data/taxonomy';
+
+export async function getStaticPaths() {
+  const all = await getCollection('articles');
+  return GENDERS.map((g) => ({
+    params: { gender: g.slug },
+    props: {
+      g,
+      cats: categoriesOfGender(g.slug),
+      articles: all
+        .filter((a) => (a.data.gender ?? categoryBySlug(a.data.categorySlug)?.gender) === g.slug)
+        .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+    },
+  }));
+}
+
+const { g, cats, articles } = Astro.props;
+const title = `${g.label}のおすすめ比較記事｜ガジェナビ`;
+const description = g.blurb;
+const breadcrumbs = [
+  { name: 'ホーム', url: '/' },
+  { name: g.label, url: `/${g.slug}/` },
+];
+const site = Astro.site ?? new URL('https://aech22.github.io/gadget-affiliate-blog');
+const listLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  description,
+  url: new URL(`/${g.slug}/`, site).toString(),
+  hasPart: articles.map((a) => ({
+    '@type': 'Article',
+    headline: a.data.title,
+    url: new URL(`/articles/${a.id}/`, site).toString(),
+  })),
+};
+---
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <Jsonld data={listLd} />
+  <main class="mx-auto max-w-5xl px-4 py-8">
+    <nav class="flex flex-wrap items-center gap-1 text-xs font-medium text-ink/40" aria-label="パンくず">
+      <a href={import.meta.env.BASE_URL} class="hover:text-brand-600">ホーム</a><span>／</span><span class="text-ink/60">{g.label}</span>
+    </nav>
+
+    <header class="mt-4 rounded-2xl bg-gradient-to-br from-brand-500 to-[#ff9a5a] p-6 text-white sm:p-8">
+      <p class="text-4xl">{g.emoji}</p>
+      <h1 class="mt-2 text-2xl font-black sm:text-3xl">{g.label}のおすすめ比較</h1>
+      <p class="mt-2 max-w-2xl text-sm leading-relaxed text-white/90">{g.blurb}</p>
+    </header>
+
+    <!-- このジャンル内のカテゴリ -->
+    {cats.length > 0 && (
+      <section class="mt-8">
+        <h2 class="mb-4 flex items-center gap-2 text-lg font-black"><span class="h-5 w-1.5 rounded bg-brand-500"></span>カテゴリ</h2>
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {cats.map((c) => (
+            <a href={`${import.meta.env.BASE_URL}categories/${c.slug}/`} class="flex items-center gap-2 rounded-xl border border-black/5 bg-white px-4 py-3 font-bold shadow-sm transition hover:-translate-y-0.5 hover:text-brand-600 hover:shadow">
+              <span class="text-xl">{c.emoji}</span>{c.label}
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- このジャンルの記事 -->
+    <section class="mt-10">
+      <h2 class="mb-4 flex items-center gap-2 text-lg font-black"><span class="h-5 w-1.5 rounded bg-brand-500"></span>新着の記事</h2>
+      {articles.length === 0 ? (
+        <p class="text-center text-ink/50">このジャンルの記事は近日公開予定です。</p>
+      ) : (
+        <div class="grid gap-6 sm:grid-cols-2">
+          {articles.map((a) => <ArticleCard article={a} />)}
+        </div>
+      )}
+    </section>
+
+    <p class="mt-10">
+      <a href={import.meta.env.BASE_URL} class="inline-flex items-center gap-1 text-sm font-black text-brand-600 hover:underline">← トップへ戻る</a>
+    </p>
+  </main>
+</BaseLayout>

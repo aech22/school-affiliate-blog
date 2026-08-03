@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = '運営者情報｜ガジェナビ';
+const description = 'ガジェナビの運営者情報。運営者・サイトの方針・アフィリエイト広告や掲載情報の取り扱いについてご案内します。';
+const breadcrumbs = [
+  { name: 'ホーム', url: '/' },
+  { name: '運営者情報', url: '/about/' },
+];
+const updated = '2026.08.03';
+---
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <main class="mx-auto max-w-3xl px-4 py-8">
+    <nav class="flex flex-wrap items-center gap-1 text-xs font-medium text-ink/40" aria-label="パンくず">
+      <a href={import.meta.env.BASE_URL} class="hover:text-brand-600">ホーム</a><span>／</span><span class="text-ink/60">運営者情報</span>
+    </nav>
+
+    <h1 class="mt-3 text-2xl font-black leading-tight sm:text-3xl">運営者情報</h1>
+    <p class="mt-2 text-xs text-ink/40">最終更新：{updated}</p>
+
+    <div class="mt-6 space-y-8 text-[15px] leading-relaxed text-ink/80">
+      <section>
+        <h2 class="mb-2 text-lg font-black text-ink">ガジェナビ について</h2>
+        <p>
+          ガジェナビは、楽天市場で実際に売れている商品を、写真・価格・レビューといった客観的な情報とあわせて比較・紹介するメディアです。
+          「迷ったら、売れているものから選ぶ」をコンセプトに、はじめての一品選びをかんたんにすることを目指しています。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="mb-2 text-lg font-black text-ink">運営者</h2>
+        <div class="overflow-hidden rounded-xl border border-black/5">
+          <table class="w-full border-collapse bg-white text-sm">
+            <tbody>
+              <tr class="border-b border-black/5">
+                <th class="w-32 bg-brand-50 p-3 text-left font-bold text-ink/70">サイト名</th>
+                <td class="p-3">ガジェナビ</td>
+              </tr>
+              <tr class="border-b border-black/5">
+                <th class="bg-brand-50 p-3 text-left font-bold text-ink/70">運営</th>
+                <td class="p-3">TODGE</td>
+              </tr>
+              <tr class="border-b border-black/5">
+                <th class="bg-brand-50 p-3 text-left font-bold text-ink/70">事業内容</th>
+                <td class="p-3">Webサービス・アフィリエイトメディアの企画・開発・運営</td>
+              </tr>
+              <tr>
+                <th class="bg-brand-50 p-3 text-left font-bold text-ink/70">運営方針</th>
+                <td class="p-3">手の届かない細かいことを満たす。生活にプラスアルファを。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="mb-2 text-lg font-black text-ink">アフィリエイト広告について</h2>
+        <p>
+          当サイトは、楽天アフィリエイトをはじめとするアフィリエイト広告を利用しています。
+          記事内の商品リンクを経由して商品が購入された場合、当サイトが広告主から成果報酬を受け取ることがあります。
+          報酬の有無は、記事で紹介する商品の選定・評価に影響を与えないよう努めています。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="mb-2 text-lg font-black text-ink">掲載情報の取り扱い</h2>
+        <ul class="ml-5 list-disc space-y-1.5">
+          <li>商品名・価格・画像・レビュー等は、楽天市場のデータをもとに掲載時点の情報を表示しています。</li>
+          <li>価格・在庫・レビュー・ポイント等は変動します。<b>最新かつ正確な情報は、必ず各商品の販売ページでご確認ください。</b></li>
+          <li>掲載内容には万全を期していますが、正確性・完全性を保証するものではありません。</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="mb-2 text-lg font-black text-ink">アクセス解析・Cookie について</h2>
+        <p>
+          当サイトでは、サイトの利用状況を把握し改善するためにアクセス解析ツールを利用する場合があります。
+          これらのツールは Cookie を使用することがありますが、個人を特定する情報は含まれません。
+          Cookie の利用はブラウザの設定から無効にできます。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="mb-2 text-lg font-black text-ink">免責事項</h2>
+        <p>
+          当サイトの情報を利用して生じたいかなる損害についても、運営者は責任を負いかねます。
+          商品の購入・利用にあたっては、販売ページの記載および利用者ご自身の判断でお願いいたします。
+          リンク先の外部サイトの内容についても、当サイトは責任を負いません。
+        </p>
+      </section>
+    </div>
+
+    <p class="mt-10">
+      <a href={import.meta.env.BASE_URL} class="inline-flex items-center gap-1 text-sm font-black text-brand-600 hover:underline">← トップへ戻る</a>
+    </p>
+  </main>
+</BaseLayout>

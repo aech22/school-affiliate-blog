@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* ---- テーマトークン（Tailwind v4）。bg-brand-500 / text-ink / bg-cream 等が生成される ---- */
+@theme {
+  --font-sans: "Noto Sans JP", ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN",
+    "Yu Gothic", Meiryo, sans-serif;
+
+  --color-brand-50: #fff4ee;
+  --color-brand-100: #ffe3d3;
+  --color-brand-200: #ffc7a8;
+  --color-brand-500: #ff6b35;
+  --color-brand-600: #ec5417;
+  --color-brand-700: #c23f0c;
+
+  --color-ink: #23303a;
+  --color-cream: #fbf7f2;
+}
+
+html { scroll-behavior: smooth; }
+body { background-color: var(--color-cream); }
+
+/* ---- 星評価（reviewAverage 0〜5 を横幅で表現）---- */
+.stars { position: relative; display: inline-block; font-size: 0.95rem; line-height: 1; letter-spacing: 1px; }
+.stars::before { content: "★★★★★"; color: #e4e1dc; }
+.stars > span { position: absolute; top: 0; left: 0; overflow: hidden; white-space: nowrap; color: #ffb400; }
+.stars > span::before { content: "★★★★★"; }

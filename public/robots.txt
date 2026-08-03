@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gagetnavi.net/sitemap-index.xml

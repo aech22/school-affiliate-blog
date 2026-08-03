@@ -1,0 +1,17 @@
+# secrets（§5-2 #4: 秘密はクライアント/リポジトリに置かない）
+.env
+.env.local
+*.service-account*.json
+
+# python
+__pycache__/
+*.pyc
+products.json
+
+# node / astro
+node_modules/
+dist/
+.astro/
+
+# python venv
+.venv/

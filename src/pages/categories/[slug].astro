@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import Jsonld from '../../components/Jsonld.astro';
+import { CATEGORIES, genderBySlug } from '../../data/taxonomy';
+
+export async function getStaticPaths() {
+  const all = await getCollection('articles');
+  return CATEGORIES.map((c) => ({
+    params: { slug: c.slug },
+    props: {
+      cat: c,
+      articles: all
+        .filter((a) => a.data.categorySlug === c.slug)
+        .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+    },
+  }));
+}
+
+const { cat, articles } = Astro.props;
+const gender = genderBySlug(cat.gender);
+const title = `${cat.label}のおすすめ比較記事｜ガジェナビ`;
+const description = cat.blurb;
+const breadcrumbs = [
+  { name: 'ホーム', url: '/' },
+  ...(gender ? [{ name: gender.label, url: `/${gender.slug}/` }] : []),
+  { name: cat.label, url: `/categories/${cat.slug}/` },
+];
+const site = Astro.site ?? new URL('https://aech22.github.io/gadget-affiliate-blog');
+const listLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  description,
+  url: new URL(`/categories/${cat.slug}/`, site).toString(),
+  hasPart: articles.map((a) => ({
+    '@type': 'Article',
+    headline: a.data.title,
+    url: new URL(`/articles/${a.id}/`, site).toString(),
+  })),
+};
+---
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <Jsonld data={listLd} />
+  <main class="mx-auto max-w-5xl px-4 py-8">
+    <nav class="flex flex-wrap items-center gap-1 text-xs font-medium text-ink/40" aria-label="パンくず">
+      <a href={import.meta.env.BASE_URL} class="hover:text-brand-600">ホーム</a>
+      {gender && (<><span>／</span><a href={`${import.meta.env.BASE_URL}${gender.slug}/`} class="hover:text-brand-600">{gender.label}</a></>)}
+      <span>／</span><span class="text-ink/60">{cat.label}</span>
+    </nav>
+
+    <header class="mt-4 rounded-2xl bg-gradient-to-br from-brand-500 to-[#ff9a5a] p-6 text-white sm:p-8">
+      <p class="text-4xl">{cat.emoji}</p>
+      <h1 class="mt-2 text-2xl font-black sm:text-3xl">{cat.label}のおすすめ比較</h1>
+      <p class="mt-2 max-w-2xl text-sm leading-relaxed text-white/90">{cat.blurb}</p>
+      {gender && (
+        <a href={`${import.meta.env.BASE_URL}${gender.slug}/`} class="mt-4 inline-block rounded-full bg-white/20 px-4 py-1.5 text-sm font-bold text-white backdrop-blur transition hover:bg-white/30">
+          {gender.label}をまとめて見る →
+        </a>
+      )}
+    </header>
+
+    {articles.length === 0 ? (
+      <p class="mt-10 text-center text-ink/50">このカテゴリの記事は近日公開予定です。</p>
+    ) : (
+      <div class="mt-8 grid gap-6 sm:grid-cols-2">
+        {articles.map((a) => <ArticleCard article={a} />)}
+      </div>
+    )}
+
+    <p class="mt-10">
+      <a href={import.meta.env.BASE_URL} class="inline-flex items-center gap-1 text-sm font-black text-brand-600 hover:underline">← トップへ戻る</a>
+    </p>
+  </main>
+</BaseLayout>

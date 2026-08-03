@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'プライバシーポリシー｜ガジェナビ';
+const description = 'ガジェナビのプライバシーポリシー。アクセス解析・Cookie・アフィリエイトプログラムにおける情報の取り扱いについて。';
+const breadcrumbs = [
+  { name: 'ホーム', url: '/' },
+  { name: 'プライバシーポリシー', url: '/privacy/' },
+];
+const updated = '2026.08.03';
+---
+<BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
+  <main class="mx-auto max-w-3xl px-4 py-8">
+    <nav class="flex flex-wrap items-center gap-1 text-xs font-medium text-ink/40" aria-label="パンくず">
+      <a href={import.meta.env.BASE_URL} class="hover:text-brand-600">ホーム</a><span>／</span><span class="text-ink/60">プライバシーポリシー</span>
+    </nav>
+
+    <h1 class="mt-3 text-2xl font-black leading-tight sm:text-3xl">プライバシーポリシー</h1>
+    <p class="mt-2 text-xs text-ink/40">最終更新：{updated}</p>
+
+    <div class="mt-6 space-y-8 text-[15px] leading-relaxed text-ink/80">
+      <section>
+        <h2 class="mb-2 text-lg font-black text-ink">基本方針</h2>
+        <p>
+          ガジェナビ（以下「当サイト」）は、利用者のプライバシーを尊重し、個人情報および利用データを適切に取り扱います。本ポリシーは、当サイトにおける情報の取得・利用について定めるものです。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="mb-2 text-lg font-black text-ink">取得する情報</h2>
+        <p>
+          当サイトは、会員登録やお問い合わせフォーム等による氏名・住所・電話番号などの個人情報の取得は行いません。
+          一方、サイトの利用状況を把握するため、アクセス解析ツールを通じて、閲覧ページ・端末・ブラウザ・参照元などの匿名の統計情報を取得する場合があります。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="mb-2 text-lg font-black text-ink">アクセス解析ツールについて</h2>
+        <p>
+          当サイトでは、アクセス解析のために Google Analytics（Google LLC 提供）等のツールを利用する場合があります。
+          これらのツールは Cookie を使用してトラフィックデータを収集しますが、収集される情報は匿名であり、個人を特定するものではありません。
+          Google Analytics の詳細は
+          <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener" class="text-brand-600 underline">Googleのポリシーと規約</a>
+          をご確認ください。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="mb-2 text-lg font-black text-ink">Cookie について</h2>
+        <p>
+          当サイトは、アクセス解析や広告配信のために Cookie を使用する場合があります。
+          Cookie は利用者のブラウザ設定からいつでも無効にできます。無効にした場合でも、当サイトの閲覧に大きな支障はありません。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="mb-2 text-lg font-black text-ink">アフィリエイトプログラムについて</h2>
+        <p>
+          当サイトは、楽天アフィリエイトをはじめとするアフィリエイトプログラムに参加しています。
+          これらのプログラムでは、広告主が Cookie を利用して、当サイト経由の購入等を計測することがあります。
+          この Cookie に個人を特定する情報は含まれません。商品の購入・利用は、各販売ページの規約と利用者ご自身の判断で行ってください。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="mb-2 text-lg font-black text-ink">免責事項</h2>
+        <p>
+          当サイトの情報の正確性には努めていますが、価格・在庫・レビュー等は変動し、内容を保証するものではありません。
+          当サイトおよびリンク先の外部サイトの利用により生じた損害について、運営者は責任を負いかねます。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="mb-2 text-lg font-black text-ink">改定について</h2>
+        <p>
+          本ポリシーは、必要に応じて予告なく改定することがあります。改定後の内容は当ページに掲載した時点で効力を生じます。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="mb-2 text-lg font-black text-ink">運営者</h2>
+        <p>本サイトは <b>TODGE</b> が運営しています。詳細は<a href={`${import.meta.env.BASE_URL}about/`} class="text-brand-600 underline">運営者情報</a>をご覧ください。</p>
+      </section>
+    </div>
+
+    <p class="mt-10">
+      <a href={import.meta.env.BASE_URL} class="inline-flex items-center gap-1 text-sm font-black text-brand-600 hover:underline">← トップへ戻る</a>
+    </p>
+  </main>
+</BaseLayout>
