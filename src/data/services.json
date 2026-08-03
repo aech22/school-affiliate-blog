@@ -142,6 +142,20 @@
       "cons": []
     },
     {
+      "id": "skillhacks",
+      "name": "SkillHacks（スキルハックス）",
+      "subCategory": "programming",
+      "tags": ["買い切り型でオンライン完結", "受講期間・質問が無制限", "動画で細かいニュアンスまで学べる", "比較的安価"],
+      "priceNote": "買い切り（受講期間の制限なし）",
+      "target": "メンター型より安く、自分のペースでWeb開発の基礎を学びたい人",
+      "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+8645MA+4K3S+614CX",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+8645MA+4K3S+614CX",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
       "id": "creators-japan",
       "name": "クリエイターズジャパン",
       "subCategory": "qualification",

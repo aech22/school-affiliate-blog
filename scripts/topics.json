@@ -7,7 +7,13 @@
       "categorySlug": "programming",
       "category": "プログラミングスクール",
       "theme": "未経験からエンジニアを目指す人向けに、主要プログラミングスクールを料金・学習形式・サポート・転職支援の観点で比較する",
-      "serviceIds": ["techacademy", "dmm-webcamp", "runteq", "codecamp", "samurai-engineer"]
+      "serviceIds": [
+        "techacademy",
+        "dmm-webcamp",
+        "runteq",
+        "codecamp",
+        "samurai-engineer"
+      ]
     },
     {
       "slug": "online-programming-school",
@@ -15,7 +21,12 @@
       "categorySlug": "programming",
       "category": "プログラミングスクール",
       "theme": "通学不要でオンライン完結できるプログラミングスクールを、学習スタイル・メンター/講師のサポート・進めやすさで比較する（働きながら学びたい人向け）",
-      "serviceIds": ["techacademy", "codecamp", "samurai-engineer"]
+      "serviceIds": [
+        "techacademy",
+        "codecamp",
+        "samurai-engineer",
+        "skillhacks"
+      ]
     },
     {
       "slug": "career-support-programming-school",
@@ -23,7 +34,11 @@
       "categorySlug": "programming",
       "category": "プログラミングスクール",
       "theme": "エンジニア転職を目指す人向けに、転職サポートや実務レベルの学習に力を入れているスクールを、支援内容と学習量の観点で比較する",
-      "serviceIds": ["dmm-webcamp", "runteq", "samurai-engineer"]
+      "serviceIds": [
+        "dmm-webcamp",
+        "runteq",
+        "samurai-engineer"
+      ]
     },
     {
       "slug": "career-agent-comparison",
@@ -31,7 +46,12 @@
       "categorySlug": "career",
       "category": "転職・エージェント",
       "theme": "エンジニア・IT系の転職を目指す人向けに、転職エージェント/スカウトをIT特化・スカウト型・大手選考対策の観点で比較する。アフィリエイト有無に関わらず、その分野で定番・評価の高いサービスも含める",
-      "serviceIds": ["levtech-career", "se-navi", "green", "yumecari-agent"]
+      "serviceIds": [
+        "levtech-career",
+        "se-navi",
+        "green",
+        "yumecari-agent"
+      ]
     },
     {
       "slug": "video-editing-schools",
@@ -39,7 +59,11 @@
       "categorySlug": "qualification",
       "category": "資格・スキル講座",
       "theme": "動画編集で副業・在宅ワークを始めたい人向けに、オンライン動画編集スクールを学びやすさ・費用・仕事につなげる仕組みで比較する",
-      "serviceIds": ["creators-japan", "movie-hacks", "video-editor-course"]
+      "serviceIds": [
+        "creators-japan",
+        "movie-hacks",
+        "video-editor-course"
+      ]
     }
   ]
 }
