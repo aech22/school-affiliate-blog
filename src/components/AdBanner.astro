@@ -1,0 +1,17 @@
+---
+// A8.net 広告バナー（お名前.com・独自ドメイン取得）。
+// A8の広告コードは規約に従い原文のまま使用する（リンク＋バナー画像＋計測用の透明gif）。
+// & を含むURLのJSXパースを避けるため set:html で挿入する。
+// ステマ規制対応として「広告」ラベルを明示。単一カラム設計のため 728×90 を採用し、
+// はみ出しは overflow-x で横スクロールにする（モバイル対応）。
+const bannerHtml = `<a href="https://px.a8.net/svt/ejp?a8mat=4B9X1D+6NXPKI+50+2I3IZ5" rel="nofollow sponsored" target="_blank"><img border="0" width="728" height="90" alt="お名前.com" src="https://www26.a8.net/svt/bgt?aid=260803201403&wid=001&eno=01&mid=s00000000018015133000&mc=1"></a><img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=4B9X1D+6NXPKI+50+2I3IZ5" alt="">`;
+---
+<aside class="mt-12 rounded-2xl border border-black/5 bg-white p-5">
+  <p class="mb-1 text-[11px] font-black tracking-wide text-ink/35">広告 · 学習の次の一歩</p>
+  <p class="mb-3 text-sm leading-relaxed text-ink/70">
+    作ったアプリやポートフォリオを公開するなら、独自ドメインがあると見栄えも信頼感も上がります。ドメイン取得は国内シェアの大きい <b>お名前.com</b> が定番です。
+  </p>
+  <div class="overflow-x-auto">
+    <div style="min-width:728px" set:html={bannerHtml} />
+  </div>
+</aside>

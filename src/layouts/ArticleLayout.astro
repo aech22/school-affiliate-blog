@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Jsonld from '../components/Jsonld.astro';
 import ServiceCard from '../components/ServiceCard.astro';
+import AdBanner from '../components/AdBanner.astro';
 import { categoryBySlug } from '../data/taxonomy';
 import { SITE_NAME } from '../consts';
 import servicesData from '../data/services.json';
@@ -156,6 +157,8 @@ const itemListLd = {
         </section>
       )
     }
+
+    <AdBanner />
 
     {cat && (
       <p class="mt-10 text-sm">
