@@ -1,0 +1,13 @@
+{
+  "_note": "比較記事の定義。1エントリ=1記事。serviceIds は src/data/services.json の id を並べたい順（=rank順）に列挙する。scripts/generate.py がこの定義とservices.jsonを読み、Claudeに講評文だけ書かせてcontent/articles/{slug}.md を生成する。",
+  "topics": [
+    {
+      "slug": "programming-school-comparison",
+      "title": "未経験から始めるプログラミングスクール比較5選",
+      "categorySlug": "programming",
+      "category": "プログラミングスクール",
+      "theme": "未経験からエンジニアを目指す人向けに、主要プログラミングスクールを料金・学習形式・サポート・転職支援の観点で比較する",
+      "serviceIds": ["techacademy", "dmm-webcamp", "runteq", "codecamp", "samurai-engineer"]
+    }
+  ]
+}
