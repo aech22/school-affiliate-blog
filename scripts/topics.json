@@ -34,12 +34,12 @@
       "serviceIds": ["levtech-career", "se-navi", "green", "yumecari-agent"]
     },
     {
-      "slug": "video-editor-course",
-      "title": "動画編集で稼ぐなら｜資格認定つき養成コースという選択",
+      "slug": "video-editing-schools",
+      "title": "動画編集スクール比較｜副業・在宅で稼ぐための3つの選び方",
       "categorySlug": "qualification",
       "category": "資格・スキル講座",
-      "theme": "動画編集のスキルを仕事につなげたい人向けに、資格認定・顧客紹介つきの養成コースを紹介する",
-      "serviceIds": ["video-editor-course"]
+      "theme": "動画編集で副業・在宅ワークを始めたい人向けに、オンライン動画編集スクールを学びやすさ・費用・仕事につなげる仕組みで比較する",
+      "serviceIds": ["creators-japan", "movie-hacks", "video-editor-course"]
     }
   ]
 }

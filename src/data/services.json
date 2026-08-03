@@ -140,6 +140,34 @@
       "approved": false,
       "pros": [],
       "cons": []
+    },
+    {
+      "id": "creators-japan",
+      "name": "クリエイターズジャパン",
+      "subCategory": "qualification",
+      "tags": ["現役クリエイターが指導", "Adobe(Premiere Pro/After Effects)を習得", "案件獲得のノウハウ", "個別LINE＋オンラインサロン"],
+      "priceNote": "買い切り型（オンラインサロン月額1,480円・初月無料）",
+      "target": "初心者から動画編集で在宅ワーク・副業を始めたい人",
+      "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+B43BAQ+4LJQ+614CY",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+B43BAQ+4LJQ+614CY",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "movie-hacks",
+      "name": "MovieHacks（ムービーハックス）",
+      "subCategory": "qualification",
+      "tags": ["動画で学ぶ買い切り型", "受講期間・質問が無制限", "Adobe操作を実践で習得", "比較的安価"],
+      "priceNote": "買い切り（受講期間の制限なし）",
+      "target": "できるだけ安く動画編集の基礎を身につけたい20〜30代",
+      "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+8645MA+4K3S+5YRHE",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+8645MA+4K3S+5YRHE",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
     }
   ]
 }
