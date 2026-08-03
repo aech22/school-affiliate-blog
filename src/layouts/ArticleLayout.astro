@@ -2,7 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import Jsonld from '../components/Jsonld.astro';
 import ServiceCard from '../components/ServiceCard.astro';
-import AdBanner from '../components/AdBanner.astro';
+import Sidebar from '../components/Sidebar.astro';
 import { categoryBySlug } from '../data/taxonomy';
 import { SITE_NAME } from '../consts';
 import servicesData from '../data/services.json';
@@ -89,7 +89,8 @@ const itemListLd = {
   modifiedTime={(data.updated ?? data.date).toISOString()}
   breadcrumbs={breadcrumbs}
 >
-  <main class="mx-auto max-w-3xl px-4 py-8">
+  <div class="mx-auto max-w-5xl px-4 py-8 lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-8 lg:items-start">
+  <main class="min-w-0">
     <Jsonld data={itemListLd} />
     <nav class="flex flex-wrap items-center gap-1 text-xs font-medium text-ink/40" aria-label="パンくず">
       <a href={import.meta.env.BASE_URL} class="hover:text-brand-600">ホーム</a>
@@ -158,8 +159,6 @@ const itemListLd = {
       )
     }
 
-    <AdBanner />
-
     {cat && (
       <p class="mt-10 text-sm">
         <a href={`${import.meta.env.BASE_URL}categories/${cat.slug}/`} class="font-bold text-brand-600 hover:underline">
@@ -171,4 +170,6 @@ const itemListLd = {
       <a href={import.meta.env.BASE_URL} class="inline-flex items-center gap-1 text-sm font-black text-brand-600 hover:underline">← 記事一覧へ戻る</a>
     </p>
   </main>
+    <Sidebar />
+  </div>
 </BaseLayout>
