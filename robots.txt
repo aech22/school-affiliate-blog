@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aech22.github.io/school-affiliate-blog/sitemap-index.xml
