@@ -1,0 +1,75 @@
+{
+  "_note": "案件レジストリ（単一ソース）。Python生成とAstro描画の両方がこのファイルを読む。事実（name/priceNote/tags/officialUrl等）は運営者が公開情報から手入力。affiliateUrl は ASP提携承認後に記入し approved:true にする。承認前は approved:false のまま＝公式サイトへ rel=nofollow リンク。※seed値の料金・特徴は公開情報ベースだが、公開前に運営者が最新の一次情報で必ず検証すること。",
+  "services": [
+    {
+      "id": "techacademy",
+      "name": "TechAcademy（テックアカデミー）",
+      "subCategory": "programming",
+      "tags": ["オンライン完結", "現役エンジニアのメンター", "マンツーマンメンタリング", "多彩なコース"],
+      "priceNote": "コース・受講期間で変動（4週間〜16週間プラン）",
+      "target": "自分のペースでオンライン学習したい人・副業/転職の両にらみ",
+      "officialUrl": "https://techacademy.jp/",
+      "affiliateUrl": "",
+      "asp": "",
+      "approved": false,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "codecamp",
+      "name": "CodeCamp（コードキャンプ）",
+      "subCategory": "programming",
+      "tags": ["オンライン完結", "マンツーマンレッスン", "現役エンジニア講師", "レッスン満足度が高い"],
+      "priceNote": "コース・受講期間で変動（入学金＋受講料）",
+      "target": "講師と対話しながら着実に進めたい人",
+      "officialUrl": "https://codecamp.jp/",
+      "affiliateUrl": "",
+      "asp": "",
+      "approved": false,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "dmm-webcamp",
+      "name": "DMM WEBCAMP",
+      "subCategory": "programming",
+      "tags": ["転職保証コースあり", "オンライン/教室", "専門実践教育訓練給付金の対象コースあり", "転職サポート"],
+      "priceNote": "コースで変動（転職保証コースは高め・給付金対象で実質負担が下がる場合あり）",
+      "target": "エンジニア転職を本気で目指す人",
+      "officialUrl": "https://web-camp.io/",
+      "affiliateUrl": "",
+      "asp": "",
+      "approved": false,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "runteq",
+      "name": "RUNTEQ（ランテック）",
+      "subCategory": "programming",
+      "tags": ["Web系自社開発企業への就職に強い", "実務レベルの学習量", "Ruby on Rails中心", "ポートフォリオ支援"],
+      "priceNote": "9ヶ月前後の長期・受講料は中〜高価格帯",
+      "target": "Web系エンジニアとして就職したい・学習量を厭わない人",
+      "officialUrl": "https://runteq.jp/",
+      "affiliateUrl": "",
+      "asp": "",
+      "approved": false,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "samurai-engineer",
+      "name": "侍エンジニア",
+      "subCategory": "programming",
+      "tags": ["専属マンツーマン", "オーダーメイドカリキュラム", "オンライン完結", "幅広い目的に対応"],
+      "priceNote": "コース・期間で変動（入学金＋受講料）",
+      "target": "自分の目的に合わせた個別カリキュラムで学びたい人",
+      "officialUrl": "https://www.sejuku.net/",
+      "affiliateUrl": "",
+      "asp": "",
+      "approved": false,
+      "pros": [],
+      "cons": []
+    }
+  ]
+}

@@ -2,20 +2,15 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 // content/articles/*.md を記事コレクションとして読む（生成物はこのディレクトリに出力される）。
-// 事実データは products[] に構造化して持ち、レンダリング側がカードを描く。
-const product = z.object({
+// 事実データ（スクール名・料金・リンク等）は src/data/services.json に一元化し、記事は id で参照する。
+// 記事frontmatterが持つのは「並び順(rank)とLLM講評(pros/cons/target/highlight)」だけ＝事実の二重管理を避ける。
+const serviceRef = z.object({
+  id: z.string(),                    // services.json の services[].id への結合キー
   rank: z.number().nullish(),
-  name: z.string(),
-  price: z.number().nullish(),
-  image: z.string().nullish(),
-  url: z.string(),
-  shop: z.string().nullish(),
-  reviewAverage: z.number().nullish(),
-  reviewCount: z.number().nullish(),
-  priceBand: z.string().nullish(),
   pros: z.array(z.string()).nullish(),
   cons: z.string().nullish(),
   target: z.string().nullish(),
+  highlight: z.string().nullish(),   // 価格帯やポジションの一言（例:「転職保証で選ぶなら」）
 });
 
 const articles = defineCollection({
@@ -25,13 +20,12 @@ const articles = defineCollection({
     date: z.coerce.date(),
     updated: z.coerce.date().nullish(),
     description: z.string().nullish(),
-    category: z.string().nullish(),
-    categorySlug: z.string().nullish(),
-    gender: z.enum(['men', 'women', 'unisex']).nullish(),
+    category: z.string().nullish(),       // 表示ラベル（例: プログラミングスクール）
+    categorySlug: z.string().nullish(),   // 結合キー（例: programming）
     intro: z.string().nullish(),
     outro: z.string().nullish(),
     noindex: z.boolean().nullish(),
-    products: z.array(product).nullish(),
+    services: z.array(serviceRef).nullish(),
   }),
 });
 

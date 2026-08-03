@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gagetnavi.net/sitemap-index.xml
+Sitemap: https://aech22.github.io/school-affiliate-blog/sitemap-index.xml

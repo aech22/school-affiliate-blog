@@ -1,8 +1,8 @@
 ---
 import '../styles/global.css';
 import Jsonld from '../components/Jsonld.astro';
-import { GENDERS } from '../data/taxonomy';
-import { GA_MEASUREMENT_ID, PINTEREST_VERIFY, TWITTER_SITE } from '../consts';
+import { CATEGORIES } from '../data/taxonomy';
+import { SITE_NAME, SITE_TAGLINE, GA_MEASUREMENT_ID, PINTEREST_VERIFY, TWITTER_SITE } from '../consts';
 
 interface Props {
   title: string;
@@ -16,7 +16,7 @@ interface Props {
 }
 const {
   title,
-  description = '実際に楽天で売れている商品を、写真・価格・レビューと一緒に比較するおすすめ紹介ブログ。',
+  description = '未経験からエンジニアを目指せるプログラミングスクールを、料金・特徴・サポートで比較するメディア。',
   noindex = false,
   ogImage,
   ogType = 'website',
@@ -25,9 +25,9 @@ const {
   breadcrumbs,
 } = Astro.props;
 
-const site = Astro.site ?? new URL('https://aech22.github.io/gadget-affiliate-blog');
+const site = Astro.site ?? new URL('https://aech22.github.io/school-affiliate-blog');
 const canonical = new URL(Astro.url.pathname, site);
-// 記事は商品画像、それ以外はブランドOGP(/ogp.png)を既定にする（X/Pinterestの共有見栄え）
+// 既定はブランドOGP(/ogp.png)。記事など個別に指定があればそれを使う。
 const ogImg = new URL(ogImage ?? '/ogp.png', site).toString();
 const year = new Date().getFullYear();
 
@@ -35,14 +35,14 @@ const year = new Date().getFullYear();
 const orgLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'ガジェナビ',
+  name: SITE_NAME,
   url: site.toString(),
-  description: 'おすすめ商品を写真・価格・レビューで比較するアフィリエイト比較メディア。',
+  description: 'プログラミングスクールを料金・特徴・サポートで比較するアフィリエイト比較メディア。',
 };
 const siteLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'ガジェナビ',
+  name: SITE_NAME,
   url: site.toString(),
   inLanguage: 'ja',
 };
@@ -71,14 +71,13 @@ const breadcrumbLd = breadcrumbs && breadcrumbs.length
     <link rel="canonical" href={canonical} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://thumbnail.image.rakuten.co.jp" />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
       rel="stylesheet"
     />
     <!-- OGP -->
     <meta property="og:type" content={ogType} />
-    <meta property="og:site_name" content="ガジェナビ" />
+    <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:locale" content="ja_JP" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -107,16 +106,16 @@ const breadcrumbLd = breadcrumbs && breadcrumbs.length
     <header class="sticky top-0 z-30 border-b border-black/5 bg-cream/85 backdrop-blur">
       <div class="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3">
         <a href={import.meta.env.BASE_URL} class="flex shrink-0 items-center gap-2">
-          <span class="grid h-8 w-8 place-items-center rounded-lg bg-brand-500 font-black text-white shadow-sm">ガ</span>
-          <span class="text-lg font-black tracking-tight">ガジェナビ<span class="text-brand-500">.</span></span>
+          <span class="grid h-8 w-8 place-items-center rounded-lg bg-brand-500 font-black text-white shadow-sm">{SITE_NAME.charAt(0)}</span>
+          <span class="text-lg font-black tracking-tight">{SITE_NAME}<span class="text-brand-500">.</span></span>
         </a>
         <nav class="flex items-center gap-1 overflow-x-auto text-sm font-bold text-ink/60 sm:gap-2">
-          {GENDERS.map((g) => (
+          {CATEGORIES.map((c) => (
             <a
-              href={`${import.meta.env.BASE_URL}${g.slug}/`}
+              href={`${import.meta.env.BASE_URL}categories/${c.slug}/`}
               class="whitespace-nowrap rounded-full px-3 py-1.5 transition hover:bg-brand-50 hover:text-brand-600"
             >
-              {g.label}
+              {c.label}
             </a>
           ))}
         </nav>
@@ -127,20 +126,20 @@ const breadcrumbLd = breadcrumbs && breadcrumbs.length
 
     <footer class="mt-20 border-t border-black/5 bg-white">
       <div class="mx-auto max-w-5xl px-4 py-8 text-sm text-ink/55">
-        <p class="text-base font-black text-ink/75">ガジェナビ<span class="text-brand-500">.</span></p>
-        <p class="mt-1">楽天で実際に売れている商品を、写真とレビューをもとに比較して紹介しています。</p>
+        <p class="text-base font-black text-ink/75">{SITE_NAME}<span class="text-brand-500">.</span></p>
+        <p class="mt-1">プログラミングスクールを料金・特徴・サポートで比較して紹介しています。</p>
         <nav class="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-xs font-bold text-ink/60">
-          {GENDERS.map((g) => (
-            <a href={`${import.meta.env.BASE_URL}${g.slug}/`} class="hover:text-brand-600">{g.label}</a>
+          {CATEGORIES.map((c) => (
+            <a href={`${import.meta.env.BASE_URL}categories/${c.slug}/`} class="hover:text-brand-600">{c.label}</a>
           ))}
           <a href={import.meta.env.BASE_URL} class="hover:text-brand-600">記事一覧</a>
           <a href={`${import.meta.env.BASE_URL}about/`} class="hover:text-brand-600">運営者情報</a>
           <a href={`${import.meta.env.BASE_URL}privacy/`} class="hover:text-brand-600">プライバシーポリシー</a>
         </nav>
         <p class="mt-4 text-xs leading-relaxed text-ink/45">
-          当サイトはアフィリエイト広告（楽天アフィリエイト等）を利用しています。掲載の価格・在庫・レビューは変動する場合があります。最新の情報は各商品ページをご確認ください。
+          当サイトはアフィリエイト広告を利用しています。掲載の料金・コース内容は変動する場合があります。最新情報は各スクールの公式サイトをご確認ください。
         </p>
-        <p class="mt-3 text-xs text-ink/35">© {year} ガジェナビ</p>
+        <p class="mt-3 text-xs text-ink/35">© {year} {SITE_NAME}</p>
       </div>
     </footer>
   </body>
