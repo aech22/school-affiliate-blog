@@ -8,6 +8,22 @@
       "category": "プログラミングスクール",
       "theme": "未経験からエンジニアを目指す人向けに、主要プログラミングスクールを料金・学習形式・サポート・転職支援の観点で比較する",
       "serviceIds": ["techacademy", "dmm-webcamp", "runteq", "codecamp", "samurai-engineer"]
+    },
+    {
+      "slug": "online-programming-school",
+      "title": "オンライン完結で学べるプログラミングスクール比較",
+      "categorySlug": "programming",
+      "category": "プログラミングスクール",
+      "theme": "通学不要でオンライン完結できるプログラミングスクールを、学習スタイル・メンター/講師のサポート・進めやすさで比較する（働きながら学びたい人向け）",
+      "serviceIds": ["techacademy", "codecamp", "samurai-engineer"]
+    },
+    {
+      "slug": "career-support-programming-school",
+      "title": "転職支援で選ぶプログラミングスクール比較",
+      "categorySlug": "programming",
+      "category": "プログラミングスクール",
+      "theme": "エンジニア転職を目指す人向けに、転職サポートや実務レベルの学習に力を入れているスクールを、支援内容と学習量の観点で比較する",
+      "serviceIds": ["dmm-webcamp", "runteq", "samurai-engineer"]
     }
   ]
 }
