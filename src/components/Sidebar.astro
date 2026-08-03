@@ -11,6 +11,9 @@ const skyscraperHtml = `<a href="https://px.a8.net/svt/ejp?a8mat=4B9X1D+6NXPKI+5
 
 // A8.net ココナラ（スキルマーケット）120×60。学習者→副業/スキル販売の文脈。規約どおり原文のまま。
 const coconalaHtml = `<a href="https://px.a8.net/svt/ejp?a8mat=4B9X1D+97114I+2PEO+64RJ5" rel="nofollow sponsored" target="_blank"><img border="0" width="120" height="60" alt="ココナラ" src="https://www29.a8.net/svt/bgt?aid=260803201556&wid=001&eno=01&mid=s00000012624001030000&mc=1"></a><img border="0" width="1" height="1" src="https://www15.a8.net/0.gif?a8mat=4B9X1D+97114I+2PEO+64RJ5" alt="">`;
+
+// A8.net 社内SE転職ナビ（IT/社内SE転職）テキストリンク。学習→エンジニア転職の文脈。規約どおり原文のまま（狭いサイドバーに収まるようテキストリンクを採用）。
+const seNaviHtml = `<a href="https://px.a8.net/svt/ejp?a8mat=4B9X1F+3MZDV6+3IZO+I4FNM" rel="nofollow sponsored" target="_blank" class="font-bold text-brand-600 hover:underline">最近、仕事楽しめてますか？！社内SEへ転職するなら【社内SE転職ナビ】</a><img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=4B9X1F+3MZDV6+3IZO+I4FNM" alt="">`;
 ---
 <aside class="space-y-6">
   <section class="rounded-2xl border border-black/5 bg-white p-5">
@@ -48,5 +51,11 @@ const coconalaHtml = `<a href="https://px.a8.net/svt/ejp?a8mat=4B9X1D+97114I+2PE
     <p class="mb-2 text-[11px] font-black tracking-wide text-ink/35">広告 · 学んだスキルを副業に</p>
     <p class="mb-3 text-xs leading-relaxed text-ink/60">身につけたスキルは副業でも活かせます。イラスト・Web制作・相談などを売買できるスキルマーケット。</p>
     <div set:html={coconalaHtml} />
+  </section>
+
+  <section class="rounded-2xl border border-black/5 bg-white p-4">
+    <p class="mb-2 text-[11px] font-black tracking-wide text-ink/35">広告 · エンジニア転職</p>
+    <p class="mb-2 text-xs leading-relaxed text-ink/60">学習の先にエンジニア就職を目指すなら。客先常駐なしの社内SE求人に特化した転職支援です。</p>
+    <p class="text-sm leading-snug" set:html={seNaviHtml} />
   </section>
 </aside>
