@@ -70,6 +70,48 @@
       "approved": false,
       "pros": [],
       "cons": []
+    },
+    {
+      "id": "yumecari-agent",
+      "name": "ユメキャリ転職エージェント",
+      "subCategory": "career",
+      "tags": ["大手企業の現役面接官が運営", "書類添削・面接対策に強み", "完全無料", "一部企業で選考免除の特典"],
+      "priceNote": "完全無料（中途向け）",
+      "target": "大手企業への転職で、選考対策を重視したい中途の方",
+      "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+4T95TE+5PWS+BWVTE",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+4T95TE+5PWS+BWVTE",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "se-navi",
+      "name": "社内SE転職ナビ",
+      "subCategory": "career",
+      "tags": ["社内SE特化・IT専門", "公開求人5,000件以上", "定着率96.5%", "客先常駐なしの求人"],
+      "priceNote": "完全無料",
+      "target": "客先常駐を避け、社内SEを目指すITエンジニア（20〜40代）",
+      "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+3MZDV6+3IZO+I4FNM",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+3MZDV6+3IZO+I4FNM",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "video-editor-course",
+      "name": "動画教材エディター養成コース",
+      "subCategory": "qualification",
+      "tags": ["修了後に資格認定", "資格取得者に顧客紹介", "固定＋歩合報酬の受注が見込める", "3名のプロ講師"],
+      "priceNote": "定価199,800円（期間限定割引あり）",
+      "target": "動画編集の経験があり、仕事として収入を得たい方",
+      "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+3L731U+4V0U+ZQFQA",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+3L731U+4V0U+ZQFQA",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
     }
   ]
 }

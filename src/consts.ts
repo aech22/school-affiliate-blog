@@ -3,7 +3,7 @@
 
 // ブランド名・キャッチコピー（ここ1箇所を変えれば全テンプレートに反映される）。
 export const SITE_NAME = 'コドナビ';
-export const SITE_TAGLINE = '未経験からのプログラミングスクール、料金と特徴で比較。';
+export const SITE_TAGLINE = 'スクール・転職・資格を、料金と特徴で比較。エンジニアとキャリアの「次の一歩」を選ぶ。';
 
 // Google Analytics 4 の測定ID（例: 'G-XXXXXXXXXX'）。このサイト用に新規発行したIDを貼る。
 export const GA_MEASUREMENT_ID = '';
