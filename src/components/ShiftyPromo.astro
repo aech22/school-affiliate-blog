@@ -1,0 +1,54 @@
+---
+// Shifty（自社アプリ・飲食店向けシフト管理）への導線カード。
+// 国内5サイトで内容は完全に同一。1つ直したら5つとも直すこと。
+// 正本: Obsidian「Projects/アフィリエイト/AFFILIATE.md」の "Shifty 導線のルール"。
+//
+// ・アフィリリンクではなく自社サービスなので rel="sponsored"/"nofollow" は付けない（dofollow）。
+// ・ただし広告であることに変わりはないので、ステマ規制対応で「PR」ラベルを明示する。
+// ・設置は記事末（ArticleLayout）とサイドバー（Sidebar）の2箇所のみ。footer には置かない
+//   （全ページ反復の同一アンカーリンクは SEO 上のリスクになるため意図的に外している）。
+import { SHIFTY_UTM_SOURCE } from '../consts';
+
+interface Props {
+  variant?: 'article' | 'sidebar';
+}
+const { variant = 'article' } = Astro.props as Props;
+
+// 流入元をサイトごとに分離して計測できるようにする。
+const href = `https://shiftyshifty.app/?utm_source=${SHIFTY_UTM_SOURCE}&utm_medium=affiliate_site&utm_campaign=cross_promo`;
+---
+{
+  variant === 'sidebar' ? (
+    <section class="rounded-2xl border border-black/5 bg-white p-4">
+      <p class="mb-2 text-[11px] font-black tracking-wide text-ink/35">PR · 当サイト運営者が開発</p>
+      <p class="text-sm font-black leading-snug text-ink">シフト管理アプリ Shifty</p>
+      <p class="mt-2 text-xs leading-relaxed text-ink/60">
+        飲食店の希望シフト集めから、シフト表の Excel 出力まで。スタッフは送られてきたURLを開くだけで提出でき、会員登録もアプリのインストールも要りません。
+      </p>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener"
+        class="mt-3 inline-flex w-full items-center justify-center rounded-lg bg-brand-500 px-3 py-2 text-xs font-black text-white transition hover:bg-brand-600"
+      >
+        無料ではじめる
+      </a>
+    </section>
+  ) : (
+    <aside class="mt-12 rounded-2xl border border-black/5 bg-white p-5 sm:p-6">
+      <p class="mb-1 text-[11px] font-black tracking-wide text-ink/35">PR · 当サイト運営者が開発しています</p>
+      <p class="text-lg font-black leading-snug text-ink">シフトの希望集め、まだ LINE と Excel の往復でやっていませんか？</p>
+      <p class="mt-3 text-sm leading-relaxed text-ink/70">
+        <b>Shifty</b> は飲食店向けのシフト管理アプリです。スタッフは送られてきたURLを開いて希望を入れるだけ（会員登録もアプリのインストールも不要）。店長は集まった希望をそのままシフト表として Excel に出力できます。無料プランから使えます。
+      </p>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener"
+        class="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-black text-white transition hover:bg-brand-600"
+      >
+        Shifty を見る →
+      </a>
+    </aside>
+  )
+}

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { CATEGORIES } from '../data/taxonomy';
+import ShiftyPromo from './ShiftyPromo.astro';
 
 const recent = (await getCollection('articles'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -76,4 +77,6 @@ const videoEditorHtml = `<a href="https://px.a8.net/svt/ejp?a8mat=4B9X1F+3L731U+
     <p class="mb-2 text-xs leading-relaxed text-ink/60">動画編集のスキルで収入を得たい方へ。資格認定・顧客紹介つきの養成コースです。</p>
     <p class="text-sm leading-snug" set:html={videoEditorHtml} />
   </section>
+  <ShiftyPromo variant="sidebar" />
+
 </aside>

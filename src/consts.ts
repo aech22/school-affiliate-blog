@@ -13,3 +13,6 @@ export const PINTEREST_VERIFY = '';
 
 // X(Twitter) の公式アカウント（例: '@handle'）。カード下部に表示される。
 export const TWITTER_SITE = '';
+
+// Shifty 導線（ShiftyPromo.astro）の流入元計測用スラッグ。サイトごとに一意にする。
+export const SHIFTY_UTM_SOURCE = 'codenavi';
