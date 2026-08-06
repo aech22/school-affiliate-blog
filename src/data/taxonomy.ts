@@ -28,6 +28,12 @@ export const CATEGORIES: Category[] = [
     emoji: '📜',
     blurb: '資格取得や実務スキルの養成講座を、内容・サポート・費用の観点で比較。学びを仕事につなげたい人向け。',
   },
+  {
+    slug: 'language',
+    label: '語学スクール',
+    emoji: '🗣️',
+    blurb: '英会話・ビジネス中国語などの語学スクールを、レッスン形式・講師・続けやすさで比較。仕事で使う語学を身につけたい人向け。',
+  },
 ];
 
 export const categoryBySlug = (slug?: string | null): Category | undefined =>

@@ -21,6 +21,12 @@ const yumecariHtml = `<a href="https://px.a8.net/svt/ejp?a8mat=4B9X1F+4T95TE+5PW
 
 // A8.net 動画教材エディター養成コース（動画編集講座）テキストリンク。規約どおり原文のまま。
 const videoEditorHtml = `<a href="https://px.a8.net/svt/ejp?a8mat=4B9X1F+3L731U+4V0U+ZQFQA" rel="nofollow sponsored" target="_blank" class="font-bold text-brand-600 hover:underline">【動画教材エディター養成コース】</a><img border="0" width="1" height="1" src="https://www13.a8.net/0.gif?a8mat=4B9X1F+3L731U+4V0U+ZQFQA" alt="">`;
+
+// A8.net 代理店ドットコム（副業・独立の案件を一括資料請求）テキストリンク。規約どおり原文のまま。
+const dairitenHtml = `<a href="https://px.a8.net/svt/ejp?a8mat=4B9X1D+9ERNZM+5WDA+5YJRM" rel="nofollow sponsored" target="_blank" class="font-bold text-brand-600 hover:underline">独立・副業の第一歩を力強くサポート！代理店ビジネス情報を一括比較【代理店募集.com】</a><img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=4B9X1D+9ERNZM+5WDA+5YJRM" alt="">`;
+
+// A8.net fan.salon（LINEでオンラインサロン/スクールを開設）テキストリンク。規約どおり原文のまま。
+const fanSalonHtml = `<a href="https://px.a8.net/svt/ejp?a8mat=4B9X1F+AWCOFM+5FAU+5YJRM" rel="nofollow sponsored" target="_blank" class="font-bold text-brand-600 hover:underline">LINEでオンランサロン【fan.salon】</a><img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4B9X1F+AWCOFM+5FAU+5YJRM" alt="">`;
 ---
 <aside class="space-y-6">
   <section class="rounded-2xl border border-black/5 bg-white p-5">
@@ -76,6 +82,14 @@ const videoEditorHtml = `<a href="https://px.a8.net/svt/ejp?a8mat=4B9X1F+3L731U+
     <p class="mb-2 text-[11px] font-black tracking-wide text-ink/35">広告 · 動画編集で稼ぐ</p>
     <p class="mb-2 text-xs leading-relaxed text-ink/60">動画編集のスキルで収入を得たい方へ。資格認定・顧客紹介つきの養成コースです。</p>
     <p class="text-sm leading-snug" set:html={videoEditorHtml} />
+  </section>
+
+  <section class="rounded-2xl border border-black/5 bg-white p-4">
+    <p class="mb-2 text-[11px] font-black tracking-wide text-ink/35">広告 · 副業・独立</p>
+    <p class="mb-2 text-xs leading-relaxed text-ink/60">雇われる以外の選択肢を探すなら。代理店・フランチャイズの募集案件を一括で比較できます。</p>
+    <p class="mb-3 text-sm leading-snug" set:html={dairitenHtml} />
+    <p class="mb-2 text-xs leading-relaxed text-ink/60">自分の発信をファン向けの会員制サービスにするなら、LINE上でサロンを開設できるサービスもあります。</p>
+    <p class="text-sm leading-snug" set:html={fanSalonHtml} />
   </section>
   <ShiftyPromo variant="sidebar" />
 

@@ -64,6 +64,39 @@
         "movie-hacks",
         "video-editor-course"
       ]
+    },
+    {
+      "slug": "career-service-comparison",
+      "title": "IT以外も含めた転職サービス比較｜クチコミ型と地域特化型",
+      "categorySlug": "career",
+      "category": "転職・エージェント",
+      "theme": "エンジニア以外も含めた転職希望者向けに、企業クチコミ・選考体験談から選ぶ全国型と、地域に密着した専門エージェントを、情報量・支援スタイル・向いている人の観点で比較する",
+      "serviceIds": [
+        "onecareer-tenshoku",
+        "r4career"
+      ]
+    },
+    {
+      "slug": "remote-work-schools",
+      "title": "在宅ワークを目指すスクール比較｜WebデザインとSNSマーケティング",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "在宅ワーク・副業へのキャリアチェンジを目指す人向けに、Webデザイン系とSNSマーケティング系のスクールを、学習形式・費用・仕事につなげる仕組みの観点で比較する",
+      "serviceIds": [
+        "mystar",
+        "estre"
+      ]
+    },
+    {
+      "slug": "language-schools",
+      "title": "社会人の語学スクール比較｜英会話とビジネス中国語",
+      "categorySlug": "language",
+      "category": "語学スクール",
+      "theme": "仕事で使う語学を身につけたい社会人向けに、通学型の英会話スクールとオンラインのビジネス中国語スクールを、レッスン形式・講師・続けやすさの観点で比較する",
+      "serviceIds": [
+        "nova",
+        "shoba-chinese"
+      ]
     }
   ]
 }

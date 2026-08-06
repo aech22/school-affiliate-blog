@@ -19,9 +19,9 @@
 
 ⚠️ **ドメインはハイフン入りの "code-navi"**（"codenavi" ではない）。
 
-## カテゴリ（3種・gender軸なし）
+## カテゴリ（4種・gender軸なし）
 
-`programming`（プログラミングスクール）/ `career`（転職・エージェント）/ `qualification`（資格・スキル講座）
+`programming`（プログラミングスクール）/ `career`（転職・エージェント）/ `qualification`（資格・スキル講座）/ `language`（語学スクール・2026-08-06追加）
 
 当初はプログラミングスクール特化だったが、2026-08-03 に「スクール・転職・資格」の比較ハブへ拡張した。方針は**「分野を狭めるのは顧客を減らすのと同じ／購読者への条件が違うので重複関係なく掲載」**。
 
@@ -42,7 +42,7 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 
 ## A8 広告の掲載状況
 
-**サイドバー（`Sidebar.astro`）に「広告」ラベル付きで5本**（ステマ規制対応）:
+**サイドバー（`Sidebar.astro`）に「広告」ラベル付きで6枠7本**（ステマ規制対応）:
 
 | 広告 | サイズ | 文脈 |
 |---|---|---|
@@ -51,6 +51,7 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 | 社内SE転職ナビ | テキスト | エンジニア転職 |
 | ユメキャリAgent | テキスト | 一般転職 |
 | 動画教材エディター養成コース | テキスト | 動画編集 |
+| 代理店ドットコム＋fan.salon | テキスト×2（1枠に同居） | 副業・独立（2026-08-06追加。枠数を増やしすぎないよう1セクションにまとめている） |
 
 `AdBanner.astro` は記事下の お名前.com 728×90。
 
@@ -59,7 +60,8 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 ### 承認済みサービス（`services.json` で `approved: true`）
 
 - `se-navi`（社内SE転職ナビ）・`yumecari-agent`（ユメキャリ）— career カテゴリの比較カードで収益化済み
-- 動画教材エディター養成コース — qualification カテゴリ
+- 動画教材エディター養成コース・`creators-japan`・`movie-hacks`・`skillhacks` — qualification / programming カテゴリ
+- **2026-08-06 追加（A8提供情報より）**: `onecareer-tenshoku`（ワンキャリア転職）・`r4career`（R4CAREER）＝career、`mystar`（MySTAR）・`estre`（エストレ）＝qualification、`nova`（駅前留学NOVA）・`shoba-chinese`（ショーバ中国語センター）＝language
 
 ## 生成エンジン
 
