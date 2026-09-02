@@ -33,10 +33,20 @@ jobs:
       - name: Run gate tests
         run: python3 scripts/test_gate.py
 
+      # キー未登録の間は「失敗」ではなく「スキップ」にする。
+      # 毎回赤くなると通知を無視する習慣がつき、本当の故障を見落とすため。
+      # シークレットを登録した日から、何もしなくてもそのまま動き出す。
       - name: Generate one article
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python3 scripts/generate.py
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::warning::ANTHROPIC_API_KEY が未登録のため生成をスキップしました。"
+            echo "登録すると次回の実行から自動生成が始まります:"
+            echo "  gh secret set ANTHROPIC_API_KEY --repo aech22/school-affiliate-blog"
+            exit 0
+          fi
+          python3 scripts/generate.py
 
       - name: Commit if changed
         run: |
