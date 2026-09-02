@@ -1,0 +1,60 @@
+{
+  "_note": "検証済みの制度事実。本文に書いてよい金額・率の唯一の出どころ。numbers[] に無い金額・率が本文に現れたら scripts/gate.py が記事を破棄する。追加するときは必ず一次情報のURLと検証日を入れること。検証記録の正本は Obsidian/Projects/情報検証/factcheck/2026-09-02_学び支援制度_教育訓練給付金とリスキリング補助金.md",
+  "facts": [
+    {
+      "id": "kyufu-ippan",
+      "claim": "一般教育訓練給付金は受講費用の20%（上限10万円）が訓練修了後に支給される",
+      "value": "20%・上限10万円",
+      "numbers": ["20%", "10万円"],
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/jinzaikaihatsu/kyouiku.html",
+      "sourceType": "primary",
+      "verifiedAt": "2026-09-02",
+      "label": "✅",
+      "note": ""
+    },
+    {
+      "id": "kyufu-tokutei-ippan",
+      "claim": "特定一般教育訓練給付金は40%（上限20万円）。資格取得等をし、修了後1年以内に雇用保険の被保険者として雇用された場合は50%（上限25万円）",
+      "value": "40%・上限20万円／条件を満たすと50%・上限25万円",
+      "numbers": ["40%", "20万円", "50%", "25万円", "1年"],
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/jinzaikaihatsu/kyouiku.html",
+      "sourceType": "primary",
+      "verifiedAt": "2026-09-02",
+      "label": "✅",
+      "note": "令和6年10月以降に受講開始する講座が対象"
+    },
+    {
+      "id": "kyufu-senmon-jissen",
+      "claim": "専門実践教育訓練給付金は50%（年間上限40万円）。資格取得等をし修了後1年以内に雇用された場合は70%（年間上限56万円）。さらに修了後の賃金が受講開始前より5%以上上昇した場合は80%（年間上限64万円）",
+      "value": "50%・年間上限40万円／70%・56万円／80%・64万円",
+      "numbers": ["50%", "40万円", "70%", "56万円", "80%", "64万円", "5%", "1年"],
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/jinzaikaihatsu/kyouiku.html",
+      "sourceType": "primary",
+      "verifiedAt": "2026-09-02",
+      "label": "✅",
+      "note": "令和6年10月以降に受講開始する講座が対象"
+    },
+    {
+      "id": "kyuka-kyufukin",
+      "claim": "教育訓練休暇給付金が令和7年10月に創設された。雇用保険の一般被保険者が就業規則等に基づき連続した30日以上の無給の教育訓練休暇を取得する場合が対象",
+      "value": "令和7年10月創設・連続30日以上の無給休暇が対象",
+      "numbers": ["30日"],
+      "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/koyouhoken/kyukakyufukin.html",
+      "sourceType": "primary",
+      "verifiedAt": "2026-09-02",
+      "label": "✅",
+      "note": "支給額の算定方法と給付日数は公式ページに明記が無く未確認。記事で金額に踏み込まない"
+    },
+    {
+      "id": "reskilling-koubo-shuryo",
+      "claim": "「リスキリングを通じたキャリアアップ支援事業」の公募は六次公募（令和7年9月16日正午締切）をもって終了し、七次公募の実施は未定",
+      "value": "新規公募は終了・七次は未定",
+      "numbers": [],
+      "source": "https://careerup.reskilling.go.jp/business/",
+      "sourceType": "primary",
+      "verifiedAt": "2026-09-02",
+      "label": "✅",
+      "note": "受講者向けページには受付状況の記載が無い。補助率も『六次公募から変更されます』とあるが変更後の数値が画像でしか示されておらず未確定。この制度については金額・率を一切書かない"
+    }
+  ]
+}
