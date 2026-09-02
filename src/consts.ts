@@ -11,6 +11,10 @@ export const GA_MEASUREMENT_ID = '';
 // Pinterest ドメイン認証コード（Pinterestの「ドメインを申請」で表示される <meta> の content 値）。
 export const PINTEREST_VERIFY = '';
 
+// Google Search Console のHTMLタグ確認コード（<meta name="google-site-verification" content="◯◯◯"> の content値）。
+// 空文字ならタグを出力しない。所有権の確認が済んだあとも消さないこと（消すと確認が外れる）。
+export const SEARCH_CONSOLE_VERIFY = '';
+
 // X(Twitter) の公式アカウント（例: '@handle'）。カード下部に表示される。
 export const TWITTER_SITE = '';
 
