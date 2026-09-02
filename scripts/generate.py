@@ -133,13 +133,18 @@ def build_topic(topic: dict, today: str) -> tuple[dict | None, str, list[str]]:
     prose = _llm_prose(services, topic["theme"], facts, topic.get("type", "compare"))
     body = (prose.get("body") or "").strip()
 
-    # 検証ゲート: 本文・intro・outro を通して、台帳にない金額・率が無いか調べる
-    checked_text = "\n".join([body, prose.get("intro", ""), prose.get("outro", "")])
-    violations = gate_check(checked_text, facts)
+    items = prose.get("items", [])
+
+    # 検証ゲート: 読者の目に触れる LLM 生成テキストを全部通す。
+    # pros/cons/target も ServiceCard が描画するので、body/intro/outro だけでは穴になる。
+    checked_parts = [body, prose.get("intro", ""), prose.get("outro", ""), prose.get("description", "")]
+    for it in items:
+        checked_parts.extend(it.get("pros") or [])
+        checked_parts.append(it.get("cons") or "")
+        checked_parts.append(it.get("target") or "")
+    violations = gate_check("\n".join(checked_parts), facts)
     if violations:
         return None, "", violations
-
-    items = prose.get("items", [])
     refs = []
     for i, s in enumerate(services):
         it = items[i] if i < len(items) else {}

@@ -12,7 +12,9 @@
         "kyufu-ippan",
         "kyufu-tokutei-ippan",
         "kyufu-senmon-jissen",
-        "kyuka-kyufukin"
+        "kyuka-kyufukin",
+        "kyufu-jizen-tetsuzuki",
+        "kyufu-kensaku-system"
       ],
       "serviceIds": [
         "mystar",
@@ -43,7 +45,8 @@
       "theme": "30代・未経験から在宅ワークへ移りたい人が、何のスキルを選ぶか・費用をどう抑えるか・学んだ後どう仕事につなげるかの3点をどう決めればよいかを整理する。教育訓練給付金が使える場合の考え方も含める",
       "factIds": [
         "kyufu-ippan",
-        "kyufu-tokutei-ippan"
+        "kyufu-tokutei-ippan",
+        "kyufu-kensaku-system"
       ],
       "serviceIds": [
         "mystar",
@@ -61,7 +64,9 @@
       "factIds": [
         "kyufu-ippan",
         "kyufu-tokutei-ippan",
-        "kyufu-senmon-jissen"
+        "kyufu-senmon-jissen",
+        "kyufu-jizen-tetsuzuki",
+        "kyufu-kensaku-system"
       ],
       "serviceIds": [
         "mystar",

@@ -5,7 +5,10 @@
       "id": "kyufu-ippan",
       "claim": "一般教育訓練給付金は受講費用の20%（上限10万円）が訓練修了後に支給される",
       "value": "20%・上限10万円",
-      "numbers": ["20%", "10万円"],
+      "numbers": [
+        "20%",
+        "10万円"
+      ],
       "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/jinzaikaihatsu/kyouiku.html",
       "sourceType": "primary",
       "verifiedAt": "2026-09-02",
@@ -16,7 +19,13 @@
       "id": "kyufu-tokutei-ippan",
       "claim": "特定一般教育訓練給付金は40%（上限20万円）。資格取得等をし、修了後1年以内に雇用保険の被保険者として雇用された場合は50%（上限25万円）",
       "value": "40%・上限20万円／条件を満たすと50%・上限25万円",
-      "numbers": ["40%", "20万円", "50%", "25万円", "1年"],
+      "numbers": [
+        "40%",
+        "20万円",
+        "50%",
+        "25万円",
+        "1年"
+      ],
       "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/jinzaikaihatsu/kyouiku.html",
       "sourceType": "primary",
       "verifiedAt": "2026-09-02",
@@ -27,7 +36,16 @@
       "id": "kyufu-senmon-jissen",
       "claim": "専門実践教育訓練給付金は50%（年間上限40万円）。資格取得等をし修了後1年以内に雇用された場合は70%（年間上限56万円）。さらに修了後の賃金が受講開始前より5%以上上昇した場合は80%（年間上限64万円）",
       "value": "50%・年間上限40万円／70%・56万円／80%・64万円",
-      "numbers": ["50%", "40万円", "70%", "56万円", "80%", "64万円", "5%", "1年"],
+      "numbers": [
+        "50%",
+        "40万円",
+        "70%",
+        "56万円",
+        "80%",
+        "64万円",
+        "5%",
+        "1年"
+      ],
       "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/jinzaikaihatsu/kyouiku.html",
       "sourceType": "primary",
       "verifiedAt": "2026-09-02",
@@ -38,7 +56,9 @@
       "id": "kyuka-kyufukin",
       "claim": "教育訓練休暇給付金が令和7年10月に創設された。雇用保険の一般被保険者が就業規則等に基づき連続した30日以上の無給の教育訓練休暇を取得する場合が対象",
       "value": "令和7年10月創設・連続30日以上の無給休暇が対象",
-      "numbers": ["30日"],
+      "numbers": [
+        "30日"
+      ],
       "source": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/koyouhoken/kyukakyufukin.html",
       "sourceType": "primary",
       "verifiedAt": "2026-09-02",
@@ -55,6 +75,28 @@
       "verifiedAt": "2026-09-02",
       "label": "✅",
       "note": "受講者向けページには受付状況の記載が無い。補助率も『六次公募から変更されます』とあるが変更後の数値が画像でしか示されておらず未確定。この制度については金額・率を一切書かない"
+    },
+    {
+      "id": "kyufu-jizen-tetsuzuki",
+      "claim": "特定一般教育訓練と専門実践教育訓練は、受講前に「訓練前キャリアコンサルティング」を受けて「ジョブ・カード」の交付を受け、受講開始日の2週間前までにハローワークで受給資格確認の手続きを行う必要がある",
+      "value": "受講開始日の2週間前までに受給資格確認が必要（特定一般・専門実践）",
+      "numbers": [],
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_education.html",
+      "sourceType": "primary",
+      "verifiedAt": "2026-09-02",
+      "label": "✅",
+      "note": "一般教育訓練の受講前手続きの要否は同ページに記載が無く未確認。一般について『事前手続き不要』と断定しない"
+    },
+    {
+      "id": "kyufu-kensaku-system",
+      "claim": "教育訓練給付の対象講座は「教育訓練講座検索システム」で検索できる",
+      "value": "教育訓練講座検索システム",
+      "numbers": [],
+      "source": "https://www.hellowork.mhlw.go.jp/insurance/insurance_education.html",
+      "sourceType": "primary",
+      "verifiedAt": "2026-09-02",
+      "label": "✅",
+      "note": ""
     }
   ]
 }
