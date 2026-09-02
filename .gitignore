@@ -6,7 +6,11 @@
 # python
 __pycache__/
 *.pyc
-products.json
+
+# 楽天APIの生成キャッシュ（picknaviから継承）。ルート直下のものだけを無視する。
+# src/data/products.json は手で書いた案件レジストリなので追跡する
+# ——このルールが広すぎたせいで 2026-09-02 にビルドが3回落ちた。
+/products.json
 
 # node / astro
 node_modules/
