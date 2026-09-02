@@ -22,6 +22,7 @@ const articles = defineCollection({
     description: z.string().nullish(),
     category: z.string().nullish(),       // 表示ラベル（例: プログラミングスクール）
     categorySlug: z.string().nullish(),   // 結合キー（例: programming）
+    type: z.enum(['compare', 'guide', 'problem']).nullish(),  // 記事の型。本文の骨格が変わる
     intro: z.string().nullish(),
     outro: z.string().nullish(),
     noindex: z.boolean().nullish(),

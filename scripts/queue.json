@@ -1,0 +1,53 @@
+{
+  "_note": "未生成・未更新トピックの待ち行列。generate.py は1回の実行で blocked:false の先頭1件だけを処理する。検証ゲートに3回連続で落ちたトピックは blocked:true になり、lastViolations に落ちた数値が残る。blocked を解除するには facts.json に根拠を追加するか、topics.json の theme を直す。",
+  "pending": [
+    {
+      "slug": "kyufu-jukyu-jouken",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "senmon-jissen-hatarakinagara",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "kyufu-taisho-kouza-sagashikata",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "douga-henshu-fukugyo-kasegenai",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "sns-unyo-fukugyo-jitsuzo",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "zaitaku-work-40dai-shufu",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "shanai-se-tenshoku-mikeiken",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "business-eikaiwa-hikaku",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    }
+  ]
+}

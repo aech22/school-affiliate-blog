@@ -23,6 +23,7 @@ interface Data {
   updated?: Date | null;
   category?: string | null;
   categorySlug?: string | null;
+  type?: 'compare' | 'guide' | 'problem' | null;
   intro?: string | null;
   outro?: string | null;
   services?: ServiceRef[] | null;
@@ -104,7 +105,9 @@ const itemListLd = {
           {cat.emoji} {cat.label}
         </a>
       )}
-      <span class="text-xs font-medium text-ink/40">公開 {dateStr}・更新 {updatedStr}・{resolved.length}校を比較</span>
+      <span class="text-xs font-medium text-ink/40">
+        公開 {dateStr}・更新 {updatedStr}{data.type === 'compare' && resolved.length > 1 ? `・${resolved.length}件を比較` : ''}
+      </span>
     </div>
 
     <h1 class="mt-3 text-2xl font-black leading-tight sm:text-3xl">{data.title}</h1>
@@ -115,12 +118,16 @@ const itemListLd = {
 
     {data.intro && <p class="mt-6 text-[15px] leading-relaxed text-ink/80">{data.intro}</p>}
 
+    <div class="prose prose-slate mt-8 max-w-none prose-headings:font-black prose-h2:mt-10 prose-h2:text-xl prose-a:text-brand-600">
+      <slot />
+    </div>
+
     <div class="mt-8 space-y-6">
       {resolved.map((s) => <ServiceCard service={s} />)}
     </div>
 
     {
-      resolved.length > 1 && (
+      data.type === 'compare' && resolved.length > 1 && (
         <section class="mt-12">
           <h2 class="mb-3 flex items-center gap-2 text-lg font-black"><span class="h-5 w-1.5 rounded bg-brand-500" />比較まとめ</h2>
           <div class="overflow-x-auto rounded-xl border border-black/5">

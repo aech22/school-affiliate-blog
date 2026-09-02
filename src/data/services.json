@@ -5,7 +5,12 @@
       "id": "techacademy",
       "name": "TechAcademy（テックアカデミー）",
       "subCategory": "programming",
-      "tags": ["オンライン完結", "現役エンジニアのメンター", "マンツーマンメンタリング", "多彩なコース"],
+      "tags": [
+        "オンライン完結",
+        "現役エンジニアのメンター",
+        "マンツーマンメンタリング",
+        "多彩なコース"
+      ],
       "priceNote": "コース・受講期間で変動（4週間〜16週間プラン）",
       "target": "自分のペースでオンライン学習したい人・副業/転職の両にらみ",
       "officialUrl": "https://techacademy.jp/",
@@ -19,7 +24,12 @@
       "id": "codecamp",
       "name": "CodeCamp（コードキャンプ）",
       "subCategory": "programming",
-      "tags": ["オンライン完結", "マンツーマンレッスン", "現役エンジニア講師", "レッスン満足度が高い"],
+      "tags": [
+        "オンライン完結",
+        "マンツーマンレッスン",
+        "現役エンジニア講師",
+        "レッスン満足度が高い"
+      ],
       "priceNote": "コース・受講期間で変動（入学金＋受講料）",
       "target": "講師と対話しながら着実に進めたい人",
       "officialUrl": "https://codecamp.jp/",
@@ -33,7 +43,12 @@
       "id": "dmm-webcamp",
       "name": "DMM WEBCAMP",
       "subCategory": "programming",
-      "tags": ["転職保証コースあり", "オンライン/教室", "専門実践教育訓練給付金の対象コースあり", "転職サポート"],
+      "tags": [
+        "転職保証コースあり",
+        "オンライン/教室",
+        "専門実践教育訓練給付金の対象コースあり",
+        "転職サポート"
+      ],
       "priceNote": "コースで変動（転職保証コースは高め・給付金対象で実質負担が下がる場合あり）",
       "target": "エンジニア転職を本気で目指す人",
       "officialUrl": "https://web-camp.io/",
@@ -47,7 +62,12 @@
       "id": "runteq",
       "name": "RUNTEQ（ランテック）",
       "subCategory": "programming",
-      "tags": ["Web系自社開発企業への就職に強い", "実務レベルの学習量", "Ruby on Rails中心", "ポートフォリオ支援"],
+      "tags": [
+        "Web系自社開発企業への就職に強い",
+        "実務レベルの学習量",
+        "Ruby on Rails中心",
+        "ポートフォリオ支援"
+      ],
       "priceNote": "9ヶ月前後の長期・受講料は中〜高価格帯",
       "target": "Web系エンジニアとして就職したい・学習量を厭わない人",
       "officialUrl": "https://runteq.jp/",
@@ -61,7 +81,12 @@
       "id": "samurai-engineer",
       "name": "侍エンジニア",
       "subCategory": "programming",
-      "tags": ["専属マンツーマン", "オーダーメイドカリキュラム", "オンライン完結", "幅広い目的に対応"],
+      "tags": [
+        "専属マンツーマン",
+        "オーダーメイドカリキュラム",
+        "オンライン完結",
+        "幅広い目的に対応"
+      ],
       "priceNote": "コース・期間で変動（入学金＋受講料）",
       "target": "自分の目的に合わせた個別カリキュラムで学びたい人",
       "officialUrl": "https://www.sejuku.net/",
@@ -75,7 +100,12 @@
       "id": "yumecari-agent",
       "name": "ユメキャリ転職エージェント",
       "subCategory": "career",
-      "tags": ["大手企業の現役面接官が運営", "書類添削・面接対策に強み", "完全無料", "一部企業で選考免除の特典"],
+      "tags": [
+        "大手企業の現役面接官が運営",
+        "書類添削・面接対策に強み",
+        "完全無料",
+        "一部企業で選考免除の特典"
+      ],
       "priceNote": "完全無料（中途向け）",
       "target": "大手企業への転職で、選考対策を重視したい中途の方",
       "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+4T95TE+5PWS+BWVTE",
@@ -89,7 +119,12 @@
       "id": "se-navi",
       "name": "社内SE転職ナビ",
       "subCategory": "career",
-      "tags": ["社内SE特化・IT専門", "公開求人5,000件以上", "定着率96.5%", "客先常駐なしの求人"],
+      "tags": [
+        "社内SE特化・IT専門",
+        "公開求人5,000件以上",
+        "定着率96.5%",
+        "客先常駐なしの求人"
+      ],
       "priceNote": "完全無料",
       "target": "客先常駐を避け、社内SEを目指すITエンジニア（20〜40代）",
       "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+3MZDV6+3IZO+I4FNM",
@@ -103,7 +138,12 @@
       "id": "video-editor-course",
       "name": "動画教材エディター養成コース",
       "subCategory": "qualification",
-      "tags": ["修了後に資格認定", "資格取得者に顧客紹介", "固定＋歩合報酬の受注が見込める", "3名のプロ講師"],
+      "tags": [
+        "修了後に資格認定",
+        "資格取得者に顧客紹介",
+        "固定＋歩合報酬の受注が見込める",
+        "3名のプロ講師"
+      ],
       "priceNote": "定価199,800円（期間限定割引あり）",
       "target": "動画編集の経験があり、仕事として収入を得たい方",
       "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+3L731U+4V0U+ZQFQA",
@@ -117,7 +157,12 @@
       "id": "levtech-career",
       "name": "レバテックキャリア",
       "subCategory": "career",
-      "tags": ["IT・Webエンジニア専門", "業界に精通したアドバイザー", "大手〜スタートアップまで求人が幅広い", "年収交渉のサポート"],
+      "tags": [
+        "IT・Webエンジニア専門",
+        "業界に精通したアドバイザー",
+        "大手〜スタートアップまで求人が幅広い",
+        "年収交渉のサポート"
+      ],
       "priceNote": "完全無料",
       "target": "ITエンジニアとして専門特化の支援で転職したい人",
       "officialUrl": "https://career.levtech.jp/",
@@ -131,7 +176,12 @@
       "id": "green",
       "name": "Green（グリーン）",
       "subCategory": "career",
-      "tags": ["IT/Web業界に特化", "企業から直接スカウトが届く", "カジュアル面談で雰囲気を確認できる", "自分のペースで進めやすい"],
+      "tags": [
+        "IT/Web業界に特化",
+        "企業から直接スカウトが届く",
+        "カジュアル面談で雰囲気を確認できる",
+        "自分のペースで進めやすい"
+      ],
       "priceNote": "無料",
       "target": "スカウトを受けつつ自分のペースで転職活動したいIT人材",
       "officialUrl": "https://www.green-japan.com/",
@@ -145,7 +195,12 @@
       "id": "skillhacks",
       "name": "SkillHacks（スキルハックス）",
       "subCategory": "programming",
-      "tags": ["買い切り型でオンライン完結", "受講期間・質問が無制限", "動画で細かいニュアンスまで学べる", "比較的安価"],
+      "tags": [
+        "買い切り型でオンライン完結",
+        "受講期間・質問が無制限",
+        "動画で細かいニュアンスまで学べる",
+        "比較的安価"
+      ],
       "priceNote": "買い切り（受講期間の制限なし）",
       "target": "メンター型より安く、自分のペースでWeb開発の基礎を学びたい人",
       "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+8645MA+4K3S+614CX",
@@ -159,7 +214,12 @@
       "id": "creators-japan",
       "name": "クリエイターズジャパン",
       "subCategory": "qualification",
-      "tags": ["現役クリエイターが指導", "Adobe(Premiere Pro/After Effects)を習得", "案件獲得のノウハウ", "個別LINE＋オンラインサロン"],
+      "tags": [
+        "現役クリエイターが指導",
+        "Adobe(Premiere Pro/After Effects)を習得",
+        "案件獲得のノウハウ",
+        "個別LINE＋オンラインサロン"
+      ],
       "priceNote": "買い切り型（オンラインサロン月額1,480円・初月無料）",
       "target": "初心者から動画編集で在宅ワーク・副業を始めたい人",
       "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+B43BAQ+4LJQ+614CY",
@@ -173,7 +233,12 @@
       "id": "movie-hacks",
       "name": "MovieHacks（ムービーハックス）",
       "subCategory": "qualification",
-      "tags": ["動画で学ぶ買い切り型", "受講期間・質問が無制限", "Adobe操作を実践で習得", "比較的安価"],
+      "tags": [
+        "動画で学ぶ買い切り型",
+        "受講期間・質問が無制限",
+        "Adobe操作を実践で習得",
+        "比較的安価"
+      ],
       "priceNote": "買い切り（受講期間の制限なし）",
       "target": "できるだけ安く動画編集の基礎を身につけたい20〜30代",
       "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+8645MA+4K3S+5YRHE",
@@ -187,7 +252,12 @@
       "id": "onecareer-tenshoku",
       "name": "ワンキャリア転職",
       "subCategory": "career",
-      "tags": ["3万件以上の選考体験談", "8,000件以上の企業・職種のキャリアパス", "投稿は目視審査を通過したもののみ掲載", "転職エージェントによる支援も利用できる"],
+      "tags": [
+        "3万件以上の選考体験談",
+        "8,000件以上の企業・職種のキャリアパス",
+        "投稿は目視審査を通過したもののみ掲載",
+        "転職エージェントによる支援も利用できる"
+      ],
       "priceNote": "登録・コンテンツ閲覧とも無料",
       "target": "20〜30代のハイクラス層。転職の有無に関わらず長期のキャリアを設計したい人",
       "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1D+96FLIQ+5O7E+BWVTE",
@@ -201,7 +271,12 @@
       "id": "r4career",
       "name": "R4CAREER（アールフォーキャリア）",
       "subCategory": "career",
-      "tags": ["東海3県に特化", "企業訪問で職場環境まで把握", "書類合格率40%以上", "ISO27001取得・厚生労働大臣認可23-ユ-300807"],
+      "tags": [
+        "東海3県に特化",
+        "企業訪問で職場環境まで把握",
+        "書類合格率40%以上",
+        "ISO27001取得・厚生労働大臣認可23-ユ-300807"
+      ],
       "priceNote": "無料（転職希望者向け）",
       "target": "東海3県で働きたい20〜40代。管理職・営業・技術・SE/PG・事務職",
       "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1D+9FD3LE+576C+5YJRM",
@@ -215,8 +290,13 @@
       "id": "mystar",
       "name": "MySTAR（マイスター）",
       "subCategory": "qualification",
-      "tags": ["リスキリング補助金対応で最大70%還元", "300本以上の動画講座が永久視聴可能", "動画＋LIVE＋マンツーマンのハイブリッド学習", "ポートフォリオ制作・案件獲得・転職支援まで一貫"],
-      "priceNote": "補助金適用で実質月6,666円から",
+      "tags": [
+        "補助金の対象講座（適用可否は要確認）",
+        "300本以上の動画講座が永久視聴可能",
+        "動画＋LIVE＋マンツーマンのハイブリッド学習",
+        "ポートフォリオ制作・案件獲得・転職支援まで一貫"
+      ],
+      "priceNote": "入会金200,000円＋受講料（補助金対象なら月々6,666円〈税抜〉から・適用可否は要確認）",
       "target": "20〜40代で在宅ワークへのキャリアチェンジを目指す未経験者",
       "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+B2WG36+5VMM+5YJRM",
       "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+B2WG36+5VMM+5YJRM",
@@ -229,7 +309,12 @@
       "id": "estre",
       "name": "エストレ（ESTRE）",
       "subCategory": "qualification",
-      "tags": ["女性向けSNSマーケティングスクール", "講師陣のSNS総フォロワー28万人超", "完全1on1サポート＋動画教材", "完全オンライン・夜23時まで対応"],
+      "tags": [
+        "女性向けSNSマーケティングスクール",
+        "講師陣のSNS総フォロワー28万人超",
+        "完全1on1サポート＋動画教材",
+        "完全オンライン・夜23時まで対応"
+      ],
       "priceNote": "無料カウンセリングで案内（公式サイト参照）",
       "target": "20〜50代の女性。在宅ワーク・SNS副業・フリーランス転身を目指す人",
       "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+AP7H6A+5OBU+5YRHE",
@@ -243,7 +328,12 @@
       "id": "nova",
       "name": "駅前留学NOVA",
       "subCategory": "language",
-      "tags": ["講師は全員ネイティヴスピーカー", "最大5人までの少人数制", "入学金なし・月1万円から", "全国のスクール＋自宅で受ける「お茶の間留学」"],
+      "tags": [
+        "講師は全員ネイティヴスピーカー",
+        "最大5人までの少人数制",
+        "入学金なし・月1万円から",
+        "全国のスクール＋自宅で受ける「お茶の間留学」"
+      ],
       "priceNote": "入学金なし・月1万円から",
       "target": "通学でネイティヴ講師から直接学びたい人（3歳〜中高生のこども英会話コースもあり）",
       "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+AHGUB6+320A+63WO2",
@@ -257,7 +347,12 @@
       "id": "shoba-chinese",
       "name": "ショーバ中国語センター",
       "subCategory": "language",
-      "tags": ["発音矯正と会話力を同時に育成", "自動録画・書き込み機能つきの独自Webアプリ", "反転学習型のE-Learningを併用", "毎年改訂される最新教案"],
+      "tags": [
+        "発音矯正と会話力を同時に育成",
+        "自動録画・書き込み機能つきの独自Webアプリ",
+        "反転学習型のE-Learningを併用",
+        "毎年改訂される最新教案"
+      ],
       "priceNote": "無料体験レッスンあり",
       "target": "中国駐在・出張が決まった人、中国企業との取引で語学力を強化したいビジネスパーソン",
       "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+ADAT2Q+5WP8+5YJRM",

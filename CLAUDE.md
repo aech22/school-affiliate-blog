@@ -63,13 +63,39 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 - 動画教材エディター養成コース・`creators-japan`・`movie-hacks`・`skillhacks` — qualification / programming カテゴリ
 - **2026-08-06 追加（A8提供情報より）**: `onecareer-tenshoku`（ワンキャリア転職）・`r4career`（R4CAREER）＝career、`mystar`（MySTAR）・`estre`（エストレ）＝qualification、`nova`（駅前留学NOVA）・`shoba-chinese`（ショーバ中国語センター）＝language
 
+## 事実台帳と検証ゲート（2026-09-02 追加）
+
+`src/data/facts.json` が**検証済みの制度事実**（教育訓練給付金の給付率など）を持つ。
+`scripts/gate.py` が生成本文から**金額（円・万円）と率（%）だけ**を抽出し、台帳の `numbers[]` に無い値が
+含まれていたら記事を破棄する。テストは `python3 scripts/test_gate.py`。
+
+⚠️ **許可の根拠に `services.json` の `priceNote` を含めてはいけない。**
+レジストリの値は一次情報で検証されておらず、初回実装ではこれが原因で是正対象の記述が素通りした。
+料金は `ServiceCard` がレジストリから描画するので、本文が金額を書く必要はそもそも無い。
+
+台帳に事実を足すときは**必ず一次情報のURLと `verifiedAt` を入れる**。90日を超えると生成時に警告が出る。
+
 ## 生成エンジン
 
-`scripts/generate.py` ＋ `scripts/topics.json`（比較記事の定義）。**手動実行**（`ANTHROPIC_API_KEY` 必要）。`services.json` / `topics.json` を編集→実行で記事の講評文を再生成する（`date` は初回維持）。**編集主体なので日次 cron には載せない。**
+`scripts/generate.py` ＋ `scripts/topics.json`（記事定義）＋ `scripts/queue.json`（待ち行列）。
+
+- **1回の実行で `queue.json` の先頭1件だけ**を生成する（`ANTHROPIC_API_KEY` 必要）
+- `.github/workflows/generate.yml` が**隔日 JST 10:00**（cron `0 1 */2 * *`）に回す。生成→ゲート→main へ commit → `deploy.yml` が公開
+- ゲートに落ちたらキューを進めず再試行。**3回連続で落ちたら `blocked: true` にして末尾へ送る**（無いと更新が静かに止まる）
+- 記事の型は `type` で3種: `compare`（比較）/ `guide`（制度解説）/ `problem`（悩み起点）。型ごとにシステムプロンプトが違う
+- `date`（公開日）は `_existing_publish_date()` が維持する。**公開日を遡らせない**
+- bot が main にコミットするので、ローカルから push する前に `git pull --rebase`
+
+設計と実装計画: `docs/superpowers/specs/2026-09-02-需要起点リビルド-design.md` / `docs/superpowers/plans/2026-09-02-需要起点リビルド.md`
 
 ## 残タスク
 
-- [ ] ASP登録＋提携承認（A8 / afb / もしも推奨）→ `services.json` に `affiliateUrl` 記入＋`approved: true`
-- [ ] `services.json` の seed 事実を一次情報で検証
-- [ ] `public/ogp.png` 差し替え（今は gagetnavi / picknavi のまま）
-- [ ] `topics.json` 拡充＋`generate.py` 実行で記事増
+- [ ] **`ANTHROPIC_API_KEY` を repo secret に登録**（人間ステップ。これが無いと隔日生成が動かない）
+- [ ] **GA4 の測定ID発行 → `consts.ts` の `GA_MEASUREMENT_ID` に貼る**（現在このサイトは**未計測**。何が読まれたかの記録が無い）
+- [ ] **Search Console の所有権確認**（`consts.ts` に `SEARCH_CONSOLE_VERIFY` の定義自体が無い。検索クエリが取れないとキーワード補充が勘になる）
+- [ ] programming カテゴリの提携承認（承認は6件中1件のみ。記事3本あるのに収益接点が薄い）
+- [ ] `services.json` の priceNote の一次情報検証（mystar のみ 2026-09-02 に検証・是正済み。**数値を含む残り3件 video-editor-course / creators-japan / nova は未検証のまま本番表示中**）
+- [ ] `officialUrl` に A8 URL が入っている12件を本当の公式URLへ（**全件 approved なので現状の描画は正しいが**、どれかが `approved: false` になると A8 URL へ `rel="nofollow"` でフォールバックする潜在バグ）
+
+### 完了済み
+- ~~`public/ogp.png` 差し替え~~ → コドナビ専用OGP（1200×630）に差し替え済み（`ca8d249`）
