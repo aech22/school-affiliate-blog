@@ -6,7 +6,7 @@ export const SITE_NAME = 'コドナビ';
 export const SITE_TAGLINE = 'スクール・転職・資格を、料金と特徴で比較。エンジニアとキャリアの「次の一歩」を選ぶ。';
 
 // Google Analytics 4 の測定ID（例: 'G-XXXXXXXXXX'）。このサイト用に新規発行したIDを貼る。
-export const GA_MEASUREMENT_ID = '';
+export const GA_MEASUREMENT_ID = 'G-Y1PTFCM03C';
 
 // Pinterest ドメイン認証コード（Pinterestの「ドメインを申請」で表示される <meta> の content 値）。
 export const PINTEREST_VERIFY = '';
