@@ -99,3 +99,14 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 
 ### 完了済み
 - ~~`public/ogp.png` 差し替え~~ → コドナビ専用OGP（1200×630）に差し替え済み（`ca8d249`）
+- ~~楽天アフィリエイトの導入~~ → 2026-09-03 に稼働。`code-navi.net` を Rakuten Developers の許可リファラと楽天アフィリエイトのサイトに登録済みで、`src/data/products.json` の8商品が `approved:true`・`rel="sponsored"` で出ている
+
+## 楽天アフィリエイト（2026-09-03 稼働）
+
+`src/data/products.json` が商品レジストリ。**価格を持たない**（鮮度切れがそのまま景表法リスクになるため。金額は楽天側で見てもらう）。
+記事型 `essay` が本文の主役で、`ProductMention.astro` がカード羅列ではない小さめのブロックで差し込む。
+
+⚠️ **アフィリリンク（`hb.afl.rakuten.co.jp`）をブラウザやcurlで開かない。** 誤クリックが計上される。検証はHTMLのgrepのみ。
+
+⚠️ **APIに `affiliateId` を渡すと `itemUrl` 自体がアフィリリンクに書き換わって返る。**
+商品を突き合わせるときは `pc=` パラメータをデコードして実URLと比較する（`itemCode` の組み立ては機能しない）。
