@@ -177,6 +177,130 @@
         "nova",
         "shoba-chinese"
       ]
+    },
+    {
+      "slug": "kyufu-jukyu-jouken",
+      "type": "guide",
+      "title": "教育訓練給付金の条件｜何年働いていれば使えるのか",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "『教育訓練給付金 条件』で調べる人向けに、雇用保険の被保険者期間の要件、初回と2回目以降の違い、前回受給からの間隔、離職している場合の期限を整理する。個別の可否はハローワークで確認する必要がある点を必ず添える",
+      "factIds": [
+        "kyufu-shikyu-youken",
+        "kyufu-ippan",
+        "kyufu-tokutei-ippan",
+        "kyufu-senmon-jissen"
+      ],
+      "serviceIds": [
+        "mystar",
+        "estre"
+      ]
+    },
+    {
+      "slug": "senmon-jissen-hatarakinagara",
+      "type": "guide",
+      "title": "専門実践教育訓練を働きながら受けるには｜給付率と手続きの順番",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "在職中に専門実践教育訓練を受けたい人向けに、給付率の段階、受講前に必要な手続きとその期限、教育訓練休暇給付金という選択肢を整理する",
+      "factIds": [
+        "kyufu-senmon-jissen",
+        "kyufu-jizen-tetsuzuki",
+        "kyuka-kyufukin",
+        "kyufu-shikyu-youken"
+      ],
+      "serviceIds": [
+        "mystar"
+      ]
+    },
+    {
+      "slug": "kyufu-taisho-kouza-sagashikata",
+      "type": "guide",
+      "title": "教育訓練給付金の対象講座の探し方｜指定と区分をどう確かめるか",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "『対象講座』『資格一覧』で調べる人向けに、教育訓練講座検索システムでの調べ方、区分の見分け方、スクールの案内だけで判断してはいけない理由を整理する",
+      "factIds": [
+        "kyufu-kensaku-system",
+        "kyufu-ippan",
+        "kyufu-tokutei-ippan",
+        "kyufu-senmon-jissen",
+        "kyufu-jizen-tetsuzuki"
+      ],
+      "serviceIds": [
+        "mystar",
+        "nova"
+      ]
+    },
+    {
+      "slug": "douga-henshu-fukugyo-kasegenai",
+      "type": "problem",
+      "title": "動画編集の副業で稼げない人がつまずいている場所",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "『動画編集 副業 稼げない』で調べる人向けに、操作を覚える段階と案件を取る段階が別であること、単価が上がらない構造、どこで学び直すと変わるのかを整理する",
+      "factIds": [],
+      "serviceIds": [
+        "creators-japan",
+        "movie-hacks",
+        "video-editor-course"
+      ]
+    },
+    {
+      "slug": "sns-unyo-fukugyo-jitsuzo",
+      "type": "problem",
+      "title": "SNS運用の副業は本当に仕事になるのか｜怪しい案件との見分け方",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "『SNS運用 副業 詐欺』『未経験』で調べる人向けに、実在する仕事の形、成果の説明責任、怪しい勧誘との見分け方、学ぶなら何を学ぶかを整理する。断定的な収入の約束はしない",
+      "factIds": [],
+      "serviceIds": [
+        "estre"
+      ]
+    },
+    {
+      "slug": "zaitaku-work-40dai-shufu",
+      "type": "problem",
+      "title": "40代・主婦から在宅ワークを始めるとき、20代と何が違うのか",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "『在宅ワーク 未経験 40代』『主婦』で調べる人向けに、時間の細切れさ・ブランク・学び直しの費用という40代以降に固有の制約から、選ぶべきスキルと進め方を整理する",
+      "factIds": [
+        "kyufu-ippan",
+        "kyufu-tokutei-ippan",
+        "kyufu-shikyu-youken"
+      ],
+      "serviceIds": [
+        "mystar",
+        "estre"
+      ]
+    },
+    {
+      "slug": "shanai-se-tenshoku-mikeiken",
+      "type": "problem",
+      "title": "社内SEに移りたい｜未経験・年齢の壁をどう扱うか",
+      "categorySlug": "career",
+      "category": "転職・エージェント",
+      "theme": "『社内SE 転職 未経験』『何歳まで』で調べる人向けに、社内SEと客先常駐の違い、未経験から入る現実的な経路、年齢が効く場面と効かない場面を整理する",
+      "factIds": [],
+      "serviceIds": [
+        "se-navi",
+        "levtech-career",
+        "yumecari-agent"
+      ]
+    },
+    {
+      "slug": "business-eikaiwa-hikaku",
+      "type": "compare",
+      "title": "ビジネス英会話スクールの選び方｜通学とオンラインをどう比べるか",
+      "categorySlug": "language",
+      "category": "語学スクール",
+      "theme": "『ビジネス英会話 スクール 比較』で調べる社会人向けに、通学型とオンライン型を話す時間の作られ方・継続の強制力・目的との対応で比較する",
+      "factIds": [],
+      "serviceIds": [
+        "nova",
+        "shoba-chinese"
+      ]
     }
   ]
 }
