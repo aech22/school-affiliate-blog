@@ -106,7 +106,7 @@ const itemListLd = {
         </a>
       )}
       <span class="text-xs font-medium text-ink/40">
-        公開 {dateStr}・更新 {updatedStr}{resolved.length > 1 ? `・${resolved.length}件を比較` : ''}
+        公開 {dateStr}・更新 {updatedStr}{data.type === 'compare' && resolved.length > 1 ? `・${resolved.length}件を比較` : ''}
       </span>
     </div>
 
@@ -127,7 +127,7 @@ const itemListLd = {
     </div>
 
     {
-      resolved.length > 1 && (
+      data.type === 'compare' && resolved.length > 1 && (
         <section class="mt-12">
           <h2 class="mb-3 flex items-center gap-2 text-lg font-black"><span class="h-5 w-1.5 rounded bg-brand-500" />比較まとめ</h2>
           <div class="overflow-x-auto rounded-xl border border-black/5">
