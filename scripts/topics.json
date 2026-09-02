@@ -1,5 +1,5 @@
 {
-  "_note": "比較記事の定義。1エントリ=1記事。serviceIds は src/data/services.json の id を並べたい順（=rank順）に列挙する。scripts/generate.py がこの定義とservices.jsonを読み、Claudeに講評文だけ書かせてcontent/articles/{slug}.md を生成する。 type は compare（比較）/ guide（制度解説）/ problem（悩み起点）の3種。 guide と problem は serviceIds を1〜3件に絞り、本文で訴求する。 factIds は src/data/facts.json の id で、本文に書いてよい金額・率の根拠になる。",
+  "_note": "比較記事の定義。1エントリ=1記事。serviceIds は src/data/services.json の id を並べたい順（=rank順）に列挙する。scripts/generate.py がこの定義とservices.jsonを読み、Claudeに講評文だけ書かせてcontent/articles/{slug}.md を生成する。 type は compare（比較）/ guide（制度解説）/ problem（悩み起点）の3種。 guide と problem は serviceIds を1〜3件に絞り、本文で訴求する。 factIds は src/data/facts.json の id で、本文に書いてよい金額・率の根拠になる。 essay は楽天物販を扱うブログ型で、productIds に src/data/products.json の id を並べる（本文の主役は場面であって商品ではない）。",
   "topics": [
     {
       "slug": "kyoiku-kunren-kyufukin-guide",
@@ -300,6 +300,64 @@
       "serviceIds": [
         "nova",
         "shoba-chinese"
+      ]
+    },
+    {
+      "slug": "yoru-ni-manabu-kankyou",
+      "type": "essay",
+      "title": "仕事のあと、夜に学ぶ人の机はどうなっているといいか",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "日中に働いていて学習時間が夜しか取れない人が、家の中で学習時間を確保するために環境側でできることを、場面から順に整理する。体験談としてではなく、つまずく場面と、それを埋める道具の機能として書く",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "desk-light-led",
+        "study-timer",
+        "laptop-stand"
+      ]
+    },
+    {
+      "slug": "online-mendan-utsuri",
+      "type": "essay",
+      "title": "オンライン面談で損をしないための、映りと音の最低限",
+      "categorySlug": "career",
+      "category": "転職・エージェント",
+      "theme": "スクールの無料相談やオンライン面接が入るようになった人向けに、内容以前に印象を下げてしまう映りと音の問題と、その直し方を整理する。高価な機材を勧めるのではなく、下振れを止める最低限に絞る",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "webcam-1080p",
+        "ring-light"
+      ]
+    },
+    {
+      "slug": "shikaku-dokugaku-hajime",
+      "type": "essay",
+      "title": "資格の独学を始めるとき、最初に決める2つのこと",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "資格の独学を始める人が、参考書選びで止まったり、始めても続かなかったりする理由を整理し、先に決めるべき2点（何を1冊に絞るか・時間をどう可視化するか）を示す",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "pavlov-boki3",
+        "kin-no-phrase",
+        "study-timer"
+      ]
+    },
+    {
+      "slug": "note-pc-ichimai-gakushu",
+      "type": "essay",
+      "title": "ノートパソコン1枚で学ぶ人が、最初にぶつかる壁",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "教材を見ながら手を動かす学習（プログラミング・デザイン・動画編集）で、画面が1枚しかないことが学習効率にどう効くかを整理し、環境側の解き方を示す",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "mobile-monitor",
+        "laptop-stand"
       ]
     }
   ]

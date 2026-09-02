@@ -22,6 +22,7 @@ from gate import check as gate_check
 ROOT = Path(__file__).resolve().parent.parent
 SERVICES = json.loads((ROOT / "src" / "data" / "services.json").read_text(encoding="utf-8"))["services"]
 FACTS = json.loads((ROOT / "src" / "data" / "facts.json").read_text(encoding="utf-8"))["facts"]
+PRODUCTS = json.loads((ROOT / "src" / "data" / "products.json").read_text(encoding="utf-8"))["products"]
 TOPICS = json.loads((ROOT / "scripts" / "topics.json").read_text(encoding="utf-8"))["topics"]
 QUEUE_PATH = ROOT / "scripts" / "queue.json"
 OUT_DIR = ROOT / "content" / "articles"
@@ -29,6 +30,7 @@ JST = datetime.timezone(datetime.timedelta(hours=9))
 
 BY_ID = {s["id"]: s for s in SERVICES}
 FACT_BY_ID = {f["id"]: f for f in FACTS}
+PRODUCT_BY_ID = {p["id"]: p for p in PRODUCTS}
 MAX_FAILURES = 3
 
 client = anthropic.Anthropic()
@@ -65,7 +67,19 @@ SYSTEM_PROBLEM = """あなたは日本語で、キャリアやスキル習得の
 読者が自分で決められるようにするのが目的で、特定のサービスへ誘導するのが目的ではありません。
 """ + BODY_RULES + SCHEMA_LINE
 
-SYSTEM_BY_TYPE = {"compare": SYSTEM_COMPARE, "guide": SYSTEM_GUIDE, "problem": SYSTEM_PROBLEM}
+SYSTEM_ESSAY = """あなたは日本語で、学び直しや働き方についてのブログを書くライターです。
+ある場面を起点に、そこで何に詰まるのかを書き、詰まりを埋める道具に触れる、という順で本文を書きます。
+
+このブログの立場:
+- **一人称の体験談を書かない。** 「私が使ってよかった」「実際に買ってみた」等、実体験を主張する表現は使わない。
+  代わりに「〜という場面で効く」「〜する人がつまずくのはここ」という、場面と機能の話として書く。
+  体験していないことを体験として書くのは、景表法・ステマ規制が最も厳しく見る形にあたる。
+- 商品は本文の主役ではない。場面の説明が主で、道具はその帰結として出てくる。
+- 断定的な効果の約束をしない（「これで必ず続く」等）。
+""" + BODY_RULES + SCHEMA_LINE
+
+SYSTEM_BY_TYPE = {"compare": SYSTEM_COMPARE, "guide": SYSTEM_GUIDE,
+                  "problem": SYSTEM_PROBLEM, "essay": SYSTEM_ESSAY}
 
 
 def _extract_json(text: str) -> dict:
@@ -81,19 +95,25 @@ def _extract_json(text: str) -> dict:
     return json.loads(t)
 
 
-def _llm_prose(services: list, theme: str, facts: list, topic_type: str) -> dict:
+def _llm_prose(services: list, theme: str, facts: list, topic_type: str, products: list | None = None) -> dict:
     brief = [{
         "name": s.get("name", ""),
         "tags": s.get("tags", []),
         "target": s.get("target", ""),
     } for s in services]
     fact_brief = [{"claim": f["claim"], "value": f["value"], "note": f.get("note", "")} for f in facts]
+    # URL は見せない（LLMがリンクを書く必要はない。描画は ProductMention が持つ）
+    product_brief = [{"label": p["label"], "scene": p.get("scene", ""), "whyItHelps": p.get("whyItHelps", "")}
+                     for p in (products or [])]
     system = SYSTEM_BY_TYPE.get(topic_type, SYSTEM_COMPARE)
     user = (f"テーマ: {theme}\n"
             f"使ってよい事実（ここに無い金額・率は書かない）:\n"
             f"{json.dumps(fact_brief, ensure_ascii=False, indent=2)}\n\n"
             f"サービスデータ(順序厳守・{len(brief)}件):\n"
             f"{json.dumps(brief, ensure_ascii=False, indent=2)}\n\n"
+            + (f"本文で触れる道具（記事の主役ではない・{len(product_brief)}件）:\n"
+               f"{json.dumps(product_brief, ensure_ascii=False, indent=2)}\n\n" if product_brief else "")
+            + 
             f"上記スキーマのJSONだけを返してください。")
     last_err = None
     for attempt in range(2):
@@ -126,11 +146,12 @@ def build_topic(topic: dict, today: str) -> tuple[dict | None, str, list[str]]:
     """(frontmatter, body, violations) を返す。violations が空でなければ破棄する。"""
     services = [BY_ID[i] for i in topic.get("serviceIds", []) if i in BY_ID]
     facts = [FACT_BY_ID[i] for i in topic.get("factIds", []) if i in FACT_BY_ID]
-    if not services and not facts:
-        print(f"[SKIP] {topic['slug']}: serviceId も factId も0件")
+    products = [PRODUCT_BY_ID[i] for i in topic.get("productIds", []) if i in PRODUCT_BY_ID]
+    if not services and not facts and not products:
+        print(f"[SKIP] {topic['slug']}: serviceId・factId・productId のいずれも0件")
         return None, "", []
 
-    prose = _llm_prose(services, topic["theme"], facts, topic.get("type", "compare"))
+    prose = _llm_prose(services, topic["theme"], facts, topic.get("type", "compare"), products)
     body = (prose.get("body") or "").strip()
 
     items = prose.get("items", [])
@@ -167,6 +188,7 @@ def build_topic(topic: dict, today: str) -> tuple[dict | None, str, list[str]]:
         "category": topic.get("category", ""),
         "categorySlug": topic.get("categorySlug", ""),
         "type": topic.get("type", "compare"),
+        "products": [p["id"] for p in products],
         "intro": prose.get("intro", ""),
         "outro": prose.get("outro", ""),
         "services": refs,

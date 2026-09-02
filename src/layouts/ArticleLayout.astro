@@ -4,9 +4,11 @@ import Jsonld from '../components/Jsonld.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import Sidebar from '../components/Sidebar.astro';
 import ShiftyPromo from '../components/ShiftyPromo.astro';
+import ProductMention from '../components/ProductMention.astro';
 import { categoryBySlug } from '../data/taxonomy';
 import { SITE_NAME } from '../consts';
 import servicesData from '../data/services.json';
+import productsData from '../data/products.json';
 
 interface ServiceRef {
   id: string;
@@ -23,7 +25,8 @@ interface Data {
   updated?: Date | null;
   category?: string | null;
   categorySlug?: string | null;
-  type?: 'compare' | 'guide' | 'problem' | null;
+  type?: 'compare' | 'guide' | 'problem' | 'essay' | null;
+  products?: string[] | null;
   intro?: string | null;
   outro?: string | null;
   services?: ServiceRef[] | null;
@@ -55,6 +58,12 @@ const resolved = (data.services ?? [])
   })
   .filter((s): s is NonNullable<typeof s> => s !== null)
   .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999));
+
+// products.json（事実）を id で引く。記事側は id を並べるだけで、事実は持たない。
+const productRegistry = productsData.products;
+const resolvedProducts = (data.products ?? [])
+  .map((id) => productRegistry.find((p) => p.id === id))
+  .filter((p): p is NonNullable<typeof p> => p != null);
 
 const cat = categoryBySlug(data.categorySlug);
 const dateStr = data.date.toISOString().slice(0, 10).replace(/-/g, '.');
@@ -121,6 +130,8 @@ const itemListLd = {
     <div class="prose prose-slate mt-8 max-w-none prose-headings:font-black prose-h2:mt-10 prose-h2:text-xl prose-a:text-brand-600">
       <slot />
     </div>
+
+    {resolvedProducts.map((p) => <ProductMention product={p} />)}
 
     <div class="mt-8 space-y-6">
       {resolved.map((s) => <ServiceCard service={s} />)}

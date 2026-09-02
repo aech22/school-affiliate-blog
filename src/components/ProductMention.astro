@@ -1,0 +1,40 @@
+---
+// 本文の流れに差し込む物販の紹介ブロック。
+// ServiceCard のようなカード羅列にしない——まとめサイトではなくブログとして読ませるため、
+// 幅いっぱいのカードではなく、本文と地続きの小さめの区画にする。
+//
+// リンクは services.json と同じプレースホルダ運用:
+//   approved && affiliateUrl → アフィリンク + rel="sponsored"
+//   それ以外 → 楽天の商品ページ + rel="nofollow"
+// 価格は持たない（products.json の _note を参照）。金額は楽天側で見てもらう。
+interface Product {
+  id: string;
+  label: string;
+  kind?: string | null;
+  scene?: string | null;
+  whyItHelps?: string | null;
+  itemUrl: string;
+  shop?: string | null;
+  affiliateUrl?: string | null;
+  approved?: boolean | null;
+}
+const { product: p } = Astro.props as { product: Product };
+
+const useAff = !!(p.approved && p.affiliateUrl);
+const href = useAff ? (p.affiliateUrl as string) : p.itemUrl;
+const rel = useAff ? 'sponsored noopener' : 'nofollow noopener';
+---
+<aside class="my-8 rounded-xl border border-black/8 bg-brand-50/40 p-5">
+  <p class="text-[11px] font-black tracking-wide text-ink/35">広告 · 楽天市場</p>
+
+  {p.scene && <p class="mt-2 text-sm font-black leading-snug text-ink/80">{p.scene}</p>}
+
+  <p class="mt-3 text-[15px] font-black leading-snug">
+    <a href={href} target="_blank" rel={rel} class="text-brand-600 hover:underline">{p.label}</a>
+    {p.shop && <span class="ml-1 text-xs font-medium text-ink/35">／ {p.shop}</span>}
+  </p>
+
+  {p.whyItHelps && <p class="mt-2 text-sm leading-relaxed text-ink/70">{p.whyItHelps}</p>}
+
+  <p class="mt-3 text-xs text-ink/35">価格と在庫は楽天市場のページでご確認ください。</p>
+</aside>
