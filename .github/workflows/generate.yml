@@ -1,0 +1,52 @@
+name: Generate Article
+
+on:
+  schedule:
+    # UTC 01:00 = JST 10:00。日フィールドの */2 なので 1,3,5,…,31日に走る。
+    # 31日ある月の月末→翌1日だけ間隔が1日になるが「2〜3日に1回」の範囲なので許容する。
+    - cron: '0 1 */2 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generate-article
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      # ゲートが壊れた状態で記事を公開しないよう、生成の前にテストを通す
+      - name: Run gate tests
+        run: python3 scripts/test_gate.py
+
+      - name: Generate one article
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 scripts/generate.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- content/articles scripts/queue.json; then
+            echo "変更なし（キューが空か、ゲートで破棄された）"
+            exit 0
+          fi
+          git add content/articles scripts/queue.json
+          git commit -m "content: 記事を自動生成 ($(date -u +%Y-%m-%d))"
+          git pull --rebase origin main
+          git push origin main
