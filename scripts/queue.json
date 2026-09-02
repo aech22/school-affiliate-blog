@@ -1,0 +1,77 @@
+{
+  "_note": "未生成・未更新トピックの待ち行列。generate.py は1回の実行で blocked:false の先頭1件だけを処理する。検証ゲートに3回連続で落ちたトピックは blocked:true になり、lastViolations に落ちた数値が残る。blocked を解除するには facts.json に根拠を追加するか、topics.json の theme を直す。",
+  "pending": [
+    {
+      "slug": "kyoiku-kunren-kyufukin-guide",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "reskilling-hojokin-genjo",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "zaitaku-work-30dai-mikeiken",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "school-hiyo-osaeru",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "remote-work-schools",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "programming-school-comparison",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "online-programming-school",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "career-support-programming-school",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "career-agent-comparison",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "video-editing-schools",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "career-service-comparison",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "language-schools",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    }
+  ]
+}

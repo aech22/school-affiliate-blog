@@ -1,8 +1,76 @@
 {
-  "_note": "比較記事の定義。1エントリ=1記事。serviceIds は src/data/services.json の id を並べたい順（=rank順）に列挙する。scripts/generate.py がこの定義とservices.jsonを読み、Claudeに講評文だけ書かせてcontent/articles/{slug}.md を生成する。",
+  "_note": "比較記事の定義。1エントリ=1記事。serviceIds は src/data/services.json の id を並べたい順（=rank順）に列挙する。scripts/generate.py がこの定義とservices.jsonを読み、Claudeに講評文だけ書かせてcontent/articles/{slug}.md を生成する。 type は compare（比較）/ guide（制度解説）/ problem（悩み起点）の3種。 guide と problem は serviceIds を1〜3件に絞り、本文で訴求する。 factIds は src/data/facts.json の id で、本文に書いてよい金額・率の根拠になる。",
   "topics": [
     {
+      "slug": "kyoiku-kunren-kyufukin-guide",
+      "type": "guide",
+      "title": "教育訓練給付金とは｜3つの区分と給付率をわかりやすく",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "教育訓練給付金の3区分（一般・特定一般・専門実践）の給付率と上限、対象になる講座の探し方、申請の流れを、これから学ぼうとしている社会人向けに整理する",
+      "factIds": [
+        "kyufu-ippan",
+        "kyufu-tokutei-ippan",
+        "kyufu-senmon-jissen",
+        "kyuka-kyufukin"
+      ],
+      "serviceIds": [
+        "mystar",
+        "estre"
+      ]
+    },
+    {
+      "slug": "reskilling-hojokin-genjo",
+      "type": "guide",
+      "title": "リスキリング補助金は今どうなっている？新規公募終了の現状と、代わりに使える制度",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "「リスキリングを通じたキャリアアップ支援事業」の新規公募が終了し七次が未定である現状を正確に伝え、代わりに使える教育訓練給付金へ読者を案内する。古い情報のまま『最大70%』と書いている記事が多いことへの注意喚起を含める",
+      "factIds": [
+        "reskilling-koubo-shuryo",
+        "kyufu-senmon-jissen"
+      ],
+      "serviceIds": [
+        "mystar"
+      ]
+    },
+    {
+      "slug": "zaitaku-work-30dai-mikeiken",
+      "type": "problem",
+      "title": "30代未経験から在宅ワークに移りたいとき、最初に決めるべきこと",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "30代・未経験から在宅ワークへ移りたい人が、何のスキルを選ぶか・費用をどう抑えるか・学んだ後どう仕事につなげるかの3点をどう決めればよいかを整理する。教育訓練給付金が使える場合の考え方も含める",
+      "factIds": [
+        "kyufu-ippan",
+        "kyufu-tokutei-ippan"
+      ],
+      "serviceIds": [
+        "mystar",
+        "estre",
+        "creators-japan"
+      ]
+    },
+    {
+      "slug": "school-hiyo-osaeru",
+      "type": "problem",
+      "title": "スクールの費用をできるだけ抑えたい人が、申し込み前に確認する4つのこと",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "スクール費用を抑えたい人向けに、給付金の対象講座かどうかの確認方法、区分による給付率の違い、申請のタイミング、対象外だった場合の考え方を整理する",
+      "factIds": [
+        "kyufu-ippan",
+        "kyufu-tokutei-ippan",
+        "kyufu-senmon-jissen"
+      ],
+      "serviceIds": [
+        "mystar",
+        "nova"
+      ]
+    },
+    {
       "slug": "programming-school-comparison",
+      "type": "compare",
       "title": "未経験から始めるプログラミングスクール比較5選",
       "categorySlug": "programming",
       "category": "プログラミングスクール",
@@ -17,6 +85,7 @@
     },
     {
       "slug": "online-programming-school",
+      "type": "compare",
       "title": "オンライン完結で学べるプログラミングスクール比較",
       "categorySlug": "programming",
       "category": "プログラミングスクール",
@@ -30,6 +99,7 @@
     },
     {
       "slug": "career-support-programming-school",
+      "type": "compare",
       "title": "転職支援で選ぶプログラミングスクール比較",
       "categorySlug": "programming",
       "category": "プログラミングスクール",
@@ -42,6 +112,7 @@
     },
     {
       "slug": "career-agent-comparison",
+      "type": "compare",
       "title": "エンジニア向け転職エージェント比較｜IT特化・スカウト・大手対策",
       "categorySlug": "career",
       "category": "転職・エージェント",
@@ -55,6 +126,7 @@
     },
     {
       "slug": "video-editing-schools",
+      "type": "compare",
       "title": "動画編集スクール比較｜副業・在宅で稼ぐための3つの選び方",
       "categorySlug": "qualification",
       "category": "資格・スキル講座",
@@ -67,6 +139,7 @@
     },
     {
       "slug": "career-service-comparison",
+      "type": "compare",
       "title": "IT以外も含めた転職サービス比較｜クチコミ型と地域特化型",
       "categorySlug": "career",
       "category": "転職・エージェント",
@@ -78,6 +151,7 @@
     },
     {
       "slug": "remote-work-schools",
+      "type": "compare",
       "title": "在宅ワークを目指すスクール比較｜WebデザインとSNSマーケティング",
       "categorySlug": "qualification",
       "category": "資格・スキル講座",
@@ -89,6 +163,7 @@
     },
     {
       "slug": "language-schools",
+      "type": "compare",
       "title": "社会人の語学スクール比較｜英会話とビジネス中国語",
       "categorySlug": "language",
       "category": "語学スクール",
