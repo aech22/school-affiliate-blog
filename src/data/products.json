@@ -1,5 +1,5 @@
 {
-  "_note": "楽天アフィリエイト用の物販レジストリ。services.json と同じく『事実はデータ、LLMは文章だけ』。**価格は持たない** — 価格は変動が早く、鮮度切れがそのまま景表法リスクになるため。金額は楽天側で見てもらう。label はこちらで書いた中立な表記で、店舗の販促文（【数量限定1380円→1000円】等）をそのまま持ち込まない。approved が false の間は itemUrl へ rel=nofollow、true になったら affiliateUrl へ rel=sponsored に切り替わる（ServiceCard と同じプレースホルダ運用）。approved を true にできるのは code-navi.net を①Rakuten Developers の許可リファラ ②楽天アフィリエイトのサイト の両方に登録した後。",
+  "_note": "楽天アフィリエイト用の物販レジストリ。services.json と同じく『事実はデータ、LLMは文章だけ』。**価格は持たない** — 価格は変動が早く、鮮度切れがそのまま景表法リスクになるため。金額は楽天側で見てもらう。label はこちらで書いた中立な表記で、店舗の販促文（【数量限定1380円→1000円】等）をそのまま持ち込まない。approved が false の間は itemUrl へ rel=nofollow、true になったら affiliateUrl へ rel=sponsored に切り替わる（ServiceCard と同じプレースホルダ運用）。approved を true にできるのは code-navi.net を①Rakuten Developers の許可リファラ ②楽天アフィリエイトのサイト の両方に登録した後。 affiliateUrl は 2026-09-03 に楽天市場商品検索APIから取得（code-navi.net のリファラで許可済み）。approved を true にできるのは、楽天アフィリエイト側で code-navi.net をサイト登録した後（パートナー規約第3条）。",
   "products": [
     {
       "id": "kin-no-phrase",
@@ -9,7 +9,7 @@
       "whyItHelps": "出題されやすい語から順に並んでいるので、学習の順番を自分で設計しなくてよくなる",
       "itemUrl": "https://item.rakuten.co.jp/book/18478671/",
       "shop": "楽天ブックス",
-      "affiliateUrl": null,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072n.xqh3me0c.g00q072n.xqh3n4d9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18478671%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F21833920%2F&rafcid=wsc_i_is_bace0565-21df-4c27-92f8-ce5c647fefb0",
       "approved": false
     },
     {
@@ -20,7 +20,7 @@
       "whyItHelps": "テキストと問題集が1冊にまとまっているので、参考書選びで止まらずに手を動かし始められる",
       "itemUrl": "https://item.rakuten.co.jp/book/18492615/",
       "shop": "楽天ブックス",
-      "affiliateUrl": null,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00q072n.xqh3me0c.g00q072n.xqh3n4d9/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18492615%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F21838684%2F&rafcid=wsc_i_is_bace0565-21df-4c27-92f8-ce5c647fefb0",
       "approved": false
     },
     {
@@ -31,7 +31,7 @@
       "whyItHelps": "手元だけを明るくできるので、家族が寝ている部屋でも学習時間を確保しやすくなる",
       "itemUrl": "https://item.rakuten.co.jp/ilemon/mjd1006/",
       "shop": "ilemon",
-      "affiliateUrl": null,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00t17vn.xqh3m318.g00t17vn.xqh3n225/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Filemon%2Fmjd1006%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Filemon%2Fi%2F10000111%2F&rafcid=wsc_i_is_bace0565-21df-4c27-92f8-ce5c647fefb0",
       "approved": false
     },
     {
@@ -42,7 +42,7 @@
       "whyItHelps": "残りが数字ではなく面積で減るので、時計を読まなくても経過が視界に入り続ける",
       "itemUrl": "https://item.rakuten.co.jp/rcmdse/te-4970116049865/",
       "shop": "リコメン堂生活館",
-      "affiliateUrl": null,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00ramcn.xqh3m552.g00ramcn.xqh3n7f5/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frcmdse%2Fte-4970116049865%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frcmdse%2Fi%2F15965441%2F&rafcid=wsc_i_is_bace0565-21df-4c27-92f8-ce5c647fefb0",
       "approved": false
     },
     {
@@ -53,7 +53,7 @@
       "whyItHelps": "教材と作業画面を並べられるので、ウィンドウの切り替えに使っていた集中の断ち切りが減る",
       "itemUrl": "https://item.rakuten.co.jp/win10/5523/",
       "shop": "WINTEN 楽天市場店",
-      "affiliateUrl": null,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00ql29n.xqh3md1b.g00ql29n.xqh3n12e/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwin10%2F5523%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fwin10%2Fi%2F10009635%2F&rafcid=wsc_i_is_bace0565-21df-4c27-92f8-ce5c647fefb0",
       "approved": false
     },
     {
@@ -64,7 +64,7 @@
       "whyItHelps": "画面を目の高さに上げられるので、下を向き続ける姿勢から抜けられる",
       "itemUrl": "https://item.rakuten.co.jp/selectshopcrea/boyata1/",
       "shop": "セレクトショップ・クレア",
-      "affiliateUrl": null,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00rzshn.xqh3m55a.g00rzshn.xqh3nee4/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fselectshopcrea%2Fboyata1%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fselectshopcrea%2Fi%2F10000069%2F&rafcid=wsc_i_is_bace0565-21df-4c27-92f8-ce5c647fefb0",
       "approved": false
     },
     {
@@ -75,7 +75,7 @@
       "whyItHelps": "ノートPC内蔵のカメラより画角と画質が安定するので、相手に見える印象の下振れを減らせる",
       "itemUrl": "https://item.rakuten.co.jp/mantubiz/80001658/",
       "shop": "マンツビズ",
-      "affiliateUrl": null,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00quzgn.xqh3mc6d.g00quzgn.xqh3na43/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmantubiz%2F80001658%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmantubiz%2Fi%2F10019179%2F&rafcid=wsc_i_is_bace0565-21df-4c27-92f8-ce5c647fefb0",
       "approved": false
     },
     {
@@ -86,7 +86,7 @@
       "whyItHelps": "正面から光を足せるので、部屋の照明を変えずに映りだけを直せる",
       "itemUrl": "https://item.rakuten.co.jp/miraisyounen/ring-light-tere/",
       "shop": "未来少年",
-      "affiliateUrl": null,
+      "affiliateUrl": "https://hb.afl.rakuten.co.jp/hgc/g00tz3sn.xqh3mfa3.g00tz3sn.xqh3n0bb/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmiraisyounen%2Fring-light-tere%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fmiraisyounen%2Fi%2F10000003%2F&rafcid=wsc_i_is_bace0565-21df-4c27-92f8-ce5c647fefb0",
       "approved": false
     }
   ]
