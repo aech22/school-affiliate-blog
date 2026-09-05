@@ -42,7 +42,7 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 
 ## A8 広告の掲載状況
 
-**サイドバー（`Sidebar.astro`）に「広告」ラベル付きで6枠7本**（ステマ規制対応）:
+**サイドバー（`Sidebar.astro`）に「広告」ラベル付きで7枠8本**（ステマ規制対応）:
 
 | 広告 | サイズ | 文脈 |
 |---|---|---|
@@ -52,6 +52,7 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 | ユメキャリAgent | テキスト | 一般転職 |
 | 動画教材エディター養成コース | テキスト | 動画編集 |
 | 代理店ドットコム＋fan.salon | テキスト×2（1枠に同居） | 副業・独立（2026-08-06追加。枠数を増やしすぎないよう1セクションにまとめている） |
+| なるには進学サイト | テキスト | 学び直しの進学先（2026-09-05追加。**資料請求ポータルで比較記事の土俵に載らないためサイドバーに置いた**） |
 
 記事下の 728×90（お名前.com）は 2026-08-03 の `676855e` で「1ページ1広告」の方針により撤去済み。未使用のまま残っていた `AdBanner.astro` も 2026-09-05 に削除した。**記事ページの広告はサイドバーの6枠7本だけ**。
 
@@ -62,6 +63,8 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 - `se-navi`（社内SE転職ナビ）・`yumecari-agent`（ユメキャリ）— career カテゴリの比較カードで収益化済み
 - 動画教材エディター養成コース・`creators-japan`・`movie-hacks`・`skillhacks` — qualification / programming カテゴリ
 - **2026-08-06 追加（A8提供情報より）**: `onecareer-tenshoku`（ワンキャリア転職）・`r4career`（R4CAREER）＝career、`mystar`（MySTAR）・`estre`（エストレ）＝qualification、`nova`（駅前留学NOVA）・`shoba-chinese`（ショーバ中国語センター）＝language
+- **2026-09-05 追加（A8提供情報15件）**: `anykan`・`groovement-agent`・`it-consultant-bank`・`strategy-consultant-bank`・`twinpro`・`buildjob`・`myvision`・`meiko-career`＝career、`merise`・`gaba`・`toraiz`・`wish-international`＝language、`daytra`＝programming、`cyber-university`・`amg`＝qualification。**全件 `officialUrl` は実在確認済みの公式サイト**（A8 URL を入れていない）
+- これで承認済みは27件（career 12・qualification 7・language 6・programming 2）。**programming は skillhacks の1件だけだった状態から `daytra` が加わって2件**
 
 ## 事実台帳と検証ゲート（2026-09-02 追加）
 
@@ -118,7 +121,8 @@ gh workflow run replenish-check.yml --repo aech22/school-affiliate-blog --ref ma
 
 ## 残タスク
 
-- [ ] **programming カテゴリの提携申請**（下の「提携申請状況」表。**ユーザーが A8 管理画面で行う人間ステップ**）
+- [ ] **programming カテゴリの提携申請**（下の「提携申請状況」表。**ユーザーが A8 管理画面で行う人間ステップ**。2026-09-05 に `daytra` が承認されて2件になったが、記事3本に対してはまだ薄い）
+- [ ] 2026-09-05 追加15件の記事はキュー待ち（トピック7本を追加済み）。日次生成で順に公開される
 - [ ] `estre` の `officialUrl` が A8 URL のまま（`estre-official.com` は TLS 設定が壊れていて実在確認ができなかった。2026-09-05 実測で `WRONG_VERSION_NUMBER`）
 - [ ] Pinterest ドメイン認証（`PINTEREST_VERIFY` が空。認証コード取得は人間ステップ）
 - [ ] `TWITTER_SITE` が空（X アカウント未連携）

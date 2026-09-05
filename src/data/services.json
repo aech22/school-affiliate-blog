@@ -361,6 +361,291 @@
       "approved": true,
       "pros": [],
       "cons": []
+    },
+    {
+      "id": "anykan",
+      "name": "エニカン【AnyKan】",
+      "subCategory": "career",
+      "tags": [
+        "ゲーム・エンタメ業界に特化",
+        "映像・出版・イベントも対応",
+        "正社員/派遣/業務委託に対応",
+        "東京近郊の求人が中心"
+      ],
+      "priceNote": "完全無料（転職希望者向け）",
+      "target": "ゲーム業界の経験があり、東京都で就業できる20〜30代のクリエイター・エンジニア",
+      "officialUrl": "https://anykan.co.jp/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+4SNQ7M+5NMK+5YZ76",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "groovement-agent",
+      "name": "Groovement Agent",
+      "subCategory": "career",
+      "tags": [
+        "コンサル・DX・スタートアップ特化",
+        "CxO直結の非公開求人",
+        "業界専任コンサルタントが担当",
+        "年収交渉まで伴走"
+      ],
+      "priceNote": "完全無料（転職希望者向け）",
+      "target": "コンサル経験者・SIer・事業会社のDX推進担当など、年収アップを狙うハイクラス層",
+      "officialUrl": "https://groovement-agent.com/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+4NW9DE+4SXU+NTJWY",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "it-consultant-bank",
+      "name": "IT Consultant Bank",
+      "subCategory": "career",
+      "tags": [
+        "フリーランス向けの案件紹介",
+        "IT・SAPの上流案件が中心",
+        "コンサル出身者が案件を担当",
+        "稼働者向けの交流会あり"
+      ],
+      "priceNote": "登録・案件紹介は無料",
+      "target": "コンサルファームやSIerの出身で、独立済みまたは起業準備中の20〜40代",
+      "officialUrl": "https://itconsultant-bank.com/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1D+A2L06Q+4SXU+HV7V6",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "strategy-consultant-bank",
+      "name": "Strategy Consultant Bank",
+      "subCategory": "career",
+      "tags": [
+        "フリーランス向けの案件紹介",
+        "戦略・業務の上流案件が中心",
+        "戦略ファーム出身者が案件を担当",
+        "稼働者向けの交流会あり"
+      ],
+      "priceNote": "登録・案件紹介は無料",
+      "target": "コンサルファーム出身、またはファームのアンダーで稼働実績のあるフリーランス",
+      "officialUrl": "https://strategyconsultant-bank.com/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1D+A0SPDE+4SXU+639IQ",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "twinpro",
+      "name": "ツインプロ",
+      "subCategory": "career",
+      "tags": [
+        "会計士・税理士に特化",
+        "会計事務所から事業会社まで",
+        "過去の選考データに基づく対策",
+        "キャリアプラン重視の提案"
+      ],
+      "priceNote": "完全無料（転職希望者向け）",
+      "target": "会計・税務・経理財務の経験を活かして転職したい20〜40代",
+      "officialUrl": "https://twin-pro.jp/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+4P34KY+5B0Y+BWVTE",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "buildjob",
+      "name": "ビルドジョブ",
+      "subCategory": "career",
+      "tags": [
+        "建設業界・施工管理に特化",
+        "ゼネコンから中堅まで",
+        "非公開求人が中心",
+        "書類作成と面接対策を支援"
+      ],
+      "priceNote": "完全無料（転職希望者向け）",
+      "target": "施工管理の経験者・有資格者で、年収を下げずに働き方を変えたい方（60歳未満）",
+      "officialUrl": "https://build-job.jp/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+4Q9ZSI+5B0Y+NTRMQ",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "myvision",
+      "name": "MyVision（マイビジョン）",
+      "subCategory": "career",
+      "tags": [
+        "コンサル業界に特化",
+        "外資・国内の人気ファームに強い",
+        "模擬面接とケース対策が無料",
+        "利用者の多くは業界未経験"
+      ],
+      "priceNote": "完全無料（転職希望者向け）",
+      "target": "20代後半〜30代前半で、事業会社やIT企業からコンサルへ移りたい方",
+      "officialUrl": "https://my-vision.co.jp/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+4QVFEA+5B0Y+63OYA",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "meiko-career",
+      "name": "明光キャリアパートナーズ（STRATEGY CAREER）",
+      "subCategory": "career",
+      "tags": [
+        "エンジニア転職の支援",
+        "大手からスタートアップまで",
+        "明光ネットワークジャパンのグループ",
+        "履歴書・面接対策までフォロー"
+      ],
+      "priceNote": "完全無料（転職希望者向け）",
+      "target": "20〜30代のエンジニア経験者",
+      "officialUrl": "https://meiko-career.jp/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+4LIIYA+5P1E+5YJRM",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "merise",
+      "name": "MeRISE留学（ミライズ）",
+      "subCategory": "language",
+      "tags": [
+        "フィリピン・セブ島留学",
+        "最短1週間から",
+        "完全オーダーメイドのマンツーマン",
+        "講師は全員TESOL取得"
+      ],
+      "priceNote": "コース・期間で変動（公式サイトで確認）",
+      "target": "社会人が中心。基礎から学びたい初心者からビジネス英語まで",
+      "officialUrl": "https://merise.asia/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+AABN1U+3UZ2+BWVTE",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "gaba",
+      "name": "Gaba マンツーマン英会話",
+      "subCategory": "language",
+      "tags": [
+        "完全マンツーマン（1回40分）",
+        "講師の出身は70ヵ国以上",
+        "早朝から夜まで開校",
+        "通学とオンラインを直前に選べる"
+      ],
+      "priceNote": "プラン・回数で変動（公式サイトで確認）",
+      "target": "自分の目的に合わせて英語を組み立てたい社会人",
+      "officialUrl": "https://www.gaba.co.jp/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+B9G7QQ+44AC+5YRHE",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "toraiz",
+      "name": "トライズ（TORAIZ）",
+      "subCategory": "language",
+      "tags": [
+        "1年間の英語コーチング",
+        "専属コンサルタントとネイティブコーチ",
+        "完全オーダーメイドの学習プラン",
+        "実務を想定した実戦型レッスン"
+      ],
+      "priceNote": "コース・期間で変動（公式サイトで確認）",
+      "target": "仕事で英語が必要なビジネスパーソン",
+      "officialUrl": "https://toraiz.jp/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+A8JC8I+3N0O+65MEA",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "wish-international",
+      "name": "ウィッシュインターナショナル",
+      "subCategory": "language",
+      "tags": [
+        "はじめての留学に特化",
+        "旅行業第1種・J-CROSS認証",
+        "世界各地に自社サポートオフィス",
+        "帰国後のキャリア支援あり"
+      ],
+      "priceNote": "プログラム・渡航先で変動（公式サイトで確認）",
+      "target": "はじめて留学する人。親子・小中学生・シニア・ワーホリまで",
+      "officialUrl": "https://www.wish.co.jp/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+AAX2NM+5IJI+5YRHE",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "daytra",
+      "name": "デイトラ",
+      "subCategory": "programming",
+      "tags": [
+        "10以上のコースを用意",
+        "一日一題のカリキュラム",
+        "現役プロに質問可・サポート1年",
+        "経産省のリスキリング事業に認定"
+      ],
+      "priceNote": "コースで変動（公式サイトで確認）",
+      "target": "実務で使えるWebスキルを身につけたい社会人",
+      "officialUrl": "https://daily-trial.co.jp/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+8CNX9U+5IZ2+5YJRM",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "cyber-university",
+      "name": "サイバー大学",
+      "subCategory": "qualification",
+      "tags": [
+        "ソフトバンクグループが運営",
+        "通学不要で学士号を取得",
+        "オンデマンドで24時間受講",
+        "在学生の半数以上が社会人"
+      ],
+      "priceNote": "学費は公式サイトで確認",
+      "target": "働きながら大卒資格の取得を目指す社会人",
+      "officialUrl": "https://www.cyber-u.ac.jp/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+BFEJSI+5TTC+5YRHE",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "amg",
+      "name": "アミューズメントメディア総合学院",
+      "subCategory": "qualification",
+      "tags": [
+        "ゲーム・アニメ・声優など8学科",
+        "在学中から作品を市場に出す",
+        "現役プロ講師が指導",
+        "卒業後もOB・OGネットワーク"
+      ],
+      "priceNote": "学費は公式サイトで確認",
+      "target": "ゲーム・アニメ・イラスト・声優の業界を目指す高校3年生以上〜社会人",
+      "officialUrl": "https://www.amgakuin.co.jp/",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4B9X1F+AEHOAA+3OAI+5YJRM",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
     }
   ]
 }

@@ -30,6 +30,48 @@
       "failures": 0,
       "blocked": false,
       "lastViolations": []
+    },
+    {
+      "slug": "consul-dx-tenshoku-agent",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "gyokai-tokka-tenshoku-agent",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "freelance-consul-annken-shokai",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "kaikeishi-zeirishi-tenshoku",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "shakaijin-eigo-yarinaoshi",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "jitsumu-web-skill-school",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "shakaijin-manabinaoshi-shingaku",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
     }
   ]
 }
