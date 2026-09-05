@@ -102,13 +102,22 @@ def _llm_prose(services: list, theme: str, facts: list, topic_type: str, product
         "target": s.get("target", ""),
     } for s in services]
     fact_brief = [{"claim": f["claim"], "value": f["value"], "note": f.get("note", "")} for f in facts]
+    # gate.py が許可する金額・率をそのままプロンプトへ渡す。台帳の claim/value/note は
+    # 散文なので、それだけではモデルが「書いてよい値」を列挙できない。渡さないと台帳外の
+    # 数値が創作されてゲートに落ちる（2026-09-05 kyufu-taisho-kouza-sagashikata の「1万円」）。
+    allowed_numbers = sorted({n for f in facts for n in (f.get("numbers") or [])})
     # URL は見せない（LLMがリンクを書く必要はない。描画は ProductMention が持つ）
     product_brief = [{"label": p["label"], "scene": p.get("scene", ""), "whyItHelps": p.get("whyItHelps", "")}
                      for p in (products or [])]
     system = SYSTEM_BY_TYPE.get(topic_type, SYSTEM_COMPARE)
+    allowed_line = ("、".join(allowed_numbers) if allowed_numbers
+                    else "（1つもありません。金額・率を一切書かないでください）")
     user = (f"テーマ: {theme}\n"
             f"使ってよい事実（ここに無い金額・率は書かない）:\n"
             f"{json.dumps(fact_brief, ensure_ascii=False, indent=2)}\n\n"
+            f"本文に書いてよい金額・率はこの{len(allowed_numbers)}個だけです: {allowed_line}\n"
+            f"この一覧に無い金額・率は、概算でも「約」付きでも言い換えでも書かないでください。"
+            f"書いた時点で記事は破棄され、公開されません。\n\n"
             f"サービスデータ(順序厳守・{len(brief)}件):\n"
             f"{json.dumps(brief, ensure_ascii=False, indent=2)}\n\n"
             + (f"本文で触れる道具（記事の主役ではない・{len(product_brief)}件）:\n"
