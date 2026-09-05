@@ -1,5 +1,10 @@
 name: Build & Deploy
 
+# 人が main に push したときの公開経路。
+# 記事の自動生成は generate.yml（隔日 cron）が行い、そちらは自分でデプロイまで完結する
+# （GITHUB_TOKEN の push ではこのワークフローが発火しないため）。
+# 下の Setup Node 以降は generate.yml の写しなので、片方を変えたらもう片方も直すこと。
+
 on:
   push:
     branches: [main]
@@ -8,18 +13,31 @@ on:
 permissions:
   contents: write
 
+# generate.yml と同じグループにして gh-pages への同時デプロイを直列化する。
+# peaceiris は force なしで push するので、競合すると後発が非 fast-forward で失敗する。
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          # 常に main の先端をビルドする。github.sha（push されたコミット）を使うと、
+          # 生成botが後から積んだ記事を含まないツリーで gh-pages を上書きしてしまう。
+          ref: main
+
+      - name: Resolve built commit
+        id: built
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Setup Node
         uses: actions/setup-node@v7.0.0
         with:
           node-version: '20'
 
-      # 記事は編集主体（content/articles にコミット済み）。生成LLMは scripts/generate.py を手動実行する運用。
       - name: Build Astro site
         run: |
           npm ci
@@ -30,3 +48,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          commit_message: "deploy: ${{ steps.built.outputs.sha }}"

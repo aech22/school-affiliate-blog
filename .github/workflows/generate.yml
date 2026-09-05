@@ -1,5 +1,12 @@
 name: Generate Article
 
+# このワークフローは記事を生成して main に commit したあと、自分でビルドとデプロイまで行う。
+# GITHUB_TOKEN による push は他のワークフローを起動しない（GitHub のループ防止仕様）ため、
+# on: push で待っている deploy.yml は bot のコミットでは発火しない。
+# PAT で回避すると秘密情報が増え、期限切れのときに同じ「静かに止まる」障害が再発するので、
+# ここで完結させる。先例は thejapandesk の refresh-fares.yml。
+# 下の Setup Node 以降は deploy.yml の写しなので、片方を変えたらもう片方も直すこと。
+
 on:
   schedule:
     # UTC 01:00 = JST 10:00。日フィールドの */2 なので 1,3,5,…,31日に走る。
@@ -10,8 +17,11 @@ on:
 permissions:
   contents: write
 
+# deploy.yml と同じグループにして gh-pages への同時デプロイを直列化する。
+# concurrency グループはリポジトリ内の全ワークフローをまたいで名前で直列化するので、
+# このワークフロー自身の二重起動もこれまでどおり待ち合わせる。
 concurrency:
-  group: generate-article
+  group: pages-deploy
   cancel-in-progress: false
 
 jobs:
@@ -48,15 +58,41 @@ jobs:
           fi
           python3 scripts/generate.py
 
+      # 変更の有無を後続ステップへ渡す。sha は push 後の main 先端で、
+      # peaceiris の commit_message に使う（既定の github.sha は生成前を指すため）。
       - name: Commit if changed
+        id: commit
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if git diff --quiet -- content/articles scripts/queue.json; then
             echo "変更なし（キューが空か、ゲートで破棄された）"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git add content/articles scripts/queue.json
           git commit -m "content: 記事を自動生成 ($(date -u +%Y-%m-%d))"
           git pull --rebase origin main
           git push origin main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Node
+        if: steps.commit.outputs.changed == 'true'
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version: '20'
+
+      - name: Build Astro site
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to GitHub Pages
+        if: steps.commit.outputs.changed == 'true'
+        uses: peaceiris/actions-gh-pages@v4.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          commit_message: "deploy: ${{ steps.commit.outputs.sha }}"
