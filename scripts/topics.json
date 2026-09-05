@@ -452,6 +452,46 @@
         "cyber-university",
         "amg"
       ]
+    },
+    {
+      "slug": "gakushu-keikaku-ga-kuzureru",
+      "type": "essay",
+      "title": "学習計画が崩れるのは、意志の問題ではないことが多い",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "働きながら学ぶ人の計画が崩れる場面を、計画の粒度と、崩れたあとにどう戻るかという観点から整理する",
+      "factIds": [],
+      "serviceIds": []
+    },
+    {
+      "slug": "toriaezu-shikaku-no-yukue",
+      "type": "essay",
+      "title": "「とりあえず資格」が続かないとき、何が抜けているのか",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "目的を決めないまま資格の勉強を始めた人がどこで止まるのかを整理し、決め直すための問いを示す",
+      "factIds": [],
+      "serviceIds": []
+    },
+    {
+      "slug": "heijitsu-to-kyujitsu-no-manabikata",
+      "type": "essay",
+      "title": "平日と休日で、学び方を変えている人がやっていること",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "まとまった時間が取れる日と取れない日で学習の中身を分ける考え方を、疲労と集中の続き方から整理する",
+      "factIds": [],
+      "serviceIds": []
+    },
+    {
+      "slug": "mananda-koto-to-shigoto-no-kyori",
+      "type": "essay",
+      "title": "学んだことが仕事で使えるようになるまでの距離",
+      "categorySlug": "career",
+      "category": "転職・エージェント",
+      "theme": "教材を終えたのに実務で手が止まる場面を、教材が扱う知識の形と仕事が求める形の違いから整理する",
+      "factIds": [],
+      "serviceIds": []
     }
   ]
 }

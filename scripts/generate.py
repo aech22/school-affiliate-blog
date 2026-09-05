@@ -115,6 +115,9 @@ def _llm_prose(services: list, theme: str, facts: list, topic_type: str, product
             f"{json.dumps(brief, ensure_ascii=False, indent=2)}\n\n"
             + (f"本文で触れる道具（記事の主役ではない・{len(product_brief)}件）:\n"
                f"{json.dumps(product_brief, ensure_ascii=False, indent=2)}\n\n" if product_brief else "")
+            + ("" if (brief or product_brief) else
+               "この記事で紹介する商品・サービスはありません。存在しない商品名やスクール名を出さず、"
+               "購入や申し込みを促す文も書かないでください。読者が自分で判断できる材料だけを書きます。\n\n")
             + 
             f"上記スキーマのJSONだけを返してください。")
     last_err = None
@@ -149,8 +152,11 @@ def build_topic(topic: dict, today: str) -> tuple[dict | None, str, list[str]]:
     services = [BY_ID[i] for i in topic.get("serviceIds", []) if i in BY_ID]
     facts = [FACT_BY_ID[i] for i in topic.get("factIds", []) if i in FACT_BY_ID]
     products = [PRODUCT_BY_ID[i] for i in topic.get("productIds", []) if i in PRODUCT_BY_ID]
-    if not services and not facts and not products:
-        print(f"[SKIP] {topic['slug']}: serviceId・factId・productId のいずれも0件")
+    # アフィリリンクを1本も持たないコラムを許す（2026-09-05）。
+    # 収益接点の無い記事があってよい、というのが運用側の方針。
+    # ただし比較記事だけは比べる対象が無いと成立しないので従来どおり弾く。
+    if not services and not facts and not products and topic.get("type") == "compare":
+        print(f"[SKIP] {topic['slug']}: type=compare なのに serviceId が0件")
         return None, "", []
 
     prose = _llm_prose(services, topic["theme"], facts, topic.get("type", "compare"), products)

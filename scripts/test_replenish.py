@@ -76,9 +76,18 @@ def test_rejects_source_query_not_in_demand():
     assert r is not None and "sourceQuery" in r
 
 
-def test_rejects_all_empty_ids():
-    r = validate(base(factIds=[], serviceIds=[], productIds=[]), ALLOWED, EXISTING, DEMAND)
-    assert r is not None and "すべて空" in r
+def test_allows_all_empty_ids_for_column():
+    # アフィリリンクを持たないコラムは許す（2026-09-05 の方針変更）
+    r = validate(base(type="essay", factIds=[], serviceIds=[], productIds=[]),
+                 ALLOWED, EXISTING, DEMAND)
+    assert r is None, r
+
+
+def test_rejects_all_empty_ids_for_compare():
+    # 比較記事だけは比べる対象が無いと成立しない
+    r = validate(base(type="compare", factIds=[], serviceIds=[], productIds=[]),
+                 ALLOWED, EXISTING, DEMAND)
+    assert r is not None and "compare" in r
 
 
 def test_rejects_invalid_type_and_category():

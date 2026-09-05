@@ -139,8 +139,10 @@ def validate(cand: dict, allowed: dict, existing_slugs: set[str],
         for i in cand.get(field) or []:
             if i not in pool:
                 return f"{field} に存在しない id: {i}"
-    if not any(cand.get(f) for f in ("factIds", "serviceIds", "productIds")):
-        return "factIds / serviceIds / productIds がすべて空（generate.py が生成できない）"
+    # アフィリリンクを持たないコラムは許す。比較記事だけは比べる対象が要る。
+    if (not any(cand.get(f) for f in ("factIds", "serviceIds", "productIds"))
+            and cand["type"] == "compare"):
+        return "type=compare なのに serviceIds が空（比べる対象が無い）"
 
     # タイトルとテーマに、そのトピックの factIds で裏付けられない金額・率が入っていたら弾く。
     # 入れたままにすると、本文が必ずその数値を書こうとしてゲートに3回落ち、blocked になる。

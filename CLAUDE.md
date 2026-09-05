@@ -113,7 +113,8 @@ gh workflow run replenish-check.yml --repo aech22/school-affiliate-blog --ref ma
 ```
 
 ローカルでは `scripts/replenish.py` に2つのフラグ（書き込みを止めるものと、しきい値判定を飛ばすもの。`--help` 参照）を付けて同じことができる。ただし**ローカルの `.env` の `ANTHROPIC_API_KEY` は6文字の非ASCII文字列で実質プレースホルダー**なので LLM 呼び出しは失敗する（CIのシークレットは健全）。
-- 記事の型は `type` で4種: `compare`（比較）/ `guide`（制度解説）/ `problem`（悩み起点）/ `essay`（楽天商品を差し込むエッセイ）。型ごとにシステムプロンプトが違う
+- 記事の型は `type` で4種: `compare`（比較）/ `guide`（制度解説）/ `problem`（悩み起点）/ `essay`（場面起点のコラム）。型ごとにシステムプロンプトが違う
+- **アフィリリンクを1本も持たない記事を作れる**（2026-09-05）。`serviceIds` / `factIds` / `productIds` がすべて空のトピックは、収益接点の無いコラムとして生成される。この場合プロンプトに「紹介する商品・サービスはない。存在しない商品名を出さず、購入や申し込みを促さない」と明示して渡す。**`compare` だけは比べる対象が無いと成立しないので従来どおり弾く**
 - `date`（公開日）は `_existing_publish_date()` が維持する。**公開日を遡らせない**
 - bot が main にコミットするので、ローカルから push する前に `git pull --rebase`
 
