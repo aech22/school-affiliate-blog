@@ -35,16 +35,21 @@ const year = new Date().getFullYear();
 const orgLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': new URL('/#organization', site).toString(),
   name: SITE_NAME,
   url: site.toString(),
+  // 記事の publisher として参照されるので logo を持たせる（リッチリザルトの推奨項目）。
+  logo: { '@type': 'ImageObject', url: new URL('/ogp.png', site).toString() },
   description: '働きながら学び直す人のためのブログ。講座・資格・転職・語学のサービスと、教育訓練給付金のような公的な学び支援制度について調べたことをまとめています。',
 };
 const siteLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': new URL('/#website', site).toString(),
   name: SITE_NAME,
   url: site.toString(),
   inLanguage: 'ja',
+  publisher: { '@id': new URL('/#organization', site).toString() },
 };
 const breadcrumbLd = breadcrumbs && breadcrumbs.length
   ? {

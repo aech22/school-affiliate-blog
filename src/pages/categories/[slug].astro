@@ -21,7 +21,9 @@ export async function getStaticPaths() {
 }
 
 const { cat, articles } = Astro.props;
-const title = `${cat.label}の記事｜${SITE_NAME}`;
+// <title> は label ではなく metaTitle を使う。ナビ用の短い名前より、読者が実際に検索する語を出す。
+const title = `${cat.metaTitle}の記事｜${SITE_NAME}`;
+const others = CATEGORIES.filter((c) => c.slug !== cat.slug);
 const description = cat.blurb;
 const breadcrumbs = [
   { name: 'ホーム', url: '/' },
@@ -52,7 +54,7 @@ const listLd = {
 
     <header class="mt-6 border-b border-ink pb-5">
       <h1 class="font-serif text-2xl font-semibold leading-snug text-ink sm:text-[1.75rem]">{cat.label}</h1>
-      <p class="mt-3 max-w-2xl leading-relaxed text-ink/70">{cat.blurb}</p>
+      <p class="mt-3 max-w-2xl leading-relaxed text-ink/70">{cat.intro}</p>
     </header>
 
     {articles.length === 0 ? (
@@ -62,6 +64,18 @@ const listLd = {
         {articles.map((a) => <ArticleCard article={a} />)}
       </div>
     )}
+
+    <nav class="mt-14 border-t border-ink/10 pt-5" aria-label="他の話題">
+      <h2 class="font-serif text-base font-semibold text-ink">他の話題</h2>
+      <ul class="mt-3 space-y-2 text-sm">
+        {others.map((c) => (
+          <li>
+            <a href={`${import.meta.env.BASE_URL}categories/${c.slug}/`} class="text-brand-700 underline decoration-brand-700/30 underline-offset-4 hover:decoration-brand-700">{c.label}</a>
+            <span class="text-ink/55">　{c.blurb}</span>
+          </li>
+        ))}
+      </ul>
+    </nav>
 
     <p class="mt-10">
       <a href={import.meta.env.BASE_URL} class="text-sm text-brand-700 underline decoration-brand-700/30 underline-offset-4 hover:decoration-brand-700">← 記事一覧へ戻る</a>

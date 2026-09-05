@@ -1,6 +1,9 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import Jsonld from '../components/Jsonld.astro';
+import RelatedArticles from '../components/RelatedArticles.astro';
+import { relatedArticles } from '../utils/related';
 import ServiceCard from '../components/ServiceCard.astro';
 import Sidebar from '../components/Sidebar.astro';
 import ShiftyPromo from '../components/ShiftyPromo.astro';
@@ -32,7 +35,7 @@ interface Data {
   services?: ServiceRef[] | null;
   noindex?: boolean | null;
 }
-const { data } = Astro.props as { data: Data };
+const { data, slug } = Astro.props as { data: Data; slug: string };
 
 // services.json（事実）を id で引き、記事側の講評をマージした表示用オブジェクトを作る。
 // id が services.json に無いものはスキップ。target は記事側優先、pros/cons/highlight は記事側を使う。
@@ -78,6 +81,36 @@ const breadcrumbs = [{ name: 'ホーム', url: '/' }];
 if (cat) breadcrumbs.push({ name: cat.label, url: `/categories/${cat.slug}/` });
 breadcrumbs.push({ name: data.title, url: Astro.url.pathname });
 
+// 関連記事（内部リンク）。同じ案件・同じ道具・同じカテゴリの順で近い記事を選ぶ。
+const allArticles = await getCollection('articles');
+const related = relatedArticles(allArticles, allArticles.find((a) => a.id === slug)!, 4);
+
+// 検索エンジンに記事として理解させるための構造化データ。
+// これが無いと BreadcrumbList と ItemList しか出ず、公開日・更新日・書き手が伝わらない。
+const site = Astro.site ?? new URL('https://code-navi.net');
+const canonicalUrl = new URL(Astro.url.pathname, site).toString();
+const metaDescription = data.description ?? (data.intro ? data.intro.slice(0, 120) : undefined);
+const blogPostingLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+  headline: data.title.slice(0, 110),
+  ...(metaDescription ? { description: metaDescription } : {}),
+  datePublished: data.date.toISOString(),
+  dateModified: (data.updated ?? data.date).toISOString(),
+  inLanguage: 'ja',
+  ...(cat ? { articleSection: cat.label } : {}),
+  image: [new URL('/ogp.png', site).toString()],
+  isAccessibleForFree: true,
+  author: { '@type': 'Person', name: 'トウジ', url: new URL('/about/', site).toString() },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: site.toString(),
+    logo: { '@type': 'ImageObject', url: new URL('/ogp.png', site).toString() },
+  },
+};
+
 const itemListLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
@@ -93,7 +126,7 @@ const itemListLd = {
 ---
 <BaseLayout
   title={`${data.title}｜${SITE_NAME}`}
-  description={data.description ?? undefined}
+  description={metaDescription}
   noindex={data.noindex ?? false}
   ogType="article"
   publishedTime={data.date.toISOString()}
@@ -102,6 +135,7 @@ const itemListLd = {
 >
   <div class="mx-auto max-w-5xl px-4 py-8 lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-10 lg:items-start">
   <main class="min-w-0">
+    <Jsonld data={blogPostingLd} />
     <Jsonld data={itemListLd} />
     <nav class="flex flex-wrap items-center gap-1 text-xs text-ink/40" aria-label="パンくず">
       <a href={import.meta.env.BASE_URL} class="transition-colors duration-150 hover:text-brand-700">ホーム</a>
@@ -175,6 +209,8 @@ const itemListLd = {
         </section>
       )
     }
+
+    <RelatedArticles articles={related} />
 
     <ShiftyPromo />
 

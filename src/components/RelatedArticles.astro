@@ -1,0 +1,35 @@
+---
+// 記事末の関連記事（2026-09-06 追加）。内部リンクを増やして話題のまとまりを伝えるのが目的。
+// 見た目は ArticleCard と同じ「行のリスト」に揃える（カードのグリッドにはしない）。
+import type { CollectionEntry } from 'astro:content';
+import { categoryBySlug } from '../data/taxonomy';
+
+interface Props { articles: CollectionEntry<'articles'>[]; }
+const { articles } = Astro.props;
+const fmtDate = (x: Date) => x.toISOString().slice(0, 10).replace(/-/g, '.');
+---
+{
+  articles.length > 0 && (
+    <nav class="mt-14 border-t border-ink pt-5" aria-label="関連記事">
+      <h2 class="font-serif text-xl font-semibold text-ink">関連する記事</h2>
+      <ul class="mt-2">
+        {articles.map((a) => {
+          const cat = categoryBySlug(a.data.categorySlug);
+          return (
+            <li class="border-b border-ink/10 py-4">
+              <a href={`${import.meta.env.BASE_URL}articles/${a.id}/`} class="group block">
+                <p class="text-xs text-ink/45">
+                  <time datetime={a.data.date.toISOString().slice(0, 10)}>{fmtDate(a.data.date)}</time>
+                  {cat && <span>　{cat.label}</span>}
+                </p>
+                <p class="mt-1 font-serif text-base font-semibold leading-snug text-ink transition-colors duration-150 group-hover:text-brand-700">
+                  {a.data.title}
+                </p>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  )
+}

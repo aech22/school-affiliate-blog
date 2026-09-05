@@ -234,6 +234,8 @@ def main(dry_run: bool = False, force: bool = False, need_override: int | None =
 - **factIds / serviceIds / productIds は上のリストにある id しか使えません。** 新しい id を発明しない。
 - factIds / serviceIds / productIds のうち、少なくとも1つは空でないこと。
 - sourceQuery は「カテゴリごとの実需要クエリ」に載っている文字列をそのまま使うこと。
+- **title には sourceQuery の中心になる語を、言い換えずにそのまま含めること**（検索している人の
+  言葉のまま出す）。ただし語を並べただけの不自然なタイトルにはしない。読んで意味の通る日本語にする。
 - 制度の解説が要るトピック(guide)は、上の factIds で説明しきれる範囲に限ること。
   台帳に無い制度・金額を前提にするトピックは提案しない。
 - 既存トピックと内容が重なるものは提案しない。

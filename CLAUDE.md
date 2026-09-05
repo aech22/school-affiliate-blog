@@ -54,6 +54,19 @@
 - **記事一覧はカードのグリッドではなく行のリスト。** `ArticleCard.astro` が1行を描く（`.article-card` と `data-category` はトップの絞り込みJSが見ているので必ず残す）
 - **about の「書いている人」は運営者本人の自己紹介。** 文面は好みで書き換えてよい。ただし**記事の書き手について事実と違う主張（「実際に受講した」「毎日自分で書いている」等）を足さない**
 
+## SEO の決めごと（2026-09-06）
+
+検索から来る読者に届かせるための土台。**記事を増やす以外の部分**をここにまとめる。
+
+- **記事ページは `BlogPosting` の構造化データを出す**（`ArticleLayout.astro`）。headline / datePublished / dateModified / author（Person「トウジ」・about へリンク）/ publisher（Organization「コドナビ」・logo は `/ogp.png`）を含む。BaseLayout 側の Organization と WebSite には `@id` を振って、publisher から参照できるようにしてある
+- **記事末に関連記事4本を機械的に置く**（`RelatedArticles.astro` ＋ `src/utils/related.ts`）。スコアは 共通 serviceId・共通 productId が各3点、同カテゴリ2点、同 type 1点で、同点は新しい順。**LLM にリンク先を書かせない**（存在しない slug を書くため）。教育訓練給付金の記事群のように同じ制度を別角度から書いた記事が互いに繋がる
+- **`taxonomy.ts` は `metaTitle` と `intro` を持つ**。`label` はナビ用の短い名前、`metaTitle` はカテゴリページの `<title>` 用で読者が実際に検索する語を入れる（例: `qualification` → 「資格講座・教育訓練給付金」）。`intro` はカテゴリページ本文の導入で、一覧だけの薄いページにしないために置いている。`blurb` は meta description のまま
+- **sitemap は記事に `<lastmod>` を出す**（`astro.config.mjs`）。Content Collections は設定ファイルから読めないので frontmatter を直接パースしている（`.md` / `.mdx` 両対応）。priority はトップ1.0・記事0.8・カテゴリ0.6・固定ページ0.3。`/404` は sitemap から除外
+- **`404.astro` を置いた**（GitHub Pages が `dist/404.html` を使う）。`noindex` 付きで、カテゴリへ戻す導線だけを持つ
+- **生成プロンプトに検索語のルールを入れた**。`generate.py` の `BODY_RULES` は「テーマの中心の語を導入と最初の H2 で言い換えない」「H2 を検索の言い回しに寄せる」、`description` は全角90〜120字でその記事だけの要約。`replenish.py` は `title` に `sourceQuery` の中心の語をそのまま含めさせる。**数値ルール（台帳照合・上限表記・計算禁止）はそのまま**で、SEO 指示が優先することはない
+
+⚠️ **検証はブラウザではなく HTML の grep で行う。** 記事ページとカテゴリページはサイドバーに A8 のバナーを持つので、レンダリングすると誤インプレッションになる（AFFILIATE.md 禁止事項1）。
+
 ## 核心の設計（物販系との最大の違い）
 
 商品APIが無いので、**案件レジストリ `src/data/services.json` が単一ソース**。Python（生成）と Astro（描画）の両方がこの JSON を読む（物販系の `config.py` / `taxonomy.ts` 二重管理を廃止した）。
