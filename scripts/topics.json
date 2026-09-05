@@ -492,6 +492,61 @@
       "theme": "教材を終えたのに実務で手が止まる場面を、教材が扱う知識の形と仕事が求める形の違いから整理する",
       "factIds": [],
       "serviceIds": []
+    },
+    {
+      "slug": "manabinaoshi-gakkou-vs-kouza",
+      "type": "compare",
+      "title": "学び直しで学校に入るか、講座で済ませるか｜通信制大学・専門学院・オンライン講座の比べ方",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "社会人が学び直すときの3つの形式——学位が残る通信制大学、業界への就職に直結する専門学院、実務スキルを短期で身につけるオンライン講座——を、かかる期間・手元に残る証明・いま働いている仕事との両立のしやすさという3つの軸で比べ、自分がどれを選ぶべきか判断できるようにする。制度や学費の細目ではなく、形式そのものの違いに絞る",
+      "serviceIds": [
+        "cyber-university",
+        "amg",
+        "daytra"
+      ]
+    },
+    {
+      "slug": "kyoiku-kunren-kyuka-kyufukin",
+      "type": "guide",
+      "title": "教育訓練休暇給付金とは｜働きながら休んで学ぶための新しい制度",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "令和7年10月に創設された教育訓練休暇給付金について、受講費用を補助する教育訓練給付金とは何が違うのか（休む間の生活を支える制度であること）、対象になる休暇の条件、勤務先の就業規則が前提になること、受講する講座をどう探すか、事前に必要な手続きは何かを、初めて調べる社会人向けに整理する。支給額の算定方法は公式に明記が無いため金額に踏み込まず、個別の可否はハローワークで確認するよう促す",
+      "factIds": [
+        "kyuka-kyufukin",
+        "kyufu-shikyu-youken",
+        "kyufu-jizen-tetsuzuki",
+        "kyufu-kensaku-system",
+        "kyufu-senmon-jissen"
+      ],
+      "serviceIds": [
+        "cyber-university",
+        "mystar"
+      ]
+    },
+    {
+      "slug": "sekou-kanri-hatarakikata-kaeru",
+      "type": "problem",
+      "title": "施工管理を続けるか離れるか｜経験を捨てずに働き方を変えるという選択",
+      "categorySlug": "career",
+      "category": "転職・エージェント",
+      "theme": "施工管理の経験者が労働時間や転勤で消耗しているとき、「業界ごと離れる」以外に「同じ経験と資格を持ったまま条件を変える」という選択肢があることを整理する。何が転職市場で評価されるのか、現場から離れる職種にはどんなものがあるか、年収を下げずに変えられる余地はどこにあるかという順で、読者が自分で決められるようにする",
+      "serviceIds": [
+        "buildjob"
+      ]
+    },
+    {
+      "slug": "sukima-jikan-gakushu",
+      "type": "essay",
+      "title": "すきま時間の学習が積み上がらないとき、見直すのは時間の長さではない",
+      "categorySlug": "qualification",
+      "category": "資格・スキル講座",
+      "theme": "通勤や休憩の数分を学習に充てようとして続かない場面を起点にする。問題は時間が短いことではなく、毎回「どこから始めるか」を思い出すコストが数分を食い潰すこと、そして教材が持ち歩ける形になっていないこと。開いた瞬間に再開できる教材の性質と、紙が向く場面・向かない場面に触れる。一人称の体験談は書かない",
+      "productIds": [
+        "kin-no-phrase",
+        "pavlov-boki3"
+      ]
     }
   ]
 }
