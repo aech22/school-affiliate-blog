@@ -15,7 +15,7 @@
 | 本番URL | https://code-navi.net（独自ドメイン・ルート配信・HTTPS強制） |
 | GitHub | `aech22/school-affiliate-blog`（public） |
 | 収益モデル | 成果報酬（A8.net 等のASP） |
-| workflow | `.github/workflows/deploy.yml`（**push main で build+deploy**・シークレット不要） |
+| workflow | `deploy.yml`（**人の push main で build+deploy**）と `generate.yml`（**隔日cron。生成後に自分で build+deploy まで行う**） |
 
 ⚠️ **ドメインはハイフン入りの "code-navi"**（"codenavi" ではない）。
 
@@ -53,7 +53,7 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 | 動画教材エディター養成コース | テキスト | 動画編集 |
 | 代理店ドットコム＋fan.salon | テキスト×2（1枠に同居） | 副業・独立（2026-08-06追加。枠数を増やしすぎないよう1セクションにまとめている） |
 
-`AdBanner.astro` は記事下の お名前.com 728×90。
+記事下の 728×90（お名前.com）は 2026-08-03 の `676855e` で「1ページ1広告」の方針により撤去済み。未使用のまま残っていた `AdBanner.astro` も 2026-09-05 に削除した。**記事ページの広告はサイドバーの6枠7本だけ**。
 
 **A8 の広告コードは規約に従い原文のまま使う。** `&` を含むURLの JSX パースを避けるため `set:html` で挿入している。
 
@@ -80,9 +80,12 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 `scripts/generate.py` ＋ `scripts/topics.json`（記事定義）＋ `scripts/queue.json`（待ち行列）。
 
 - **1回の実行で `queue.json` の先頭1件だけ**を生成する（`ANTHROPIC_API_KEY` 必要）
-- `.github/workflows/generate.yml` が**隔日 JST 10:00**（cron `0 1 */2 * *`）に回す。生成→ゲート→main へ commit → `deploy.yml` が公開
+- `.github/workflows/generate.yml` が**隔日 JST 10:00**（cron `0 1 */2 * *`）に回す。生成→ゲート→main へ commit →**同じワークフロー内で build と deploy**まで行う
+- ⚠️ **`deploy.yml`（`on: push`）は bot のコミットでは発火しない。** `GITHUB_TOKEN` の push は他のワークフローを起動しないという GitHub の仕様で、これを知らずに2ファイル構成にしていたため 09-03〜09-05 の記事2本が本番404のまま溜まった（`1658382` で是正）。共通正本 AFFILIATE.md のハマりどころ17番を参照
+- 両ワークフローの `concurrency` は `pages-deploy` で共有し、gh-pages への同時デプロイを直列化している。peaceiris は force なしで push するので、競合すると後発が非 fast-forward で失敗する
+- **金額・率は `facts.json` の `numbers[]` をプロンプトへ明示的に列挙して渡す**（`77f64b0`）。渡さないと台帳外の数値が創作されてゲートに落ちる（実例: `kyufu-taisho-kouza-sagashikata` の「1万円」）
 - ゲートに落ちたらキューを進めず再試行。**3回連続で落ちたら `blocked: true` にして末尾へ送る**（無いと更新が静かに止まる）
-- 記事の型は `type` で3種: `compare`（比較）/ `guide`（制度解説）/ `problem`（悩み起点）。型ごとにシステムプロンプトが違う
+- 記事の型は `type` で4種: `compare`（比較）/ `guide`（制度解説）/ `problem`（悩み起点）/ `essay`（楽天商品を差し込むエッセイ）。型ごとにシステムプロンプトが違う
 - `date`（公開日）は `_existing_publish_date()` が維持する。**公開日を遡らせない**
 - bot が main にコミットするので、ローカルから push する前に `git pull --rebase`
 
@@ -90,14 +93,33 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 
 ## 残タスク
 
-- [ ] **`ANTHROPIC_API_KEY` を repo secret に登録**（人間ステップ。これが無いと隔日生成が動かない）
-- [ ] **GA4 の測定ID発行 → `consts.ts` の `GA_MEASUREMENT_ID` に貼る**（現在このサイトは**未計測**。何が読まれたかの記録が無い）
-- [ ] **Search Console の所有権確認**（`consts.ts` に `SEARCH_CONSOLE_VERIFY` の定義自体が無い。検索クエリが取れないとキーワード補充が勘になる）
-- [ ] programming カテゴリの提携承認（承認は6件中1件のみ。記事3本あるのに収益接点が薄い）
-- [ ] `services.json` の priceNote の一次情報検証（mystar のみ 2026-09-02 に検証・是正済み。**数値を含む残り3件 video-editor-course / creators-japan / nova は未検証のまま本番表示中**）
-- [ ] `officialUrl` に A8 URL が入っている12件を本当の公式URLへ（**全件 approved なので現状の描画は正しいが**、どれかが `approved: false` になると A8 URL へ `rel="nofollow"` でフォールバックする潜在バグ）
+- [ ] **programming カテゴリの提携申請**（下の「提携申請状況」表。**ユーザーが A8 管理画面で行う人間ステップ**）
+- [ ] `estre` の `officialUrl` が A8 URL のまま（`estre-official.com` は TLS 設定が壊れていて実在確認ができなかった。2026-09-05 実測で `WRONG_VERSION_NUMBER`）
+- [ ] Pinterest ドメイン認証（`PINTEREST_VERIFY` が空。認証コード取得は人間ステップ）
+- [ ] `TWITTER_SITE` が空（X アカウント未連携）
+
+## 提携申請状況（2026-09-05 新設）
+
+`services.json` にフィールドを増やさず、ここで状態を管理する。承認が取れたら `affiliateUrl` と `approved` を `services.json` に反映する（手順は `affiliate-offer-intake` スキル）。
+
+| id | サービス名 | カテゴリ | 状態 | 日付 | 備考 |
+|---|---|---|---|---|---|
+| `techacademy` | TechAcademy | programming | 未申請 | 2026-09-05 | |
+| `codecamp` | CodeCamp | programming | 未申請 | 2026-09-05 | |
+| `dmm-webcamp` | DMM WEBCAMP | programming | 未申請 | 2026-09-05 | |
+| `runteq` | RUNTEQ | programming | 未申請 | 2026-09-05 | |
+| `samurai-engineer` | 侍エンジニア | programming | 未申請 | 2026-09-05 | |
+| `levtech-career` | レバテックキャリア | career | 未申請 | 2026-09-05 | |
+| `green` | Green | career | 未申請 | 2026-09-05 | |
+
+状態は「未申請 / 申請中 / 承認 / 却下 / A8に案件なし / 見送り」から選ぶ。**「見送り」にするときは理由と再着手条件を備考に書く。** A8 に案件が無い場合、他ASP（afb・もしも等）へ申請するかはユーザーの判断。
 
 ### 完了済み
+- ~~`ANTHROPIC_API_KEY` を repo secret に登録~~ → 2026-09-02 登録済み
+- ~~GA4 の測定ID~~ → `G-Y1PTFCM03C` が本番HTMLに出ており稼働中（`0751419`）
+- ~~Search Console の所有権確認~~ → **HTMLファイル方式**で確認済み（`public/google5958bb822f03eeaa.html`・`c44ee1e`）。⚠️ **このファイルを消すと確認が外れる。** `consts.ts` の `SEARCH_CONSOLE_VERIFY`（metaタグ方式）は未使用のまま空でよい
+- ~~`priceNote` の一次情報検証~~ → 2026-09-05 に video-editor-course / creators-japan / nova から金額を外した。数値を持つのは検証済みの mystar だけ
+- ~~`officialUrl` の A8 URL~~ → 2026-09-05 に11件を公式サイトへ置換（estre のみ残タスク）
 - ~~`public/ogp.png` 差し替え~~ → コドナビ専用OGP（1200×630）に差し替え済み（`ca8d249`）
 - ~~楽天アフィリエイトの導入~~ → 2026-09-03 に稼働。`code-navi.net` を Rakuten Developers の許可リファラと楽天アフィリエイトのサイトに登録済みで、`src/data/products.json` の8商品が `approved:true`・`rel="sponsored"` で出ている
 
