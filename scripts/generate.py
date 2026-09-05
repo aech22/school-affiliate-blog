@@ -18,6 +18,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from gate import check as gate_check
+from gate import is_amount as gate_is_amount
 
 ROOT = Path(__file__).resolve().parent.parent
 SERVICES = json.loads((ROOT / "src" / "data" / "services.json").read_text(encoding="utf-8"))["services"]
@@ -39,10 +40,13 @@ client = anthropic.Anthropic()
 
 BODY_RULES = """
 本文の厳守ルール:
-- 金額・率（円・万円・%）は、渡された「使ってよい事実」に載っている値だけを書く。
-  載っていない金額・率は、概算・言い換え・「約」付きも含めて一切書かない。
-  受講料や月額に触れたいときは、金額を書かずに「各校の料金は記事内のカードを参照」と促す。
-  金額を書いた場合、記事は自動的に破棄される。
+- **金額（円・万円）は一切書かない。** 給付の上限額・受講料・自己負担額・月額のいずれも、
+  具体的な数字を書かない。概算・言い換え・「約」付き・計算結果も同じく書かない。
+  実際に受け取る額や払う額は、受講する講座と本人の要件で変わる。読者が自分に当てはまる額として
+  読んでしまうため、金額は各自が公式サイトや窓口で確認するものとして扱う。
+  料金に触れたいときは「各校の料金は記事内のカードを参照」「支給額は公式の案内で確認」と促す。
+- 率（%）は、渡された「使ってよい率」に載っている値だけを書く。載っていない率は書かない。
+- 金額を書いた場合、または載っていない率を書いた場合、記事は自動的に破棄される。
 - 制度の話をするときは、いつ時点の情報かがわかる書き方にする（例:「2026年9月時点」）。
 - 「最安」「絶対」「No.1」「必ず転職できる」等の断定的な最上級表現を使わない。景表法・ASP規約に沿う。
 - 見出しに 01/02/03 のような連番を付けない。絵文字を使わない。
@@ -98,18 +102,22 @@ def _llm_prose(services: list, theme: str, facts: list, topic_type: str, product
     # gate.py が許可する金額・率をそのままプロンプトへ渡す。台帳の claim/value/note は
     # 散文なので、それだけではモデルが「書いてよい値」を列挙できない。渡さないと台帳外の
     # 数値が創作されてゲートに落ちる（2026-09-05 kyufu-taisho-kouza-sagashikata の「1万円」）。
-    allowed_numbers = sorted({n for f in facts for n in (f.get("numbers") or [])})
+    # 金額は台帳にあっても本文に書かせないので、プロンプトの許可リストは率だけにする
+    # （gate.check も金額を常に違反として扱う。2026-09-05 方針変更）。
+    allowed_numbers = sorted({n for f in facts for n in (f.get("numbers") or [])
+                              if not gate_is_amount(n)})
     # URL は見せない（LLMがリンクを書く必要はない。描画は ProductMention が持つ）
     product_brief = [{"label": p["label"], "scene": p.get("scene", ""), "whyItHelps": p.get("whyItHelps", "")}
                      for p in (products or [])]
     system = SYSTEM_BY_TYPE.get(topic_type, SYSTEM_COMPARE)
     allowed_line = ("、".join(allowed_numbers) if allowed_numbers
-                    else "（1つもありません。金額・率を一切書かないでください）")
+                    else "（1つもありません。率を一切書かないでください）")
     user = (f"テーマ: {theme}\n"
             f"使ってよい事実（ここに無い金額・率は書かない）:\n"
             f"{json.dumps(fact_brief, ensure_ascii=False, indent=2)}\n\n"
-            f"本文に書いてよい金額・率はこの{len(allowed_numbers)}個だけです: {allowed_line}\n"
-            f"この一覧に無い金額・率は、概算でも「約」付きでも言い換えでも書かないでください。"
+            f"本文に書いてよい率はこの{len(allowed_numbers)}個だけです: {allowed_line}\n"
+            f"この一覧に無い率は書かないでください。**金額（円・万円）は1つも書けません。**"
+            f"上限額も受講料も自己負担額も、数字ではなく「公式の案内で確認」と書いてください。"
             f"書いた時点で記事は破棄され、公開されません。\n\n"
             f"サービスデータ(順序厳守・{len(brief)}件):\n"
             f"{json.dumps(brief, ensure_ascii=False, indent=2)}\n\n"

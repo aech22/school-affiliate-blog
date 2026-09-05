@@ -45,7 +45,24 @@ def allowed_tokens(facts: list[dict]) -> set[str]:
     return allowed
 
 
+def is_amount(token: str) -> bool:
+    """正規化済みトークンが金額（円・万円）かどうか。率（%）と区別する。"""
+    return normalize(token).endswith("円")
+
+
 def check(text: str, facts: list[dict]) -> list[str]:
-    """許可集合に無い金額・率の一覧を返す。空リストなら合格。"""
+    """本文に出してはいけない金額・率の一覧を返す。空リストなら合格。
+
+    **金額（円・万円）は台帳にあっても不許可**（2026-09-05 方針変更）。
+    給付の上限額は制度で決まっていても、実際に受け取る額は受講料と個人の
+    要件で変わる。本文に具体的な金額を書くと、読者が自分に当てはまる額として
+    読んでしまう。金額は公式サイトや窓口で各自が確認するものとして扱う。
+
+    率（%）は従来どおり台帳照合。給付率は制度で決まっていて個人差がない。
+    """
     allowed = allowed_tokens(facts)
-    return [t for t in extract_money_and_rate(text) if t not in allowed]
+    violations = []
+    for t in extract_money_and_rate(text):
+        if is_amount(t) or t not in allowed:
+            violations.append(t)
+    return violations

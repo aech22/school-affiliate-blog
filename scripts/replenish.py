@@ -30,8 +30,7 @@ import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from gate import allowed_tokens as gate_allowed_tokens  # noqa: E402
-from gate import extract_money_and_rate as gate_extract  # noqa: E402
+from gate import check as gate_check  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 TOPICS_PATH = ROOT / "scripts" / "topics.json"
@@ -159,10 +158,10 @@ def validate(cand: dict, allowed: dict, existing_slugs: set[str],
     #  専門実践教育訓練の給付率で、脱落率とは無関係）。
     if facts_by_id is not None:
         topic_facts = [facts_by_id[i] for i in (cand.get("factIds") or []) if i in facts_by_id]
-        allowed_numbers = gate_allowed_tokens(topic_facts)
-        bad = [t for t in gate_extract(f"{cand['title']}\n{cand['theme']}") if t not in allowed_numbers]
+        # 判定は gate.check に一本化する（金額は台帳にあっても不許可・率は台帳照合）
+        bad = gate_check(f"{cand['title']}\n{cand['theme']}", topic_facts)
         if bad:
-            return f"タイトル/テーマに、このトピックの factIds で裏付けられない数値: {bad}"
+            return f"タイトル/テーマに書けない数値が含まれる（金額は一律不可・率は台帳照合）: {bad}"
     return None
 
 

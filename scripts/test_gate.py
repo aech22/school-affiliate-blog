@@ -50,9 +50,20 @@ def test_gate_rejects_the_real_published_claim():
     assert "6666円" in violations
 
 
-def test_check_passes_when_all_numbers_are_backed():
-    text = "専門実践教育訓練給付金は最大70%（年間上限56万円）です。"
-    assert check(text, FACTS) == []
+def test_rate_passes_when_backed_but_amount_never_does():
+    # 2026-09-05 方針変更: 金額は台帳にあっても書かせない。率は台帳照合のまま。
+    assert check("専門実践教育訓練給付金は最大70%です。", FACTS) == []
+    assert check("年間上限は56万円です。", FACTS) == ["56万円"]
+    assert check("最大70%（年間上限56万円）です。", FACTS) == ["56万円"]
+
+
+def test_amount_is_rejected_regardless_of_ledger():
+    for t in ["10万円", "56万円", "4,980円", "1円"]:
+        assert check(f"費用は{t}です。", FACTS), f"金額が通ってしまった: {t}"
+
+
+def test_amount_free_sentence_passes():
+    assert check("支給額は受講する講座と本人の要件で変わるため、公式の案内で確認してください。", FACTS) == []
 
 
 def test_check_flags_unbacked_numbers():
