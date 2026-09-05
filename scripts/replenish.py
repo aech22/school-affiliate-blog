@@ -166,7 +166,7 @@ def validate(cand: dict, allowed: dict, existing_slugs: set[str],
     return None
 
 
-def main(dry_run: bool = False, force: bool = False) -> int:
+def main(dry_run: bool = False, force: bool = False, need_override: int | None = None) -> int:
     if dry_run:
         print("=== DRY RUN: サジェスト取得・提案・構造検査まで行い、ファイルは書きません ===")
     queue = json.loads(QUEUE_PATH.read_text(encoding="utf-8"))
@@ -202,7 +202,7 @@ def main(dry_run: bool = False, force: bool = False) -> int:
         return 0
     print(f"サジェストから実需要 {len(demand_all)}件を取得しました。")
 
-    need = max(1, TARGET_QUEUE - remaining)
+    need = need_override if need_override else max(1, TARGET_QUEUE - remaining)
     import anthropic  # 需要が取れたときだけ必要
     client = anthropic.Anthropic()
 
@@ -303,7 +303,11 @@ def main(dry_run: bool = False, force: bool = False) -> int:
             print(f"  (追加されるはず) {t['slug']}  [{t['type']}/{t['categorySlug']}]  ← 「{t['sourceQuery']}」")
             print(f"      title: {t['title']}")
             print(f"      theme: {t['theme']}")
-            print(f"      factIds={t['factIds']} serviceIds={t['serviceIds']}")
+            kind = ("道具のエッセイ" if t.get("productIds") else
+                    "案件記事" if t["serviceIds"] else
+                    "制度解説" if t["factIds"] else "アフィリンク無しのコラム")
+            print(f"      factIds={t['factIds']} serviceIds={t['serviceIds']} "
+                  f"productIds={t.get('productIds', [])}  → {kind}")
         return 0
 
     topics.extend(accepted)
@@ -324,5 +328,7 @@ if __name__ == "__main__":
                     help="サジェスト取得・提案・構造検査まで行い、ファイルを書かない（動作確認用）")
     ap.add_argument("--force", action="store_true",
                     help="キューがしきい値を上回っていても実行する（動作確認用）")
+    ap.add_argument("--need", type=int, default=None,
+                    help="提案させる件数を指定する（動作確認用。既定は目標件数との差）")
     args = ap.parse_args()
-    sys.exit(main(dry_run=args.dry_run, force=args.force))
+    sys.exit(main(dry_run=args.dry_run, force=args.force, need_override=args.need))

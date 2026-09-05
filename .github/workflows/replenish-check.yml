@@ -41,7 +41,7 @@ jobs:
             echo "::warning::ANTHROPIC_API_KEY が未登録のため実行できません。"
             exit 1
           fi
-          python3 scripts/replenish.py --dry-run --force
+          python3 scripts/replenish.py --dry-run --force --need 5
 
       - name: Confirm nothing was written
         run: |
