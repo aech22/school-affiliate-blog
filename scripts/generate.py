@@ -32,8 +32,8 @@ BY_ID = {s["id"]: s for s in SERVICES}
 FACT_BY_ID = {f["id"]: f for f in FACTS}
 PRODUCT_BY_ID = {p["id"]: p for p in PRODUCTS}
 MAX_FAILURES = 3
-# 残りがこの件数以下になったら Actions のログに警告を出す（日次なので件数＝残り日数）。
-LOW_QUEUE_THRESHOLD = 3
+# しきい値は scripts/replenish.py が正本（補充の発動条件と同じ値でないと意味が無い）。
+from replenish import LOW_QUEUE_THRESHOLD
 
 client = anthropic.Anthropic()
 
@@ -280,8 +280,8 @@ def main() -> None:
     print(f"残りキュー: {remaining}件")
     # 日次なので残り件数がそのまま「あと何日もつか」になる。尽きる前に気づけるようにする。
     if remaining <= LOW_QUEUE_THRESHOLD:
-        print(f"::warning::残りキューが{remaining}件です（日次実行なのであと{remaining}日で尽きます）。"
-              f"topics.json と queue.json を補充してください")
+        print(f"[INFO] 残りキューが{remaining}件です（日次実行なのであと{remaining}日ぶん）。"
+              f"このあと scripts/replenish.py が需要データから補充します")
 
 
 if __name__ == "__main__":

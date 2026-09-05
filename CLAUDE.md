@@ -85,7 +85,19 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 - 両ワークフローの `concurrency` は `pages-deploy` で共有し、gh-pages への同時デプロイを直列化している。peaceiris は force なしで push するので、競合すると後発が非 fast-forward で失敗する
 - **金額・率は `facts.json` の `numbers[]` をプロンプトへ明示的に列挙して渡す**（`77f64b0`）。渡さないと台帳外の数値が創作されてゲートに落ちる（実例: `kyufu-taisho-kouza-sagashikata` の「1万円」）
 - ゲートに落ちたらキューを進めず再試行。**3回連続で落ちたら `blocked: true` にして末尾へ送る**（無いと更新が静かに止まる）
-- ⚠️ **日次なので `queue.json` の残り件数＝あと何日もつか。** 残り3件以下とキュー枯渇時は Actions のログに `::warning::` を出す（`LOW_QUEUE_THRESHOLD`）。**枯渇しても実行は success のままなので、警告を見ないと止まったことに気づけない**
+- ⚠️ **日次なので `queue.json` の残り件数＝あと何日もつか。** 残り3件以下になると `scripts/replenish.py` が生成の前に走り、需要データからトピックを補充する（目標8件）
+
+## キューの自動補充（2026-09-05 追加）
+
+`scripts/replenish.py` が `generate.yml` の生成ステップ**より前**に走る。残りが `LOW_QUEUE_THRESHOLD`（3件）以下のときだけ動く。しきい値と目標件数の正本はこのファイルで、`generate.py` は `from replenish import LOW_QUEUE_THRESHOLD` で参照する（二重管理を避けるため）。
+
+**需要データは Google サジェスト**（`suggestqueries.google.com`・UTF-8で返る）。`SEED_QUERIES` の種キーワードから実際に検索されている語を取り、それを根拠にトピックを提案させる。前回の手動補充（`1533cd3`）と同じやり方を自動化したもの。
+
+⚠️ **このスクリプトは事実を増やさない。** 提案できるのは `facts.json` / `services.json` / `products.json` に**すでにある id** を参照するトピックだけで、`serviceIds` は `approved: true` の案件に限る。新しい制度事実が要るトピックは作らせない（台帳に一次情報未検証の値が入ると検証ゲートの許可集合が汚染され、ゲートそのものが意味を失うため）。**台帳へ事実を足すのは人間かセッションの仕事。**
+
+⚠️ **サジェストが取れなければ何も足さずに警告して終わる。** サジェスト無しで作ったものは「需要データに基づく補充」ではないので、名前と中身を食い違わせない。検査を通る提案が0件のときも同じ。
+
+構造検査は `validate()` が行い、`scripts/test_replenish.py` が10件のテストで固めている（CIで生成の前に走る）。検査項目は、slug の形式と重複、type と categorySlug の妥当性、参照 id の実在、`sourceQuery` が実際のサジェスト結果に含まれること、3種の id がすべて空でないこと。
 - 記事の型は `type` で4種: `compare`（比較）/ `guide`（制度解説）/ `problem`（悩み起点）/ `essay`（楽天商品を差し込むエッセイ）。型ごとにシステムプロンプトが違う
 - `date`（公開日）は `_existing_publish_date()` が維持する。**公開日を遡らせない**
 - bot が main にコミットするので、ローカルから push する前に `git pull --rebase`

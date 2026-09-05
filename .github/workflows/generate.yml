@@ -39,9 +39,25 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
 
-      # ゲートが壊れた状態で記事を公開しないよう、生成の前にテストを通す
-      - name: Run gate tests
-        run: python3 scripts/test_gate.py
+      # ゲートと補充の検査が壊れた状態で本番を動かさないよう、生成の前にテストを通す
+      - name: Run tests
+        run: |
+          python3 scripts/test_gate.py
+          python3 scripts/test_replenish.py
+
+      # キューが残り少なければ、生成の前に需要データから補充する。
+      # 生成より前に置くのは、尽きかけた日も同じ実行で生成まで到達させるため。
+      # サジェストが取れない・検査を通る提案が無い場合は、何も足さずに警告だけ出す
+      # （scripts/replenish.py が自分で判断する。ここでは失敗にしない）。
+      - name: Replenish queue if low
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::warning::ANTHROPIC_API_KEY が未登録のため補充をスキップしました。"
+            exit 0
+          fi
+          python3 scripts/replenish.py
 
       # キー未登録の間は「失敗」ではなく「スキップ」にする。
       # 毎回赤くなると通知を無視する習慣がつき、本当の故障を見落とすため。
@@ -65,12 +81,12 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- content/articles scripts/queue.json; then
+          if git diff --quiet -- content/articles scripts/queue.json scripts/topics.json; then
             echo "変更なし（キューが空か、ゲートで破棄された）"
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          git add content/articles scripts/queue.json
+          git add content/articles scripts/queue.json scripts/topics.json
           git commit -m "content: 記事を自動生成 ($(date -u +%Y-%m-%d))"
           git pull --rebase origin main
           git push origin main
