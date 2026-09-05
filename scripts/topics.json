@@ -547,6 +547,52 @@
         "kin-no-phrase",
         "pavlov-boki3"
       ]
+    },
+    {
+      "slug": "enquete-monitor-sukima",
+      "type": "compare",
+      "title": "すきま時間のアンケート・モニターをどう選ぶか｜アイリサーチとファンくる",
+      "categorySlug": "career",
+      "category": "転職・働き方",
+      "theme": "学び直しの受講料や道具代を、いまの働き方を変えずに少しだけ作りたい場面を起点にする。アンケート回答型と店舗モニター型は、必要な手間も向いている人も違うという軸で並べる。稼げる金額や換金率の数字は書かない。一人称の体験談は書かない",
+      "serviceIds": [
+        "iresearch",
+        "fankuru"
+      ]
+    },
+    {
+      "slug": "zaitaku-kaisen-erabikata",
+      "type": "problem",
+      "title": "在宅で働くとき、回線をどう用意するか",
+      "categorySlug": "career",
+      "category": "転職・働き方",
+      "theme": "在宅ワークや副業を始めるときに、光回線の開通工事を待てない・賃貸で工事ができないという詰まり方を起点にする。工事不要の回線が向く場面と向かない場面（オンライン会議の安定性、動画のアップロード）を分けて書く。料金や速度の数値は書かず、確認先を示す。一人称の体験談は書かない",
+      "serviceIds": [
+        "biglobe-wimax"
+      ]
+    },
+    {
+      "slug": "dokuritsu-junbi-meishi-inkan",
+      "type": "problem",
+      "title": "独立するとき、名刺と印鑑をどう決めるか",
+      "categorySlug": "career",
+      "category": "転職・働き方",
+      "theme": "会社を離れて独立や副業を始めるときに、事業の中身より先に名刺と印鑑で止まる場面を起点にする。どちらも「後から作り直すと手間が増えるもの」という共通点で並べ、決める順番と、決め切らなくていい部分を分ける。価格の数値は書かない。一人称の体験談は書かない",
+      "serviceIds": [
+        "meishi-tsuhan",
+        "inkans"
+      ]
+    },
+    {
+      "slug": "font-erabi-douga-design",
+      "type": "problem",
+      "title": "動画やデザインでフォントに詰まったとき、どこから探すか",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "動画編集やデザインを学び始めた人が、内容は作れるのに見た目が素人っぽくなる原因のひとつが書体である、という詰まり方を起点にする。無料フォントで足りる場面と、商用利用の条件や字形の揃いで有料が要る場面を分ける。割引率や価格の数値は書かない。一人称の体験談は書かない",
+      "serviceIds": [
+        "design-pocket"
+      ]
     }
   ]
 }

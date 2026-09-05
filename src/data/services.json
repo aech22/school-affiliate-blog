@@ -646,6 +646,120 @@
       "approved": true,
       "pros": [],
       "cons": []
+    },
+    {
+      "id": "iresearch",
+      "name": "アイリサーチ",
+      "subCategory": "career",
+      "tags": [
+        "東証スタンダード上場のネオマーケティングが運営",
+        "500円以上から交換できる",
+        "自社の会場ルームでの調査もある",
+        "銀行・商品券・電子ギフト・寄付に交換できる"
+      ],
+      "priceNote": "登録・利用の費用は公式サイトで確認",
+      "target": "全国の10代〜70代",
+      "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4BC3YT+BN56NM+551Y+5ZMCI",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4BC3YT+BN56NM+551Y+5ZMCI",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "fankuru",
+      "name": "ファンくる",
+      "subCategory": "career",
+      "tags": [
+        "約8,000店舗の飲食モニター",
+        "美容・通販・ショッピングの案件もある",
+        "案件を自分で選べる",
+        "体験した声が企業やお店に届く"
+      ],
+      "priceNote": "登録・利用の費用は公式サイトで確認",
+      "target": "いつも使っている店やサービスをモニターとして利用したい人",
+      "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4BC3YU+3VWVXU+1ORI+15OK2A",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4BC3YU+3VWVXU+1ORI+15OK2A",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "biglobe-wimax",
+      "name": "BIGLOBE WiMAX +5G",
+      "subCategory": "career",
+      "tags": [
+        "開通工事が不要",
+        "クレジットカードのほか口座振替にも対応",
+        "最低利用期間・契約解除料なし（ギガ放題プラスS・初月解約を除く）",
+        "au・UQ mobile のセット割あり（申し込みと適用条件あり）"
+      ],
+      "priceNote": "月額料金は公式サイトで確認",
+      "target": "工事なしで自宅と外出先のインターネットをすぐ用意したい人",
+      "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4BC3YT+BNQM9E+B4+2BD44I",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4BC3YT+BNQM9E+B4+2BD44I",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "meishi-tsuhan",
+      "name": "名刺通販ドットコム",
+      "subCategory": "career",
+      "tags": [
+        "170種類以上のテンプレート",
+        "データ入稿でオリジナル名刺も作れる",
+        "ロゴ・事業内容を載せるカスタム名刺",
+        "ビジネス名刺の専門通販"
+      ],
+      "priceNote": "価格は公式サイトで確認",
+      "target": "独立や副業でビジネス用の名刺を用意したい人",
+      "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4BC3YU+3OROOI+2DS2+BWVTE",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4BC3YU+3OROOI+2DS2+BWVTE",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "inkans",
+      "name": "Inkans.com",
+      "subCategory": "career",
+      "tags": [
+        "会社設立3本セットが売上1位",
+        "自社職人が彫刻し最短即日出荷",
+        "品質10年保証",
+        "チタン・宝石素材も選べる"
+      ],
+      "priceNote": "価格は公式サイトで確認",
+      "target": "法人設立や独立で実印・銀行印を用意する人",
+      "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4BC3YU+402X6A+2SJG+5YJRM",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4BC3YU+402X6A+2SJG+5YJRM",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
+    },
+    {
+      "id": "design-pocket",
+      "name": "デザインポケット",
+      "subCategory": "qualification",
+      "tags": [
+        "約100のフォントブランドを取り扱い",
+        "日本語・欧文・手書き風・デザイン毛筆",
+        "季節ごとのセールがある",
+        "国内最大級のフォント販売プラットフォーム"
+      ],
+      "priceNote": "フォントごとに価格が異なる（公式サイトで確認）",
+      "target": "動画編集やデザインの仕事・制作でフォントを使う人",
+      "officialUrl": "https://px.a8.net/svt/ejp?a8mat=4BC3YU+3PYJW2+5XDY+5YJRM",
+      "affiliateUrl": "https://px.a8.net/svt/ejp?a8mat=4BC3YU+3PYJW2+5XDY+5YJRM",
+      "asp": "a8",
+      "approved": true,
+      "pros": [],
+      "cons": []
     }
   ]
 }

@@ -94,7 +94,10 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 - 動画教材エディター養成コース・`creators-japan`・`movie-hacks`・`skillhacks` — qualification / programming カテゴリ
 - **2026-08-06 追加（A8提供情報より）**: `onecareer-tenshoku`（ワンキャリア転職）・`r4career`（R4CAREER）＝career、`mystar`（MySTAR）・`estre`（エストレ）＝qualification、`nova`（駅前留学NOVA）・`shoba-chinese`（ショーバ中国語センター）＝language
 - **2026-09-05 追加（A8提供情報15件）**: `anykan`・`groovement-agent`・`it-consultant-bank`・`strategy-consultant-bank`・`twinpro`・`buildjob`・`myvision`・`meiko-career`＝career、`merise`・`gaba`・`toraiz`・`wish-international`＝language、`daytra`＝programming、`cyber-university`・`amg`＝qualification。**全件 `officialUrl` は実在確認済みの公式サイト**（A8 URL を入れていない）
-- これで承認済みは27件（career 12・qualification 7・language 6・programming 2）。**programming は skillhacks の1件だけだった状態から `daytra` が加わって2件**
+- **2026-09-05 追加（A8提供情報6件・読者像の拡張後はじめての振り分け）**: `iresearch`（アイリサーチ）・`fankuru`（ファンくる）＝career（すきま時間の副収入）、`biglobe-wimax`（BIGLOBE WiMAX +5G）＝career（在宅ワークの回線。A8カテゴリ「インターネット接続」＝受ける）、`meishi-tsuhan`（名刺通販ドットコム）・`inkans`（Inkans.com）＝career（独立の準備）、`design-pocket`（デザインポケット）＝qualification（動画編集・デザインの道具）。**いずれも `officialUrl` にも A8 URL を入れている**（承認済みのため）
+- これで承認済みは33件（career 17・qualification 8・language 6・programming 2）。**programming は skillhacks の1件だけだった状態から `daytra` が加わって2件**
+
+⚠️ **料金の数値は書かない方針を維持している。** 2026-09-05 追加の6件は提供情報に一次情報として使える価格が無かったので、`priceNote` は全件「公式サイトで確認」の形にした。広告主がASP向けに書いた数値（平均客単価・割引率など）は読者向けの価格ではないので使わない
 
 ## 事実台帳と検証ゲート（2026-09-02 追加）
 
@@ -165,6 +168,7 @@ gh workflow run replenish-check.yml --repo aech22/school-affiliate-blog --ref ma
 
 - [ ] **programming カテゴリの提携申請**（下の「提携申請状況」表。**ユーザーが A8 管理画面で行う人間ステップ**。2026-09-05 に `daytra` が承認されて2件になったが、記事3本に対してはまだ薄い）
 - [ ] 2026-09-05 追加15件の記事はキュー待ち（トピック7本を追加済み）。日次生成で順に公開される
+- [ ] **2026-09-05 追加6件の記事はキューの先頭4本**（`enquete-monitor-sukima` / `zaitaku-kaisen-erabikata` / `dokuritsu-junbi-meishi-inkan` / `font-erabi-douga-design`）。**新しい案件が先に公開されるよう既存17件より前に入れた**ので、4日で全部出る
 - [ ] `estre` の `officialUrl` が A8 URL のまま（`estre-official.com` は TLS 設定が壊れていて実在確認ができなかった。2026-09-05 実測で `WRONG_VERSION_NUMBER`）
 - [ ] Pinterest ドメイン認証（`PINTEREST_VERIFY` が空。認証コード取得は人間ステップ）
 - [ ] `TWITTER_SITE` が空（X アカウント未連携）
