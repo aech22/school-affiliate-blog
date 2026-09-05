@@ -20,6 +20,11 @@ ALLOWED = {
     "products": {"mobile-monitor"},
 }
 EXISTING = {"already-used-slug"}
+# 台帳の抜粋。kyufu-senmon-jissen が 70% を持つのは「給付率」としての70%である
+FACTS_BY_ID = {
+    "kyufu-ippan": {"id": "kyufu-ippan", "numbers": ["20%", "10万円"]},
+    "kyufu-senmon-jissen": {"id": "kyufu-senmon-jissen", "numbers": ["50%", "70%"]},
+}
 DEMAND = {"教育訓練給付金 条件", "英会話スクール 比較"}
 
 
@@ -116,6 +121,32 @@ def test_extract_json_raises_on_garbage():
     except Exception:
         return
     raise AssertionError("壊れた入力で例外が出ていない")
+
+
+def test_rejects_number_in_title_not_backed_by_facts():
+    # 2026-09-05 の dry run で実際に提案された形。台帳の70%は給付率で、脱落率ではない。
+    # factIds が空なので裏付けが1つも無く、弾かれなければならない。
+    r = validate(base(type="problem", slug="dropout-70", categorySlug="programming",
+                      title="プログラミング独学で挫折しない環境づくり｜70%が脱落する理由",
+                      theme="高い挫折率の原因を分析する", factIds=[], serviceIds=["nova"],
+                      sourceQuery="英会話スクール 比較"),
+                 ALLOWED, EXISTING, DEMAND, FACTS_BY_ID)
+    assert r is not None and "70%" in r, r
+
+
+def test_allows_number_backed_by_its_own_fact_ids():
+    # 同じ 70% でも、専門実践の給付率として factIds に紐づいていれば通す
+    r = validate(base(title="専門実践教育訓練給付金の70%とは",
+                      theme="給付率の条件を整理する",
+                      factIds=["kyufu-senmon-jissen"], serviceIds=[]),
+                 ALLOWED, EXISTING, DEMAND, FACTS_BY_ID)
+    assert r is None, r
+
+
+def test_number_check_is_skipped_without_facts_table():
+    # facts_by_id を渡さなければ従来どおりの構造検査だけになる（後方互換）
+    assert validate(base(title="70%の話", factIds=["kyufu-ippan"]),
+                    ALLOWED, EXISTING, DEMAND) is None
 
 
 if __name__ == "__main__":

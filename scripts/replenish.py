@@ -29,6 +29,10 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from gate import allowed_tokens as gate_allowed_tokens  # noqa: E402
+from gate import extract_money_and_rate as gate_extract  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 TOPICS_PATH = ROOT / "scripts" / "topics.json"
 QUEUE_PATH = ROOT / "scripts" / "queue.json"
@@ -113,7 +117,7 @@ def _slugify_ok(slug: str) -> bool:
 
 
 def validate(cand: dict, allowed: dict, existing_slugs: set[str],
-             demand_all: set[str]) -> str | None:
+             demand_all: set[str], facts_by_id: dict | None = None) -> str | None:
     """構造検査。問題があれば理由の文字列を返す。合格なら None。"""
     for key in ("slug", "type", "title", "categorySlug", "theme", "sourceQuery"):
         if not cand.get(key):
@@ -137,6 +141,18 @@ def validate(cand: dict, allowed: dict, existing_slugs: set[str],
                 return f"{field} に存在しない id: {i}"
     if not any(cand.get(f) for f in ("factIds", "serviceIds", "productIds")):
         return "factIds / serviceIds / productIds がすべて空（generate.py が生成できない）"
+
+    # タイトルとテーマに、そのトピックの factIds で裏付けられない金額・率が入っていたら弾く。
+    # 入れたままにすると、本文が必ずその数値を書こうとしてゲートに3回落ち、blocked になる。
+    # ゲートはトークン照合なので、台帳に同じ数字が別の意味で在ると素通りする危険もある
+    # （実例: 2026-09-05 の dry run で「70%が脱落する」が提案された。台帳の 70% は
+    #  専門実践教育訓練の給付率で、脱落率とは無関係）。
+    if facts_by_id is not None:
+        topic_facts = [facts_by_id[i] for i in (cand.get("factIds") or []) if i in facts_by_id]
+        allowed_numbers = gate_allowed_tokens(topic_facts)
+        bad = [t for t in gate_extract(f"{cand['title']}\n{cand['theme']}") if t not in allowed_numbers]
+        if bad:
+            return f"タイトル/テーマに、このトピックの factIds で裏付けられない数値: {bad}"
     return None
 
 
@@ -157,6 +173,7 @@ def main(dry_run: bool = False, force: bool = False) -> int:
     facts = json.loads((ROOT / "src" / "data" / "facts.json").read_text(encoding="utf-8"))["facts"]
     services = json.loads((ROOT / "src" / "data" / "services.json").read_text(encoding="utf-8"))["services"]
     products = json.loads((ROOT / "src" / "data" / "products.json").read_text(encoding="utf-8"))["products"]
+    facts_by_id = {f["id"]: f for f in facts}
     allowed = {
         "facts": {f["id"] for f in facts},
         # 承認済み案件だけ。未承認に繋いでも収益接点にならない（1533cd3 と同じ基準）
@@ -230,7 +247,7 @@ def main(dry_run: bool = False, force: bool = False) -> int:
 
     accepted, rejected = [], []
     for cand in proposed:
-        reason = validate(cand, allowed, existing_slugs, demand_all)
+        reason = validate(cand, allowed, existing_slugs, demand_all, facts_by_id)
         if reason:
             rejected.append((cand.get("slug", "?"), reason))
             continue
