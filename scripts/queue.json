@@ -3,9 +3,11 @@
   "pending": [
     {
       "slug": "kyufu-taisho-kouza-sagashikata",
-      "failures": 0,
+      "failures": 1,
       "blocked": false,
-      "lastViolations": []
+      "lastViolations": [
+        "1万円"
+      ]
     },
     {
       "slug": "douga-henshu-fukugyo-kasegenai",
