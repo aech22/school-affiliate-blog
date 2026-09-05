@@ -89,6 +89,25 @@ def collect_demand() -> dict[str, list[str]]:
     return demand
 
 
+def extract_json(text: str) -> dict:
+    """LLM出力からJSONを取り出す。コードフェンスと前後の散文に耐える。
+
+    scripts/generate.py もこれを import して使う（定義を1箇所に保つ）。
+    素の json.loads だとフェンス付きの応答で落ちる。2026-09-05 の dry run で
+    実際に補充が「JSONとして読めません」で見送られたのがこれ。
+    """
+    t = text.strip()
+    if t.startswith("```"):
+        nl = t.find("\n")
+        t = t[nl + 1:] if nl != -1 else t
+        if t.rstrip().endswith("```"):
+            t = t.rstrip()[:-3]
+    i, j = t.find("{"), t.rfind("}")
+    if i != -1 and j != -1:
+        t = t[i:j + 1]
+    return json.loads(t)
+
+
 def _slugify_ok(slug: str) -> bool:
     return bool(re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug or ""))
 
@@ -181,18 +200,32 @@ def main(dry_run: bool = False, force: bool = False) -> int:
   台帳に無い制度・金額を前提にするトピックは提案しない。
 - 既存トピックと内容が重なるものは提案しない。
 """
-    msg = client.messages.create(
-        model="claude-haiku-4-5-20251001",
-        max_tokens=4096,
-        system=SYSTEM,
-        messages=[{"role": "user",
-                   "content": json.dumps(payload, ensure_ascii=False, indent=2) + "\n\n" + instruction}],
-    )
-    text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text").strip()
-    try:
-        proposed = json.loads(text)["topics"]
-    except Exception as e:
-        print(f"::warning::提案をJSONとして読めませんでした（{type(e).__name__}）。補充を見送ります")
+    base_msg = json.dumps(payload, ensure_ascii=False, indent=2) + "\n\n" + instruction
+    proposed = None
+    last_err = None
+    for attempt in range(2):
+        content = base_msg if attempt == 0 else (
+            base_msg + "\n\n前回JSONとして解釈できませんでした。"
+                       "コードフェンスも前置きも付けず、有効なJSONオブジェクトだけを返してください。")
+        msg = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=8192,
+            system=SYSTEM,
+            messages=[{"role": "user", "content": content}],
+        )
+        text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text").strip()
+        if msg.stop_reason == "max_tokens":
+            # 途中で切れた応答は必ずJSONとして壊れる。原因を取り違えないよう明示する。
+            print(f"[WARN] 応答が max_tokens で打ち切られました（{attempt + 1}回目）")
+        try:
+            proposed = extract_json(text)["topics"]
+            break
+        except Exception as e:
+            last_err = e
+            print(f"[WARN] {attempt + 1}回目の応答をJSONとして読めませんでした: {type(e).__name__}: {e}")
+            print(f"       応答の先頭200字: {text[:200]!r}")
+    if proposed is None:
+        print(f"::warning::提案をJSONとして読めませんでした（{type(last_err).__name__}）。補充を見送ります")
         return 0
 
     accepted, rejected = [], []

@@ -84,17 +84,8 @@ SYSTEM_BY_TYPE = {"compare": SYSTEM_COMPARE, "guide": SYSTEM_GUIDE,
                   "problem": SYSTEM_PROBLEM, "essay": SYSTEM_ESSAY}
 
 
-def _extract_json(text: str) -> dict:
-    t = text.strip()
-    if t.startswith("```"):
-        nl = t.find("\n")
-        t = t[nl + 1:] if nl != -1 else t
-        if t.rstrip().endswith("```"):
-            t = t.rstrip()[:-3]
-    i, j = t.find("{"), t.rfind("}")
-    if i != -1 and j != -1:
-        t = t[i:j + 1]
-    return json.loads(t)
+# JSON抽出は scripts/replenish.py に一本化した（同じ処理を2箇所に置かない）
+from replenish import extract_json as _extract_json
 
 
 def _llm_prose(services: list, theme: str, facts: list, topic_type: str, products: list | None = None) -> dict:

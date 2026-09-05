@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from replenish import validate  # noqa: E402
+from replenish import validate, extract_json  # noqa: E402
 
 ALLOWED = {
     "facts": {"kyufu-ippan", "kyufu-senmon-jissen"},
@@ -93,6 +93,29 @@ def test_accepts_service_only_topic():
                       serviceIds=["nova"], categorySlug="language",
                       sourceQuery="英会話スクール 比較"), ALLOWED, EXISTING, DEMAND)
     assert r is None, r
+
+
+def test_extract_json_plain():
+    assert extract_json('{"topics": []}') == {"topics": []}
+
+
+def test_extract_json_strips_code_fence():
+    # 2026-09-05 の dry run で実際に補充を止めたのがこの形
+    fenced = '```json\n{"topics": [{"slug": "a"}]}\n```'
+    assert extract_json(fenced)["topics"][0]["slug"] == "a"
+
+
+def test_extract_json_strips_bare_fence_and_prose():
+    assert extract_json('```\n{"topics": []}\n```') == {"topics": []}
+    assert extract_json('はい、こちらです:\n{"topics": []}\nご確認ください。') == {"topics": []}
+
+
+def test_extract_json_raises_on_garbage():
+    try:
+        extract_json("JSONではない文章")
+    except Exception:
+        return
+    raise AssertionError("壊れた入力で例外が出ていない")
 
 
 if __name__ == "__main__":
