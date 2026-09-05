@@ -32,6 +32,8 @@ BY_ID = {s["id"]: s for s in SERVICES}
 FACT_BY_ID = {f["id"]: f for f in FACTS}
 PRODUCT_BY_ID = {p["id"]: p for p in PRODUCTS}
 MAX_FAILURES = 3
+# 残りがこの件数以下になったら Actions のログに警告を出す（日次なので件数＝残り日数）。
+LOW_QUEUE_THRESHOLD = 3
 
 client = anthropic.Anthropic()
 
@@ -233,7 +235,11 @@ def main() -> None:
 
     item = next((x for x in pending if not x.get("blocked")), None)
     if item is None:
-        print("キューに処理できる項目がありません。キーワード補充が必要です。")
+        # 日次運用ではキューの枯渇がそのまま更新停止になる。緑のまま黙って止まると
+        # 気づけないので、Actions のログに警告として出す。
+        blocked = [x["slug"] for x in pending if x.get("blocked")]
+        print("::warning::キューに処理できる項目がありません。topics.json と queue.json の補充が必要です。"
+              + (f" blocked: {blocked}" if blocked else ""))
         return
 
     topic = by_slug.get(item["slug"])
@@ -270,7 +276,12 @@ def main() -> None:
     pending.remove(item)
     _save_queue(queue)
     print(f"generated -> {item['slug']}.md（本文{len(body)}字・{len(fm.get('services', []))}件）")
-    print(f"残りキュー: {len([x for x in pending if not x.get('blocked')])}件")
+    remaining = len([x for x in pending if not x.get("blocked")])
+    print(f"残りキュー: {remaining}件")
+    # 日次なので残り件数がそのまま「あと何日もつか」になる。尽きる前に気づけるようにする。
+    if remaining <= LOW_QUEUE_THRESHOLD:
+        print(f"::warning::残りキューが{remaining}件です（日次実行なのであと{remaining}日で尽きます）。"
+              f"topics.json と queue.json を補充してください")
 
 
 if __name__ == "__main__":

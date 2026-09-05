@@ -15,7 +15,7 @@
 | 本番URL | https://code-navi.net（独自ドメイン・ルート配信・HTTPS強制） |
 | GitHub | `aech22/school-affiliate-blog`（public） |
 | 収益モデル | 成果報酬（A8.net 等のASP） |
-| workflow | `deploy.yml`（**人の push main で build+deploy**）と `generate.yml`（**隔日cron。生成後に自分で build+deploy まで行う**） |
+| workflow | `deploy.yml`（**人の push main で build+deploy**）と `generate.yml`（**日次cron。生成後に自分で build+deploy まで行う**） |
 
 ⚠️ **ドメインはハイフン入りの "code-navi"**（"codenavi" ではない）。
 
@@ -80,11 +80,12 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 `scripts/generate.py` ＋ `scripts/topics.json`（記事定義）＋ `scripts/queue.json`（待ち行列）。
 
 - **1回の実行で `queue.json` の先頭1件だけ**を生成する（`ANTHROPIC_API_KEY` 必要）
-- `.github/workflows/generate.yml` が**隔日 JST 10:00**（cron `0 1 */2 * *`）に回す。生成→ゲート→main へ commit →**同じワークフロー内で build と deploy**まで行う
+- `.github/workflows/generate.yml` が**毎日 JST 10:00**（cron `0 1 * * *`・2026-09-05 に隔日から日次へ変更）に回す。生成→ゲート→main へ commit →**同じワークフロー内で build と deploy**まで行う
 - ⚠️ **`deploy.yml`（`on: push`）は bot のコミットでは発火しない。** `GITHUB_TOKEN` の push は他のワークフローを起動しないという GitHub の仕様で、これを知らずに2ファイル構成にしていたため 09-03〜09-05 の記事2本が本番404のまま溜まった（`1658382` で是正）。共通正本 AFFILIATE.md のハマりどころ17番を参照
 - 両ワークフローの `concurrency` は `pages-deploy` で共有し、gh-pages への同時デプロイを直列化している。peaceiris は force なしで push するので、競合すると後発が非 fast-forward で失敗する
 - **金額・率は `facts.json` の `numbers[]` をプロンプトへ明示的に列挙して渡す**（`77f64b0`）。渡さないと台帳外の数値が創作されてゲートに落ちる（実例: `kyufu-taisho-kouza-sagashikata` の「1万円」）
 - ゲートに落ちたらキューを進めず再試行。**3回連続で落ちたら `blocked: true` にして末尾へ送る**（無いと更新が静かに止まる）
+- ⚠️ **日次なので `queue.json` の残り件数＝あと何日もつか。** 残り3件以下とキュー枯渇時は Actions のログに `::warning::` を出す（`LOW_QUEUE_THRESHOLD`）。**枯渇しても実行は success のままなので、警告を見ないと止まったことに気づけない**
 - 記事の型は `type` で4種: `compare`（比較）/ `guide`（制度解説）/ `problem`（悩み起点）/ `essay`（楽天商品を差し込むエッセイ）。型ごとにシステムプロンプトが違う
 - `date`（公開日）は `_existing_publish_date()` が維持する。**公開日を遡らせない**
 - bot が main にコミットするので、ローカルから push する前に `git pull --rebase`
