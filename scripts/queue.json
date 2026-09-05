@@ -3,9 +3,11 @@
   "pending": [
     {
       "slug": "school-hiyo-osaeru",
-      "failures": 0,
+      "failures": 1,
       "blocked": false,
-      "lastViolations": []
+      "lastViolations": [
+        "1万円"
+      ]
     },
     {
       "slug": "senmon-jissen-hatarakinagara",
