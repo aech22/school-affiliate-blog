@@ -97,7 +97,19 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 
 ⚠️ **サジェストが取れなければ何も足さずに警告して終わる。** サジェスト無しで作ったものは「需要データに基づく補充」ではないので、名前と中身を食い違わせない。検査を通る提案が0件のときも同じ。
 
-構造検査は `validate()` が行い、`scripts/test_replenish.py` が10件のテストで固めている（CIで生成の前に走る）。検査項目は、slug の形式と重複、type と categorySlug の妥当性、参照 id の実在、`sourceQuery` が実際のサジェスト結果に含まれること、3種の id がすべて空でないこと。
+構造検査は `validate()` が行い、`scripts/test_replenish.py` が17件のテストで固めている（CIで生成の前に走る）。検査項目は、slug の形式と重複、type と categorySlug の妥当性、参照 id の実在、`sourceQuery` が実際のサジェスト結果に含まれること、3種の id がすべて空でないこと、そして**タイトルとテーマに、そのトピック自身の `factIds` で裏付けられない金額・率が無いこと**。
+
+⚠️ **ゲートはトークン照合なので、意味の違う同じ数字を見分けられない。** 2026-09-05 の動作確認で「70%が脱落する理由」というタイトルが提案された。台帳の `70%` は専門実践教育訓練の給付率で、脱落率とは無関係だが、トークンとしては一致するので本文ゲートは素通りする。だから**補充の入口**でタイトルとテーマを検査している（判定には `gate.py` をそのまま使う）。
+
+### 動作確認のしかた
+
+`.github/workflows/replenish-check.yml` を手動実行すると、本物のキーでサジェスト取得から構造検査までを通し、**ファイルを一切書かずに**「何が追加されるはずか」を出す。実行後に `git diff` で書き込みが無いことも機械的に確認する。
+
+```bash
+gh workflow run replenish-check.yml --repo aech22/school-affiliate-blog --ref main
+```
+
+ローカルでは `scripts/replenish.py` に2つのフラグ（書き込みを止めるものと、しきい値判定を飛ばすもの。`--help` 参照）を付けて同じことができる。ただし**ローカルの `.env` の `ANTHROPIC_API_KEY` は6文字の非ASCII文字列で実質プレースホルダー**なので LLM 呼び出しは失敗する（CIのシークレットは健全）。
 - 記事の型は `type` で4種: `compare`（比較）/ `guide`（制度解説）/ `problem`（悩み起点）/ `essay`（楽天商品を差し込むエッセイ）。型ごとにシステムプロンプトが違う
 - `date`（公開日）は `_existing_publish_date()` が維持する。**公開日を遡らせない**
 - bot が main にコミットするので、ローカルから push する前に `git pull --rebase`
