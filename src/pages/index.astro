@@ -4,12 +4,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import Jsonld from '../components/Jsonld.astro';
 import { CATEGORIES } from '../data/taxonomy';
-import { SITE_NAME, SITE_TAGLINE } from '../consts';
+import { SITE_NAME } from '../consts';
 
 const articles = (await getCollection('articles')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
-// 記事が存在するカテゴリだけチップに出す
+// 記事が存在するカテゴリだけ絞り込みに出す
 const usedCats = new Set(articles.map((a) => a.data.categorySlug).filter(Boolean));
 const catChips = CATEGORIES.filter((c) => usedCats.has(c.slug));
 
@@ -17,7 +17,7 @@ const site = Astro.site ?? new URL('https://aech22.github.io/school-affiliate-bl
 const listLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  name: `${SITE_NAME} の比較記事一覧`,
+  name: `${SITE_NAME} の記事一覧`,
   numberOfItems: articles.length,
   itemListElement: articles.map((a, i) => ({
     '@type': 'ListItem',
@@ -27,54 +27,50 @@ const listLd = {
   })),
 };
 ---
-<BaseLayout title={`${SITE_NAME}｜スクール・転職・資格・語学の比較`}>
+<BaseLayout title={`${SITE_NAME}｜働きながら学び直す人のブログ`}>
   <Jsonld data={listLd} />
 
-  <!-- ヒーロー -->
-  <section class="bg-gradient-to-br from-brand-500 to-[#ff9a5a] text-white">
-    <div class="mx-auto max-w-5xl px-4 py-14 sm:py-20">
-      <p class="text-xs font-black tracking-[0.2em] text-white/80">COMPARE &amp; CHOOSE</p>
-      <h1 class="mt-3 text-3xl font-black leading-tight sm:text-4xl">
-        未経験から、<br class="sm:hidden" />自分に合うスクールを。
-      </h1>
-      <p class="mt-4 max-w-xl leading-relaxed text-white/90">
-        {SITE_TAGLINE}<b class="font-bold text-white">料金・特徴・サポート</b>で並べて比較し、目的に合った1校を見つけやすくします。
+  <!-- 書き出し。ヒーローバナーは置かない（読み物として文章から始める） -->
+  <section class="mx-auto max-w-3xl px-4 pt-12 sm:pt-16">
+    <h1 class="font-serif text-2xl font-semibold leading-snug text-ink sm:text-[1.75rem]">
+      働きながら、学び直している人のためのブログです。
+    </h1>
+    <div class="mt-5 space-y-4 text-ink/75">
+      <p>
+        サービス業の現場で働きながら、講座や資格で学び直しています。仕事を変えたい、増やしたいと思って調べたこと——講座の費用、教育訓練給付金のような公的な制度、転職サービスの使い分け、在宅で働くための道具——を、次に同じことを調べる人のためにここへ置いています。
+      </p>
+      <p class="text-sm text-ink/55">
+        紹介しているサービスの料金や内容は、各社が公開している情報をもとにしています。広告を含む記事にはその旨を明記しています。
       </p>
     </div>
-  </section>
-
-  <!-- カテゴリから探す（内部リンク・SEO） -->
-  <section class="mx-auto max-w-5xl px-4 pt-10">
-    <h2 class="mb-4 flex items-center gap-2 text-xl font-black"><span class="h-5 w-1.5 rounded bg-brand-500"></span>カテゴリから探す</h2>
-    <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+    <p class="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm text-ink/55">
+      <span class="text-xs text-ink/40">話題から読む</span>
       {CATEGORIES.map((c) => (
-        <a href={`${import.meta.env.BASE_URL}categories/${c.slug}/`} class="flex items-center gap-2 rounded-xl border border-black/5 bg-white px-4 py-3 font-bold shadow-sm transition hover:-translate-y-0.5 hover:text-brand-600 hover:shadow">
-          <span class="text-xl">{c.emoji}</span>{c.label}
-        </a>
+        <a href={`${import.meta.env.BASE_URL}categories/${c.slug}/`} class="underline decoration-ink/20 underline-offset-4 transition-colors duration-150 hover:text-brand-700 hover:decoration-brand-700">{c.label}</a>
       ))}
-    </div>
+    </p>
   </section>
 
-  <!-- 記事一覧 + カテゴリフィルタ -->
-  <main class="mx-auto max-w-5xl px-4 py-12">
-    <h2 class="mb-4 flex items-center gap-2 text-xl font-black"><span class="h-5 w-1.5 rounded bg-brand-500"></span>比較記事から探す</h2>
-
-    <!-- カテゴリチップ -->
-    <div id="cat-chips" class="flex flex-wrap gap-2">
-      <button type="button" data-category="all" class="chip-btn is-active rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-ink/70 transition">すべてのカテゴリ</button>
-      {catChips.map((c) => (
-        <button type="button" data-category={c.slug} class="chip-btn rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-ink/70 transition">{c.emoji} {c.label}</button>
-      ))}
+  <!-- 記事一覧 -->
+  <main class="mx-auto max-w-3xl px-4 pb-4 pt-14">
+    <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-ink pb-2">
+      <h2 class="font-serif text-lg font-semibold text-ink">記事（{articles.length}）</h2>
+      <div id="cat-chips" class="flex flex-wrap gap-x-3 gap-y-1 text-xs text-ink/50">
+        <button type="button" data-category="all" class="chip-btn is-active transition-colors duration-150 hover:text-brand-700">すべて</button>
+        {catChips.map((c) => (
+          <button type="button" data-category={c.slug} class="chip-btn transition-colors duration-150 hover:text-brand-700">{c.label}</button>
+        ))}
+      </div>
     </div>
 
-    <div id="article-grid" class="mt-6 grid gap-6 sm:grid-cols-2">
+    <div id="article-grid">
       {articles.map((a) => <ArticleCard article={a} />)}
     </div>
-    <p id="empty-msg" class="mt-6 hidden text-center text-ink/50">該当する記事がありません。</p>
+    <p id="empty-msg" class="mt-6 hidden text-sm text-ink/50">該当する記事がありません。</p>
   </main>
 
   <style>
-    .chip-btn.is-active { background-color: var(--color-brand-500); color: #fff; }
+    .chip-btn.is-active { color: var(--color-ink); text-decoration: underline; text-underline-offset: 4px; }
   </style>
 
   <script is:inline>

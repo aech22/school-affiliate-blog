@@ -1,10 +1,19 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* ---- テーマトークン（Tailwind v4）。bg-brand-500 / text-ink / bg-cream 等が生成される ---- */
+/* ---- テーマトークン（Tailwind v4）。bg-brand-500 / text-ink / bg-cream 等が生成される ----
+   個人ブログとしての見た目の決めごと（2026-09-05）:
+   ・書体は2つだけ。見出しと記事タイトルは明朝（Noto Serif JP）、本文とUIはゴシック（Noto Sans JP）。
+     読み物としての人格を出すための意図的な選択で、装飾目的の書体切り替えはしない。
+   ・アクセント色はブランドのオレンジ1色のみ。文字色に使うのは brand-700（コントラスト確保）で、
+     brand-500 は罫やマーカーなど極小の面積にだけ使う。塗りつぶしの面は作らない。
+   ・角丸は1種類（--radius = 6px）。影は使わない。面の区切りは1pxの罫線だけで行う。
+   ・太さは最大700。font-black（900）は使わない。 */
 @theme {
   --font-sans: "Noto Sans JP", ui-sans-serif, system-ui, -apple-system, "Hiragino Kaku Gothic ProN",
     "Yu Gothic", Meiryo, sans-serif;
+  --font-serif: "Noto Serif JP", ui-serif, Georgia, "Hiragino Mincho ProN", "Yu Mincho",
+    "YuMincho", serif;
 
   --color-brand-50: #fff4ee;
   --color-brand-100: #ffe3d3;
@@ -15,10 +24,16 @@
 
   --color-ink: #23303a;
   --color-cream: #fbf7f2;
+
+  --radius: 6px;
 }
 
 html { scroll-behavior: smooth; }
 body { background-color: var(--color-cream); }
+
+/* 記事本文。読み物として1行の長さと行間を優先する。 */
+.prose :where(h2, h3, h4) { font-family: var(--font-serif); }
+.prose :where(a) { text-underline-offset: 3px; }
 
 /* ---- 星評価（reviewAverage 0〜5 を横幅で表現）---- */
 .stars { position: relative; display: inline-block; font-size: 0.95rem; line-height: 1; letter-spacing: 1px; }

@@ -1,4 +1,7 @@
 ---
+// 記事一覧の1行。カードのグリッドではなく、日付・話題・タイトル・書き出しを縦に積んだ
+// ブログの目次の行として組む（2026-09-05）。トップとカテゴリページで共用する。
+// index.astro の絞り込みが .article-card と data-category を見るので、両方を保つこと。
 import type { CollectionEntry } from 'astro:content';
 import { categoryBySlug } from '../data/taxonomy';
 
@@ -7,25 +10,20 @@ const { article } = Astro.props;
 const d = article.data;
 const cat = categoryBySlug(d.categorySlug);
 const fmtDate = (x: Date) => x.toISOString().slice(0, 10).replace(/-/g, '.');
+const compareCount = d.type === 'compare' ? (d.services?.length ?? 0) : 0;
 ---
 <a
   href={`${import.meta.env.BASE_URL}articles/${article.id}/`}
-  class="article-card group flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+  class="article-card group block border-b border-ink/10 py-6"
   data-category={d.categorySlug ?? ''}
 >
-  <div class="flex flex-1 flex-col p-5">
-    <div class="flex items-center gap-2">
-      {cat && (
-        <span class="rounded-full bg-brand-50 px-3 py-1 text-xs font-black text-brand-600">
-          {cat.emoji} {cat.label}
-        </span>
-      )}
-      <span class="text-xs font-bold text-ink/40">{fmtDate(d.date)}・{(d.services?.length ?? 0)}校を比較</span>
-    </div>
-    <h3 class="mt-3 text-lg font-bold leading-snug transition group-hover:text-brand-600">{d.title}</h3>
-    {d.description && <p class="mt-2 line-clamp-3 text-sm leading-relaxed text-ink/60">{d.description}</p>}
-    <span class="mt-4 inline-flex items-center gap-1 text-sm font-black text-brand-600">
-      続きを読む <span class="transition group-hover:translate-x-1">→</span>
-    </span>
-  </div>
+  <p class="text-xs text-ink/45">
+    <time datetime={d.date.toISOString().slice(0, 10)}>{fmtDate(d.date)}</time>
+    {cat && <span>　{cat.label}</span>}
+    {compareCount > 1 && <span>　{compareCount}件を比較</span>}
+  </p>
+  <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-ink transition-colors duration-150 group-hover:text-brand-700 sm:text-xl">
+    {d.title}
+  </h3>
+  {d.description && <p class="mt-2 line-clamp-2 text-sm leading-relaxed text-ink/60">{d.description}</p>}
 </a>

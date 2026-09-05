@@ -100,66 +100,64 @@ const itemListLd = {
   modifiedTime={(data.updated ?? data.date).toISOString()}
   breadcrumbs={breadcrumbs}
 >
-  <div class="mx-auto max-w-5xl px-4 py-8 lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-8 lg:items-start">
+  <div class="mx-auto max-w-5xl px-4 py-8 lg:grid lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-10 lg:items-start">
   <main class="min-w-0">
     <Jsonld data={itemListLd} />
-    <nav class="flex flex-wrap items-center gap-1 text-xs font-medium text-ink/40" aria-label="パンくず">
-      <a href={import.meta.env.BASE_URL} class="hover:text-brand-600">ホーム</a>
-      {cat && (<><span>／</span><a href={`${import.meta.env.BASE_URL}categories/${cat.slug}/`} class="hover:text-brand-600">{cat.label}</a></>)}
+    <nav class="flex flex-wrap items-center gap-1 text-xs text-ink/40" aria-label="パンくず">
+      <a href={import.meta.env.BASE_URL} class="transition-colors duration-150 hover:text-brand-700">ホーム</a>
+      {cat && (<><span>／</span><a href={`${import.meta.env.BASE_URL}categories/${cat.slug}/`} class="transition-colors duration-150 hover:text-brand-700">{cat.label}</a></>)}
     </nav>
 
-    <div class="mt-3 flex flex-wrap items-center gap-2">
+    <p class="mt-6 text-xs text-ink/45">
       {cat && (
-        <a href={`${import.meta.env.BASE_URL}categories/${cat.slug}/`} class="rounded-full bg-brand-100 px-3 py-1 text-xs font-black text-brand-600 hover:bg-brand-200">
-          {cat.emoji} {cat.label}
-        </a>
+        <a href={`${import.meta.env.BASE_URL}categories/${cat.slug}/`} class="transition-colors duration-150 hover:text-brand-700">{cat.label}</a>
       )}
-      <span class="text-xs font-medium text-ink/40">
-        公開 {dateStr}・更新 {updatedStr}{data.type === 'compare' && resolved.length > 1 ? `・${resolved.length}件を比較` : ''}
-      </span>
-    </div>
-
-    <h1 class="mt-3 text-2xl font-black leading-tight sm:text-3xl">{data.title}</h1>
-
-    <p class="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-relaxed text-amber-800">
-      本記事はアフィリエイト広告を含みます。掲載の料金・コース内容は掲載時点のもので、変動する場合があります。最新情報は各スクールの公式サイトをご確認ください。
+      <span>　公開 {dateStr}</span>
+      {updatedStr !== dateStr && <span>　更新 {updatedStr}</span>}
+      {data.type === 'compare' && resolved.length > 1 && <span>　{resolved.length}件を比較</span>}
     </p>
 
-    {data.intro && <p class="mt-6 text-[15px] leading-relaxed text-ink/80">{data.intro}</p>}
+    <h1 class="mt-2 font-serif text-2xl font-semibold leading-snug text-ink sm:text-[1.75rem]">{data.title}</h1>
 
-    <div class="prose prose-slate mt-8 max-w-none prose-headings:font-black prose-h2:mt-10 prose-h2:text-xl prose-a:text-brand-600">
+    <p class="mt-4 border-y border-ink/10 py-3 text-xs leading-relaxed text-ink/50">
+      この記事には広告（アフィリエイトリンク）を含みます。掲載している料金・内容は掲載時点のもので、変動する場合があります。最新の情報は各社の公式サイトをご確認ください。
+    </p>
+
+    {data.intro && <p class="mt-8 leading-loose text-ink/80">{data.intro}</p>}
+
+    <div class="prose prose-slate mt-8 max-w-none leading-loose prose-headings:font-semibold prose-h2:mt-12 prose-h2:text-xl prose-h3:text-lg prose-a:text-brand-700 prose-a:decoration-brand-700/30">
       <slot />
     </div>
 
     {resolvedProducts.map((p) => <ProductMention product={p} />)}
 
-    <div class="mt-8 space-y-6">
+    <div class="mt-10 space-y-8">
       {resolved.map((s) => <ServiceCard service={s} />)}
     </div>
 
     {
       data.type === 'compare' && resolved.length > 1 && (
-        <section class="mt-12">
-          <h2 class="mb-3 flex items-center gap-2 text-lg font-black"><span class="h-5 w-1.5 rounded bg-brand-500" />比較まとめ</h2>
-          <div class="overflow-x-auto rounded-xl border border-black/5">
-            <table class="w-full min-w-[440px] border-collapse bg-white text-sm">
+        <section class="mt-14">
+          <h2 class="border-b border-ink pb-2 font-serif text-xl font-semibold text-ink">比較まとめ</h2>
+          <div class="mt-4 overflow-x-auto">
+            <table class="w-full min-w-[440px] border-collapse text-sm">
               <thead>
-                <tr class="bg-brand-50 text-ink/70">
-                  <th class="p-3 text-left font-black">スクール</th>
-                  <th class="p-3 text-left font-black">料金目安</th>
-                  <th class="p-3 text-left font-black">特徴</th>
+                <tr class="border-b border-ink/20 text-left text-xs text-ink/50">
+                  <th class="py-2 pr-3 font-medium">サービス</th>
+                  <th class="py-2 pr-3 font-medium">料金目安</th>
+                  <th class="py-2 font-medium">特徴</th>
                 </tr>
               </thead>
               <tbody>
                 {resolved.map((s) => (
-                  <tr class="border-t border-black/5">
-                    <td class="p-3">
-                      <a href={hrefOf(s)} target="_blank" rel={relOf(s)} class="font-medium text-brand-600 hover:underline">
-                        {s.rank != null ? `${s.rank}位. ` : ''}{clip(s.name, 22)}
+                  <tr class="border-b border-ink/10 align-top">
+                    <td class="py-3 pr-3">
+                      <a href={hrefOf(s)} target="_blank" rel={relOf(s)} class="text-brand-700 underline decoration-brand-700/30 underline-offset-4 hover:decoration-brand-700">
+                        {s.rank != null ? `${s.rank}. ` : ''}{clip(s.name, 22)}
                       </a>
                     </td>
-                    <td class="p-3 text-ink/70">{s.priceNote ?? '—'}</td>
-                    <td class="p-3 text-ink/60">{(s.tags ?? []).slice(0, 2).join('・') || '—'}</td>
+                    <td class="py-3 pr-3 text-ink/70">{s.priceNote ?? '—'}</td>
+                    <td class="py-3 text-ink/60">{(s.tags ?? []).slice(0, 2).join('・') || '—'}</td>
                   </tr>
                 ))}
               </tbody>
@@ -171,25 +169,27 @@ const itemListLd = {
 
     {
       data.outro && (
-        <section class="mt-12 rounded-2xl bg-brand-50 p-6">
-          <h2 class="mb-2 text-lg font-black text-ink">まとめ</h2>
-          <p class="text-[15px] leading-relaxed text-ink/80">{data.outro}</p>
+        <section class="mt-14 border-t border-ink pt-5">
+          <h2 class="font-serif text-xl font-semibold text-ink">おわりに</h2>
+          <p class="mt-3 leading-loose text-ink/80">{data.outro}</p>
         </section>
       )
     }
 
     <ShiftyPromo />
 
-    {cat && (
-      <p class="mt-10 text-sm">
-        <a href={`${import.meta.env.BASE_URL}categories/${cat.slug}/`} class="font-bold text-brand-600 hover:underline">
-          → 「{cat.label}」の他の記事を見る
-        </a>
+    <nav class="mt-12 space-y-2 text-sm">
+      {cat && (
+        <p>
+          <a href={`${import.meta.env.BASE_URL}categories/${cat.slug}/`} class="text-brand-700 underline decoration-brand-700/30 underline-offset-4 hover:decoration-brand-700">
+            「{cat.label}」の他の記事を読む
+          </a>
+        </p>
+      )}
+      <p>
+        <a href={import.meta.env.BASE_URL} class="text-brand-700 underline decoration-brand-700/30 underline-offset-4 hover:decoration-brand-700">← 記事一覧へ戻る</a>
       </p>
-    )}
-    <p class="mt-3">
-      <a href={import.meta.env.BASE_URL} class="inline-flex items-center gap-1 text-sm font-black text-brand-600 hover:underline">← 記事一覧へ戻る</a>
-    </p>
+    </nav>
   </main>
     <Sidebar />
   </div>

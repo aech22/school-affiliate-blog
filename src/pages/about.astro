@@ -2,52 +2,64 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE_NAME } from '../consts';
 
-const title = `運営者情報｜${SITE_NAME}`;
-const description = `${SITE_NAME}の運営者情報。運営者・サイトの方針・アフィリエイト広告や掲載情報の取り扱いについてご案内します。`;
+const title = `このブログについて｜${SITE_NAME}`;
+const description = `${SITE_NAME}について。誰に向けて何を書いているか、運営者、アフィリエイト広告や掲載情報の取り扱いをご案内します。`;
 const breadcrumbs = [
   { name: 'ホーム', url: '/' },
-  { name: '運営者情報', url: '/about/' },
+  { name: 'このブログについて', url: '/about/' },
 ];
-const updated = '2026.08.03';
+const updated = '2026.09.05';
 ---
 <BaseLayout title={title} description={description} breadcrumbs={breadcrumbs}>
   <main class="mx-auto max-w-3xl px-4 py-8">
-    <nav class="flex flex-wrap items-center gap-1 text-xs font-medium text-ink/40" aria-label="パンくず">
-      <a href={import.meta.env.BASE_URL} class="hover:text-brand-600">ホーム</a><span>／</span><span class="text-ink/60">運営者情報</span>
+    <nav class="flex flex-wrap items-center gap-1 text-xs text-ink/40" aria-label="パンくず">
+      <a href={import.meta.env.BASE_URL} class="transition-colors duration-150 hover:text-brand-700">ホーム</a><span>／</span><span class="text-ink/60">このブログについて</span>
     </nav>
 
-    <h1 class="mt-3 text-2xl font-black leading-tight sm:text-3xl">{SITE_NAME}について</h1>
+    <h1 class="mt-6 font-serif text-2xl font-semibold leading-snug text-ink sm:text-[1.75rem]">このブログについて</h1>
     <p class="mt-2 text-xs text-ink/40">最終更新：{updated}</p>
 
-    <div class="mt-6 space-y-8 text-[15px] leading-relaxed text-ink/80">
+    <div class="mt-8 space-y-10 leading-loose text-ink/80">
       <section>
-        <h2 class="mb-2 text-lg font-black text-ink">{SITE_NAME}について</h2>
-        <p>
-          {SITE_NAME}は、プログラミングスクール・転職エージェント・資格/スキル講座を、料金・特徴・サポート内容といった観点で比較・紹介する、エンジニアとキャリアの「学び・転職」の比較メディアです。
-          数あるスクールの違いを並べて見比べられるようにし、目的に合った1校を選びやすくすることを目指しています。
+        <h2 class="border-b border-ink/15 pb-1.5 font-serif text-xl font-semibold text-ink">誰に向けて書いているか</h2>
+        <p class="mt-3">
+          {SITE_NAME}は、働きながら学び直したい人、いまの働き方を変えたい人に向けたブログです。講座や資格、転職サービス、語学、そして学ぶための道具について、選ぶ前に知っておきたかったことを調べてまとめています。
+        </p>
+        <p class="mt-3">
+          扱う範囲は「スクール」に限りません。教育訓練給付金のような公的な学び支援制度、副業や独立の入り口、在宅で働くための環境づくりまで、同じ読者が実際に直面することであれば話題にします。逆に、読者像から離れるもの（美容・金融商品・不動産・結婚など）は、広告の話が来ても扱いません。
         </p>
       </section>
 
       <section>
-        <h2 class="mb-2 text-lg font-black text-ink">運営者情報</h2>
-        <div class="overflow-hidden rounded-xl border border-black/5">
-          <table class="w-full border-collapse bg-white text-sm">
+        <h2 class="border-b border-ink/15 pb-1.5 font-serif text-xl font-semibold text-ink">書いている人</h2>
+        <p class="mt-3">
+          運営しているトウジです。ふだんはサービス業の現場で10年以上、複数店舗のマネジメントをしています。専門的なIT教育を受けないまま独学でアプリを作り、リリースして運営するところまで来ました。学ぶときに一番効いたのは、網羅ではなく「いまの自分の目的に直結するものだけ選ぶ」ことです。全部やろうとして時間を溶かした失敗もしています。
+        </p>
+        <p class="mt-3">
+          同じように働きながら学び直そうとする人が、選ぶ前に知っておきたかったことを調べてまとめているのがこのブログです。誇大・最上級の表現は避け、公式サイトや所管省庁の一次情報にもとづいて掲載しています。
+        </p>
+      </section>
+
+      <section>
+        <h2 class="border-b border-ink/15 pb-1.5 font-serif text-xl font-semibold text-ink">運営者情報</h2>
+        <div class="mt-3 overflow-x-auto">
+          <table class="w-full border-collapse text-sm">
             <tbody>
-              <tr class="border-b border-black/5">
-                <th class="w-32 bg-brand-50 p-3 text-left font-bold text-ink/70">サイト名</th>
-                <td class="p-3">{SITE_NAME}</td>
+              <tr class="border-b border-ink/10">
+                <th class="w-32 py-3 pr-4 text-left font-medium text-ink/50">サイト名</th>
+                <td class="py-3">{SITE_NAME}</td>
               </tr>
-              <tr class="border-b border-black/5">
-                <th class="bg-brand-50 p-3 text-left font-bold text-ink/70">運営者</th>
-                <td class="p-3">TODGE</td>
+              <tr class="border-b border-ink/10">
+                <th class="py-3 pr-4 text-left font-medium text-ink/50">運営者</th>
+                <td class="py-3">TODGE</td>
               </tr>
-              <tr class="border-b border-black/5">
-                <th class="bg-brand-50 p-3 text-left font-bold text-ink/70">事業内容</th>
-                <td class="p-3">スクール・転職・資格の比較・紹介メディアの企画・運営（成果報酬型アフィリエイト）</td>
+              <tr class="border-b border-ink/10">
+                <th class="py-3 pr-4 text-left font-medium text-ink/50">事業内容</th>
+                <td class="py-3">学び直しと働き方に関する情報・比較メディアの企画・運営（成果報酬型アフィリエイト）</td>
               </tr>
               <tr>
-                <th class="bg-brand-50 p-3 text-left font-bold text-ink/70">運営方針</th>
-                <td class="p-3">スクールを料金・特徴・サポートで公平に比較し、はじめての一歩を後押しする。</td>
+                <th class="py-3 pr-4 text-left font-medium text-ink/50">運営方針</th>
+                <td class="py-3">公開されている情報にもとづいて、料金・内容・サポートを並べて見比べられるようにする。</td>
               </tr>
             </tbody>
           </table>
@@ -55,44 +67,39 @@ const updated = '2026.08.03';
       </section>
 
       <section>
-        <h2 class="mb-2 text-lg font-black text-ink">アフィリエイト広告について</h2>
-        <p>
-          当サイトは、成果報酬型のアフィリエイト広告（ASP）を利用しています。
-          記事内のリンクを経由してスクールへの申し込み等が行われた場合、当サイトが広告主から成果報酬を受け取ることがあります。
-          報酬の有無は、記事で紹介するスクールの選定・評価に影響を与えないよう努めています。
+        <h2 class="border-b border-ink/15 pb-1.5 font-serif text-xl font-semibold text-ink">アフィリエイト広告について</h2>
+        <p class="mt-3">
+          当サイトは、成果報酬型のアフィリエイト広告（ASP）を利用しています。記事内のリンクを経由して申し込み・購入等が行われた場合、当サイトが広告主から成果報酬を受け取ることがあります。報酬の有無は、記事で紹介するサービスの選定・評価に影響を与えないよう努めています。広告を含む箇所には「広告」「PR」と明記しています。
         </p>
       </section>
 
       <section>
-        <h2 class="mb-2 text-lg font-black text-ink">掲載情報の取り扱い</h2>
-        <ul class="ml-5 list-disc space-y-1.5">
-          <li>スクール名・料金・コース内容・特徴等は、各スクールの公開情報をもとに掲載時点の情報を表示しています。</li>
-          <li>料金・コース内容・キャンペーン等は変動します。<b>最新かつ正確な情報は、必ず各スクールの公式サイトでご確認ください。</b></li>
+        <h2 class="border-b border-ink/15 pb-1.5 font-serif text-xl font-semibold text-ink">掲載情報の取り扱い</h2>
+        <ul class="mt-3 ml-5 list-disc space-y-1.5">
+          <li>サービス名・料金・内容・特徴等は、各社の公開情報をもとに掲載時点の情報を表示しています。</li>
+          <li>料金・内容・キャンペーン等は変動します。最新かつ正確な情報は、必ず各社の公式サイトでご確認ください。</li>
+          <li>公的な制度について書くときは、所管する省庁などの一次情報を確認したうえで掲載しています。制度は改正されるため、申請前に必ず最新の要件をご確認ください。</li>
           <li>掲載内容には万全を期していますが、正確性・完全性を保証するものではありません。</li>
         </ul>
       </section>
 
       <section>
-        <h2 class="mb-2 text-lg font-black text-ink">アクセス解析・Cookie について</h2>
-        <p>
-          当サイトでは、サイトの利用状況を把握し改善するためにアクセス解析ツールを利用する場合があります。
-          これらのツールは Cookie を使用することがありますが、個人を特定する情報は含まれません。
-          Cookie の利用はブラウザの設定から無効にできます。
+        <h2 class="border-b border-ink/15 pb-1.5 font-serif text-xl font-semibold text-ink">アクセス解析・Cookie について</h2>
+        <p class="mt-3">
+          当サイトでは、サイトの利用状況を把握し改善するためにアクセス解析ツールを利用する場合があります。これらのツールは Cookie を使用することがありますが、個人を特定する情報は含まれません。Cookie の利用はブラウザの設定から無効にできます。
         </p>
       </section>
 
       <section>
-        <h2 class="mb-2 text-lg font-black text-ink">免責事項</h2>
-        <p>
-          当サイトの情報を利用して生じたいかなる損害についても、運営者は責任を負いかねます。
-          スクールへの申し込み・受講にあたっては、各公式サイトの記載および利用者ご自身の判断でお願いいたします。
-          リンク先の外部サイトの内容についても、当サイトは責任を負いません。
+        <h2 class="border-b border-ink/15 pb-1.5 font-serif text-xl font-semibold text-ink">免責事項</h2>
+        <p class="mt-3">
+          当サイトの情報を利用して生じたいかなる損害についても、運営者は責任を負いかねます。サービスへの申し込み・購入にあたっては、各公式サイトの記載および利用者ご自身の判断でお願いいたします。リンク先の外部サイトの内容についても、当サイトは責任を負いません。
         </p>
       </section>
     </div>
 
-    <p class="mt-10">
-      <a href={import.meta.env.BASE_URL} class="inline-flex items-center gap-1 text-sm font-black text-brand-600 hover:underline">← トップへ戻る</a>
+    <p class="mt-12">
+      <a href={import.meta.env.BASE_URL} class="text-sm text-brand-700 underline decoration-brand-700/30 underline-offset-4 hover:decoration-brand-700">← 記事一覧へ戻る</a>
     </p>
   </main>
 </BaseLayout>

@@ -19,36 +19,40 @@ const href = `https://shiftyshifty.app/?utm_source=${SHIFTY_UTM_SOURCE}&utm_medi
 ---
 {
   variant === 'sidebar' ? (
-    <section class="rounded-2xl border border-black/5 bg-white p-4">
-      <p class="mb-2 text-[11px] font-black tracking-wide text-ink/35">PR · 当サイト運営者が開発</p>
-      <p class="text-sm font-black leading-snug text-ink">シフト管理アプリ Shifty</p>
+    <section class="border-t border-ink/10 pt-5">
+      <p class="mb-2 text-[11px] tracking-wide text-ink/35">PR · このブログの運営者が作っています</p>
+      <p class="font-serif text-sm font-semibold leading-snug text-ink">シフト管理アプリ Shifty</p>
       <p class="mt-2 text-xs leading-relaxed text-ink/60">
         飲食店の希望シフト集めから、シフト表の Excel 出力まで。スタッフは送られてきたURLを開くだけで提出でき、会員登録もアプリのインストールも要りません。
       </p>
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener"
-        class="mt-3 inline-flex w-full items-center justify-center rounded-lg bg-brand-500 px-3 py-2 text-xs font-black text-white transition hover:bg-brand-600"
-      >
-        無料ではじめる
-      </a>
+      <p class="mt-3">
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener"
+          class="text-xs text-brand-700 underline decoration-brand-700/30 underline-offset-4 hover:decoration-brand-700"
+        >
+          無料ではじめる
+        </a>
+      </p>
     </section>
   ) : (
-    <aside class="mt-12 rounded-2xl border border-black/5 bg-white p-5 sm:p-6">
-      <p class="mb-1 text-[11px] font-black tracking-wide text-ink/35">PR · 当サイト運営者が開発しています</p>
-      <p class="text-lg font-black leading-snug text-ink">シフトの希望集め、まだ LINE と Excel の往復でやっていませんか？</p>
+    <aside class="mt-14 border-t border-ink/10 pt-6">
+      <p class="text-[11px] tracking-wide text-ink/35">PR · このブログの運営者が作っています</p>
+      <p class="mt-2 font-serif text-lg font-semibold leading-snug text-ink">シフトの希望集め、まだ LINE と Excel の往復でやっていませんか？</p>
       <p class="mt-3 text-sm leading-relaxed text-ink/70">
-        <b>Shifty</b> は飲食店向けのシフト管理アプリです。スタッフは送られてきたURLを開いて希望を入れるだけ（会員登録もアプリのインストールも不要）。店長は集まった希望をそのままシフト表として Excel に出力できます。無料プランから使えます。
+        Shifty は飲食店向けのシフト管理アプリです。スタッフは送られてきたURLを開いて希望を入れるだけで、会員登録もアプリのインストールも要りません。店長は集まった希望をそのままシフト表として Excel に出力できます。無料プランから使えます。
       </p>
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener"
-        class="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-black text-white transition hover:bg-brand-600"
-      >
-        Shifty を見る →
-      </a>
+      <p class="mt-4">
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener"
+          class="inline-block rounded-md border border-ink/20 px-4 py-2 text-sm text-ink/80 transition-colors duration-150 hover:border-brand-700 hover:text-brand-700"
+        >
+          Shifty を見る
+        </a>
+      </p>
     </aside>
   )
 }
