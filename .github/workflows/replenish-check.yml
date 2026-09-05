@@ -1,0 +1,54 @@
+name: Replenish Dry Run
+
+# キュー補充（scripts/replenish.py）の動作確認だけを行う診断用ワークフロー。
+# 手動実行のみ。dry-run なのでファイルを一切書かず、commit も deploy もしない。
+# しきい値を飛ばすフラグを付けるのは、キューが十分ある平常時でも
+# サジェスト取得から構造検査までの全経路を通して確かめるため。
+#
+# 本番の補充は generate.yml の "Replenish queue if low" が行う。こちらは触らない。
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dry-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        run: |
+          python3 scripts/test_gate.py
+          python3 scripts/test_replenish.py
+
+      - name: Replenish dry run
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::warning::ANTHROPIC_API_KEY が未登録のため実行できません。"
+            exit 1
+          fi
+          python3 scripts/replenish.py --dry-run --force
+
+      - name: Confirm nothing was written
+        run: |
+          if git diff --quiet -- scripts/topics.json scripts/queue.json; then
+            echo "OK: topics.json と queue.json は変更されていません（dry-run が正しく効いている）"
+          else
+            echo "::error::dry-run なのにファイルが変更されました"
+            git diff --stat -- scripts/topics.json scripts/queue.json
+            exit 1
+          fi

@@ -21,6 +21,7 @@
 """
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import sys
@@ -120,11 +121,13 @@ def validate(cand: dict, allowed: dict, existing_slugs: set[str],
     return None
 
 
-def main() -> int:
+def main(dry_run: bool = False, force: bool = False) -> int:
+    if dry_run:
+        print("=== DRY RUN: サジェスト取得・提案・構造検査まで行い、ファイルは書きません ===")
     queue = json.loads(QUEUE_PATH.read_text(encoding="utf-8"))
     pending = queue["pending"]
     remaining = len([x for x in pending if not x.get("blocked")])
-    if remaining > LOW_QUEUE_THRESHOLD:
+    if remaining > LOW_QUEUE_THRESHOLD and not force:
         print(f"キューは{remaining}件。しきい値{LOW_QUEUE_THRESHOLD}件を上回っているので補充しません。")
         return 0
 
@@ -142,7 +145,8 @@ def main() -> int:
         "products": {p["id"] for p in products if p.get("approved")},
     }
 
-    print(f"キューが{remaining}件なので補充します（目標{TARGET_QUEUE}件）。")
+    print(f"キューが{remaining}件です（目標{TARGET_QUEUE}件）。"
+          + ("しきい値を無視して実行します（--force）。" if force and remaining > LOW_QUEUE_THRESHOLD else "補充します。"))
     demand = collect_demand()
     demand_all = {q for qs in demand.values() for q in qs}
     if not demand_all:
@@ -152,7 +156,7 @@ def main() -> int:
         return 0
     print(f"サジェストから実需要 {len(demand_all)}件を取得しました。")
 
-    need = TARGET_QUEUE - remaining
+    need = max(1, TARGET_QUEUE - remaining)
     import anthropic  # 需要が取れたときだけ必要
     client = anthropic.Anthropic()
 
@@ -217,6 +221,15 @@ def main() -> int:
         print("::warning::検査を通ったトピックが0件でした。補充を見送ります")
         return 0
 
+    if dry_run:
+        print(f"[DRY RUN] 検査を通った提案: {len(accepted)}件（却下 {len(rejected)}件）。ファイルは書いていません")
+        for t in accepted:
+            print(f"  (追加されるはず) {t['slug']}  [{t['type']}/{t['categorySlug']}]  ← 「{t['sourceQuery']}」")
+            print(f"      title: {t['title']}")
+            print(f"      theme: {t['theme']}")
+            print(f"      factIds={t['factIds']} serviceIds={t['serviceIds']}")
+        return 0
+
     topics.extend(accepted)
     TOPICS_PATH.write_text(json.dumps(topics_doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     for t in accepted:
@@ -230,4 +243,10 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    ap = argparse.ArgumentParser(description="キューが少なければ需要データからトピックを補充する")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="サジェスト取得・提案・構造検査まで行い、ファイルを書かない（動作確認用）")
+    ap.add_argument("--force", action="store_true",
+                    help="キューがしきい値を上回っていても実行する（動作確認用）")
+    args = ap.parse_args()
+    sys.exit(main(dry_run=args.dry_run, force=args.force))
