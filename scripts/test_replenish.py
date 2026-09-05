@@ -90,6 +90,21 @@ def test_rejects_all_empty_ids_for_compare():
     assert r is not None and "compare" in r
 
 
+def test_rejects_compare_without_services():
+    # productIds や factIds があっても、compare に serviceIds が無ければ成立しない
+    r = validate(base(type="compare", factIds=["kyufu-ippan"], serviceIds=[],
+                      productIds=["mobile-monitor"]), ALLOWED, EXISTING, DEMAND)
+    assert r is not None and "compare" in r
+
+
+def test_accepts_product_only_essay():
+    # 楽天商品だけを持つ道具のエッセイは成立する
+    r = validate(base(type="essay", slug="yoru-no-desk-akari", factIds=[],
+                      serviceIds=[], productIds=["mobile-monitor"]),
+                 ALLOWED, EXISTING, DEMAND)
+    assert r is None, r
+
+
 def test_rejects_invalid_type_and_category():
     assert validate(base(type="news"), ALLOWED, EXISTING, DEMAND) is not None
     assert validate(base(categorySlug="cooking"), ALLOWED, EXISTING, DEMAND) is not None

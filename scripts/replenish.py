@@ -47,11 +47,18 @@ VALID_TYPES = {"compare", "guide", "problem", "essay"}
 
 # サジェストを引く種キーワード。カテゴリごとに、記事化して収益接点に繋がる語を置く。
 # ここを増やせば提案の幅が広がる。減らせば絞られる。
+#
+# 前半は案件（services.json）向け、後半は楽天商品（products.json）向けの語である。
+# 楽天側の語を入れないと、essay に載せる道具の需要が一度も観測されず、
+# 補充が案件記事だけに偏る（2026-09-05 に実測して判明）。
 SEED_QUERIES = {
-    "qualification": ["教育訓練給付金", "リスキリング 補助金", "動画編集 スクール", "資格 独学"],
-    "career": ["社内SE 転職", "転職エージェント 20代", "未経験 転職 IT"],
-    "programming": ["プログラミングスクール 比較", "プログラミング 独学 挫折"],
-    "language": ["英会話スクール 比較", "中国語 教室"],
+    "qualification": ["教育訓練給付金", "リスキリング 補助金", "動画編集 スクール", "資格 独学",
+                      "勉強 デスク 環境", "簿記3級 独学 テキスト", "TOEIC 単語帳", "勉強 タイマー"],
+    "career": ["社内SE 転職", "転職エージェント 20代", "未経験 転職 IT",
+               "オンライン面接 カメラ", "web面接 照明"],
+    "programming": ["プログラミングスクール 比較", "プログラミング 独学 挫折",
+                    "プログラミング モニター 2画面", "ノートパソコン スタンド"],
+    "language": ["英会話スクール 比較", "中国語 教室", "社会人 英語 やり直し", "英語 参考書 おすすめ"],
 }
 
 CATEGORY_LABEL = {
@@ -139,9 +146,10 @@ def validate(cand: dict, allowed: dict, existing_slugs: set[str],
         for i in cand.get(field) or []:
             if i not in pool:
                 return f"{field} に存在しない id: {i}"
-    # アフィリリンクを持たないコラムは許す。比較記事だけは比べる対象が要る。
-    if (not any(cand.get(f) for f in ("factIds", "serviceIds", "productIds"))
-            and cand["type"] == "compare"):
+    # アフィリリンクを持たないコラムは許す。比較記事だけは比べる対象（案件）が要る。
+    # generate.py の compare プロンプトはサービスを並べる前提なので、
+    # productIds だけの compare も成立しない。
+    if cand["type"] == "compare" and not cand.get("serviceIds"):
         return "type=compare なのに serviceIds が空（比べる対象が無い）"
 
     # タイトルとテーマに、そのトピックの factIds で裏付けられない金額・率が入っていたら弾く。
@@ -205,6 +213,10 @@ def main(dry_run: bool = False, force: bool = False) -> int:
         "使ってよい serviceIds（承認済み案件のみ）": sorted(allowed["services"]),
         "使ってよい productIds": sorted(allowed["products"]),
     }
+    # 型が偏らないようにする。件数が少ないときは無理に配分を求めない。
+    mix_line = ("提案{n}件のうち、少なくとも1件は「道具のエッセイ」、少なくとも1件は"
+                "「アフィリリンクを持たないコラム」にしてください。残りは案件記事と制度解説から選びます。"
+                ).format(n=need) if need >= 4 else "型は上の4つから、テーマに合うものを選んでください。"
     instruction = f"""上のデータから、新しい記事トピックを{need}件提案してください。
 
 厳守:
@@ -218,6 +230,18 @@ def main(dry_run: bool = False, force: bool = False) -> int:
 - 制度の解説が要るトピック(guide)は、上の factIds で説明しきれる範囲に限ること。
   台帳に無い制度・金額を前提にするトピックは提案しない。
 - 既存トピックと内容が重なるものは提案しない。
+
+トピックには4つの作り方があります。**この4つを混ぜて提案してください。**
+1. 案件記事(compare / problem): serviceIds にスクールや転職エージェントを入れる。
+   **compare には serviceIds が必須**です（比べる対象が無いと成立しません）。
+2. 制度解説(guide): factIds を入れる。台帳にある事実だけで書ける範囲に限ります。
+3. 道具のエッセイ(essay): productIds に学習環境の道具を入れる。
+   場面（夜に学ぶ・オンライン面接・画面が1枚しかない等）を主役にし、道具はその帰結として出します。
+   商品名を並べる記事にはしません。
+4. アフィリリンクを持たないコラム(essay / problem): factIds も serviceIds も productIds も空にする。
+   読者が自分で判断するための整理だけを書く記事です。収益接点はありません。
+
+{mix_line}
 """
     base_msg = json.dumps(payload, ensure_ascii=False, indent=2) + "\n\n" + instruction
     proposed = None
