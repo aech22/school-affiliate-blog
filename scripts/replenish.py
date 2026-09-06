@@ -31,6 +31,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from gate import check as gate_check  # noqa: E402
+from aio_risk import (  # noqa: E402
+    classify as aio_classify,
+    enforce_intent_ratio,
+    is_definitional,
+)
 
 ROOT = Path(__file__).resolve().parent.parent
 TOPICS_PATH = ROOT / "scripts" / "topics.json"
@@ -187,6 +192,10 @@ def validate(cand: dict, allowed: dict, existing_slugs: set[str],
     if cand["sourceQuery"] not in demand_all:
         # 需要データに無いクエリを根拠にしたら、それは創作であって実需要ではない
         return f"sourceQuery がサジェスト結果に無い: {cand['sourceQuery']}"
+    # 定義型のクエリは AI要約で答えが確定し、順位を取っても流入にならない（aio_risk.py 参照）。
+    # ハード却下はここだけで、それ以外の情報意図は enforce_intent_ratio が比率で抑える。
+    if is_definitional(cand["sourceQuery"]):
+        return f"定義型クエリでAI要約に食われる: {cand['sourceQuery']}"
     for field, pool in (("factIds", allowed["facts"]),
                         ("serviceIds", allowed["services"]),
                         ("productIds", allowed["products"])):
@@ -274,6 +283,11 @@ def main(dry_run: bool = False, force: bool = False, need_override: int | None =
 - **factIds / serviceIds / productIds は上のリストにある id しか使えません。** 新しい id を発明しない。
 - factIds / serviceIds / productIds のうち、少なくとも1つは空でないこと。
 - sourceQuery は「カテゴリごとの実需要クエリ」に載っている文字列をそのまま使うこと。
+- **sourceQuery は「読者が次に何かをしようとしている語」を優先して選ぶこと。** 申請・対象・条件・
+  料金・必要書類・期限のように、読者が自分の状況を確定させに来ている語である。
+  逆に「〜とは」「〜の意味」のような定義型は選ばない（AI要約で答えが出てしまい、
+  順位を取っても流入にならない。実測でクリック率は15%→8%に落ちる）。
+  「どっち」「違い」「評判」「口コミ」のような語も同じ理由で数を絞る。
 - **title には sourceQuery の中心になる語を、言い換えずにそのまま含めること**（検索している人の
   言葉のまま出す）。ただし語を並べただけの不自然なタイトルにはしない。読んで意味の通る日本語にする。
 - 制度の解説が要るトピック(guide)は、上の factIds で説明しきれる範囲に限ること。
@@ -344,6 +358,10 @@ def main(dry_run: bool = False, force: bool = False, need_override: int | None =
     for t in over_ratio:
         rejected.append((t["slug"], f"日常側（{t['categorySlug']}）が7:3の上限を超える"))
 
+    accepted, over_intent = enforce_intent_ratio(accepted, pending, topics)
+    for t in over_intent:
+        rejected.append((t["slug"], f"情報意図がキューの3割を超える: 「{t['sourceQuery']}」"))
+
     for slug, reason in rejected:
         print(f"[REJECT] {slug}: {reason}")
     if not accepted:
@@ -353,7 +371,8 @@ def main(dry_run: bool = False, force: bool = False, need_override: int | None =
     if dry_run:
         print(f"[DRY RUN] 検査を通った提案: {len(accepted)}件（却下 {len(rejected)}件）。ファイルは書いていません")
         for t in accepted:
-            print(f"  (追加されるはず) {t['slug']}  [{t['type']}/{t['categorySlug']}]  ← 「{t['sourceQuery']}」")
+            print(f"  (追加されるはず) {t['slug']}  [{t['type']}/{t['categorySlug']}]  "
+                  f"← 「{t['sourceQuery']}」（{aio_classify(t['sourceQuery'])}）")
             print(f"      title: {t['title']}")
             print(f"      theme: {t['theme']}")
             kind = ("道具のエッセイ" if t.get("productIds") else
@@ -371,7 +390,8 @@ def main(dry_run: bool = False, force: bool = False, need_override: int | None =
 
     print(f"補充しました: {len(accepted)}件（却下 {len(rejected)}件）")
     for t in accepted:
-        print(f"  + {t['slug']}  [{t['type']}/{t['categorySlug']}]  ← 「{t['sourceQuery']}」")
+        print(f"  + {t['slug']}  [{t['type']}/{t['categorySlug']}]  "
+              f"← 「{t['sourceQuery']}」（{aio_classify(t['sourceQuery'])}）")
     return 0
 
 
