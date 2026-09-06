@@ -4,15 +4,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import Sidebar from '../../components/Sidebar.astro';
 import Jsonld from '../../components/Jsonld.astro';
-import { CATEGORIES } from '../../data/taxonomy';
+import { CATEGORIES, activeCategories } from '../../data/taxonomy';
 import { SITE_NAME } from '../../consts';
 
 export async function getStaticPaths() {
   const all = await getCollection('articles');
-  return CATEGORIES.map((c) => ({
+  // 記事が1本も無いカテゴリはページを作らない（空ページを公開して後で404にしないため）。
+  return activeCategories(all.map((a) => a.data.categorySlug)).map((c) => ({
     params: { slug: c.slug },
     props: {
       cat: c,
+      active: activeCategories(all.map((a) => a.data.categorySlug)),
       articles: all
         .filter((a) => a.data.categorySlug === c.slug)
         .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
@@ -20,10 +22,11 @@ export async function getStaticPaths() {
   }));
 }
 
-const { cat, articles } = Astro.props;
+const { cat, articles, active } = Astro.props;
 // <title> は label ではなく metaTitle を使う。ナビ用の短い名前より、読者が実際に検索する語を出す。
 const title = `${cat.metaTitle}の記事｜${SITE_NAME}`;
-const others = CATEGORIES.filter((c) => c.slug !== cat.slug);
+// 他カテゴリへの導線も「記事があるもの」だけに絞る（生成されないページへリンクしないため）。
+const others = active.filter((c) => c.slug !== cat.slug);
 const description = cat.blurb;
 const breadcrumbs = [
   { name: 'ホーム', url: '/' },

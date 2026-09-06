@@ -46,6 +46,14 @@ export const CATEGORIES: Category[] = [
       '働きながら資格やスキルを学び直すときは、講座を選ぶ前に、使える公的制度を確認しておくと費用の見通しが変わります。ここでは、教育訓練給付金の区分と受給条件、対象講座の探し方といった制度の記事と、動画編集やWebデザインなど講座そのものを比べた記事をまとめています。',
   },
   {
+    slug: 'workspace',
+    label: '働く環境',
+    metaTitle: '在宅ワーク・デスク環境・オンライン面接の準備',
+    blurb: '在宅で働くための机まわり、オンライン面接の映り方、学習を続けるための道具。仕事のとなりにある生活の話です。',
+    intro:
+      '働き方を変えるとき、変わるのは仕事の中身だけではありません。家のどこで働くか、画面越しにどう見えるか、勉強を続ける場所をどう作るか。ここでは、デスクまわりと照明、オンライン面談の準備、学習を続けるための道具といった、仕事のとなりにある生活の記事をまとめています。',
+  },
+  {
     slug: 'language',
     label: '語学・留学',
     metaTitle: '英会話スクール・語学のやり直し・留学',
@@ -57,3 +65,18 @@ export const CATEGORIES: Category[] = [
 
 export const categoryBySlug = (slug?: string | null): Category | undefined =>
   CATEGORIES.find((c) => c.slug === slug);
+
+/**
+ * 記事が1本以上あるカテゴリだけを返す。カテゴリページ・サイドバー・404 はこれを使う。
+ *
+ * カテゴリを増やすと記事0件の空ページが公開され、あとで畳むと 404 になる——
+ * これが判断ログ 2026-09-05 でカテゴリ新設が却下された理由だった。
+ * 「記事があるものだけ出す」を機械的に効かせておけば、
+ * taxonomy.ts に定義を先に置いても、記事が入るまで URL は生まれない。
+ * The Japan Desk の pillars.ts が paused フラグでやっていることを、
+ * 手で切り替えずに済む形にしたもの。
+ */
+export const activeCategories = (slugs: Iterable<string>): Category[] => {
+  const used = new Set(slugs);
+  return CATEGORIES.filter((c) => used.has(c.slug));
+};

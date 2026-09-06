@@ -1,11 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
-import { CATEGORIES } from '../data/taxonomy';
+import { activeCategories } from '../data/taxonomy';
 import ShiftyPromo from './ShiftyPromo.astro';
 
-const recent = (await getCollection('articles'))
+const all = await getCollection('articles');
+const recent = [...all]
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 6);
+// 記事が1本も無いカテゴリはページが生成されないので、サイドバーからも出さない。
+const cats = activeCategories(all.map((a) => a.data.categorySlug));
 
 // A8.net お名前.com（独自ドメイン取得）120×600 スカイスクレイパー。規約どおり原文のまま。& のJSXパース回避で set:html。
 const skyscraperHtml = `<a href="https://px.a8.net/svt/ejp?a8mat=4B9X1D+6NXPKI+50+2HGLCX" rel="nofollow sponsored" target="_blank"><img border="0" width="120" height="600" alt="お名前.com" src="https://www21.a8.net/svt/bgt?aid=260803201403&wid=001&eno=01&mid=s00000000018015026000&mc=1"></a><img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=4B9X1D+6NXPKI+50+2HGLCX" alt="">`;
@@ -35,7 +38,7 @@ const fanSalonHtml = `<a href="https://px.a8.net/svt/ejp?a8mat=4B9X1F+AWCOFM+5FA
   <section>
     <h2 class="border-b border-ink/15 pb-1.5 font-serif text-sm font-semibold text-ink">話題</h2>
     <ul class="mt-3 space-y-1.5">
-      {CATEGORIES.map((c) => (
+      {cats.map((c) => (
         <li>
           <a href={`${import.meta.env.BASE_URL}categories/${c.slug}/`} class="text-ink/70 transition-colors duration-150 hover:text-brand-700">
             {c.label}

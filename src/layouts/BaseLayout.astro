@@ -1,7 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 import '../styles/global.css';
 import Jsonld from '../components/Jsonld.astro';
-import { CATEGORIES } from '../data/taxonomy';
+import { activeCategories } from '../data/taxonomy';
 import { SITE_NAME, SITE_TAGLINE, GA_MEASUREMENT_ID, PINTEREST_VERIFY, TWITTER_SITE, SEARCH_CONSOLE_VERIFY } from '../consts';
 
 interface Props {
@@ -24,6 +25,10 @@ const {
   modifiedTime,
   breadcrumbs,
 } = Astro.props;
+
+// ヘッダーとフッターのカテゴリ導線は「記事があるもの」だけに絞る。
+// taxonomy.ts に定義があってもページは生成されないので、出すとリンク切れになる。
+const cats = activeCategories((await getCollection('articles')).map((a) => a.data.categorySlug));
 
 const site = Astro.site ?? new URL('https://aech22.github.io/school-affiliate-blog');
 const canonical = new URL(Astro.url.pathname, site);
@@ -118,7 +123,7 @@ const breadcrumbLd = breadcrumbs && breadcrumbs.length
       <div class="mx-auto flex max-w-5xl flex-wrap items-baseline gap-x-6 gap-y-2 px-4 py-5">
         <a href={import.meta.env.BASE_URL} class="font-serif text-xl font-semibold tracking-tight text-ink">{SITE_NAME}</a>
         <nav class="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm text-ink/60">
-          {CATEGORIES.map((c) => (
+          {cats.map((c) => (
             <a
               href={`${import.meta.env.BASE_URL}categories/${c.slug}/`}
               class="whitespace-nowrap transition-colors duration-150 hover:text-brand-700"
@@ -138,7 +143,7 @@ const breadcrumbLd = breadcrumbs && breadcrumbs.length
         <p class="font-serif text-base font-semibold text-ink/80">{SITE_NAME}</p>
         <p class="mt-1 leading-relaxed">{SITE_TAGLINE}</p>
         <nav class="mt-5 flex flex-wrap gap-x-4 gap-y-2 text-xs text-ink/60">
-          {CATEGORIES.map((c) => (
+          {cats.map((c) => (
             <a href={`${import.meta.env.BASE_URL}categories/${c.slug}/`} class="transition-colors duration-150 hover:text-brand-700">{c.label}</a>
           ))}
           <a href={import.meta.env.BASE_URL} class="transition-colors duration-150 hover:text-brand-700">記事一覧</a>

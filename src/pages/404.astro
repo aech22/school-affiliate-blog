@@ -1,9 +1,14 @@
 ---
 // 404。GitHub Pages は dist/404.html をそのまま使う。
 // リンク切れで来た人を行き止まりにせず、話題の入口へ戻せるようにする。
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { CATEGORIES } from '../data/taxonomy';
+import { activeCategories } from '../data/taxonomy';
 import { SITE_NAME } from '../consts';
+
+// 記事が1本も無いカテゴリはページが生成されないので、404 の戻り先にも出さない
+// （リンク切れで来た人を、また存在しないページへ送らないため）。
+const cats = activeCategories((await getCollection('articles')).map((a) => a.data.categorySlug));
 ---
 <BaseLayout title={`ページが見つかりません｜${SITE_NAME}`} noindex={true}>
   <main class="mx-auto max-w-3xl px-4 py-20">
@@ -12,7 +17,7 @@ import { SITE_NAME } from '../consts';
       お探しのページは移動したか、URL が変わった可能性があります。話題から探し直してみてください。
     </p>
     <ul class="mt-8 space-y-2 text-sm">
-      {CATEGORIES.map((c) => (
+      {cats.map((c) => (
         <li>
           <a href={`${import.meta.env.BASE_URL}categories/${c.slug}/`} class="text-brand-700 underline decoration-brand-700/30 underline-offset-4 hover:decoration-brand-700">{c.label}</a>
           <span class="text-ink/55">　{c.blurb}</span>

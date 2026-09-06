@@ -65,7 +65,17 @@ SEED_QUERIES = {
                     "レンタルサーバー 個人 おすすめ", "ドメイン 取得 個人"],
     "language": ["英会話スクール 比較", "中国語 教室", "社会人 英語 やり直し", "英語 参考書 おすすめ",
                  "社会人 留学 短期", "語学研修 費用"],
+    # workspace は「仕事のとなりにある生活」の枠（2026-09-06 新設）。
+    # 種語を1〜2語に切ってあるのは、Google サジェストが前方一致の補完しか返さないため。
+    # 3語以上の種語は展開が効かない（実測: 「教育訓練給付金」は10→142語に伸びるが、
+    # 「キャンプ 初心者 道具」は10→13語で止まる）。
+    "workspace": ["在宅ワーク 環境", "デスク 照明", "オンライン面接 準備", "勉強 習慣"],
 }
+
+# 仕事:日常 = 7:3。workspace が日常側で、ここが膨らむと
+# 「転職・副業する人のブログ」ではなく日常ブログになる（2026-09-06 のユーザー決定）。
+LIFESTYLE_SLUGS = {"workspace"}
+LIFESTYLE_MAX_RATIO = 0.3
 
 # src/data/taxonomy.ts の label と同じ文字列にする（記事frontmatter の category に入る）。
 CATEGORY_LABEL = {
@@ -73,6 +83,7 @@ CATEGORY_LABEL = {
     "career": "転職・働き方",
     "programming": "プログラミング・IT",
     "language": "語学・留学",
+    "workspace": "働く環境",
 }
 
 SYSTEM = """あなたは日本語のアフィリエイトメディアの編集者です。
@@ -128,6 +139,35 @@ def extract_json(text: str) -> dict:
 
 def _slugify_ok(slug: str) -> bool:
     return bool(re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug or ""))
+
+
+def enforce_lifestyle_ratio(accepted: list[dict], pending: list[dict],
+                            topics: list[dict]) -> tuple[list[dict], list[dict]]:
+    """仕事:日常 = 7:3 を守る。上限を超える日常トピックを落として返す。
+
+    比率は「補充後のキュー全体」で測る。1件ずつ足しながら判定すると、
+    キューが空に近いときに最初の1件が必ず 0.3 を超えてしまい、
+    日常トピックが永久に入らなくなる（＝7:3 ではなく 10:0 になる）。
+
+    上限は切り捨て。8件のキューなら日常は2件まで。
+    出典: 2026-09-06 のユーザー決定「日常系も発信してよいが、日常が多いブログにはしない」。
+    """
+    by_slug = {t.get("slug"): t for t in topics}
+    queued = [by_slug.get(p.get("slug")) or {} for p in pending]
+    life_now = sum(1 for t in queued if t.get("categorySlug") in LIFESTYLE_SLUGS)
+
+    final_total = len(queued) + len(accepted)
+    allowance = max(0, int(LIFESTYLE_MAX_RATIO * final_total) - life_now)
+
+    kept, dropped = [], []
+    for cand in accepted:
+        if cand["categorySlug"] in LIFESTYLE_SLUGS:
+            if allowance <= 0:
+                dropped.append(cand)
+                continue
+            allowance -= 1
+        kept.append(cand)
+    return kept, dropped
 
 
 def validate(cand: dict, allowed: dict, existing_slugs: set[str],
@@ -229,7 +269,7 @@ def main(dry_run: bool = False, force: bool = False, need_override: int | None =
 厳守:
 - 出力は {{"topics": [...]}} の JSON のみ。
 - 各トピックの形: slug(英小文字とハイフンのみ・既存と重複しない) / type(compare|guide|problem|essay) /
-  title(日本語) / categorySlug(qualification|career|programming|language) / theme(日本語1〜2文) /
+  title(日本語) / categorySlug(qualification|career|programming|language|workspace) / theme(日本語1〜2文) /
   factIds[] / serviceIds[] / productIds[] / sourceQuery(根拠にした実需要クエリを1つ、原文のまま)
 - **factIds / serviceIds / productIds は上のリストにある id しか使えません。** 新しい id を発明しない。
 - factIds / serviceIds / productIds のうち、少なくとも1つは空でないこと。
@@ -299,6 +339,10 @@ def main(dry_run: bool = False, force: bool = False, need_override: int | None =
             **({"productIds": cand["productIds"]} if cand.get("productIds") else {}),
             "sourceQuery": cand["sourceQuery"],
         })
+
+    accepted, over_ratio = enforce_lifestyle_ratio(accepted, pending, topics)
+    for t in over_ratio:
+        rejected.append((t["slug"], f"日常側（{t['categorySlug']}）が7:3の上限を超える"))
 
     for slug, reason in rejected:
         print(f"[REJECT] {slug}: {reason}")

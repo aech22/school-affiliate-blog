@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from replenish import validate, extract_json  # noqa: E402
+from replenish import validate, extract_json, enforce_lifestyle_ratio  # noqa: E402
 
 ALLOWED = {
     "facts": {"kyufu-ippan", "kyufu-senmon-jissen"},
@@ -171,6 +171,55 @@ def test_number_check_is_skipped_without_facts_table():
     # facts_by_id を渡さなければ従来どおりの構造検査だけになる（後方互換）
     assert validate(base(title="70%の話", factIds=["kyufu-ippan"]),
                     ALLOWED, EXISTING, DEMAND) is None
+
+
+# ── 7:3 の比率制御（2026-09-06 追加）──────────────────────────────
+def _life(slug):
+    return {"slug": slug, "categorySlug": "workspace"}
+
+
+def _work(slug):
+    return {"slug": slug, "categorySlug": "career"}
+
+
+def test_ratio_allows_up_to_30_percent():
+    # 空のキューに8件足すと、日常は int(0.3*8)=2 件まで通る
+    accepted = [_life("l1"), _life("l2"), _life("l3")] + [_work(f"w{i}") for i in range(5)]
+    kept, dropped = enforce_lifestyle_ratio(accepted, [], [])
+    assert len(dropped) == 1, dropped
+    assert sum(1 for t in kept if t["categorySlug"] == "workspace") == 2
+
+
+def test_ratio_counts_topics_already_in_the_queue():
+    # 既にキューに日常が2件あるなら、8件構成では新規の日常は通らない
+    topics = [_life("q1"), _life("q2")] + [_work(f"q{i}") for i in range(3, 7)]
+    pending = [{"slug": t["slug"]} for t in topics]
+    kept, dropped = enforce_lifestyle_ratio([_life("new"), _work("w")], pending, topics)
+    assert [t["slug"] for t in dropped] == ["new"]
+    assert [t["slug"] for t in kept] == ["w"]
+
+
+def test_ratio_does_not_starve_the_first_lifestyle_topic():
+    # 1件ずつ足しながら判定すると最初の1件が必ず落ちる。補充後の全体で測ればそうならない
+    accepted = [_life("l1")] + [_work(f"w{i}") for i in range(6)]
+    kept, _ = enforce_lifestyle_ratio(accepted, [], [])
+    assert any(t["categorySlug"] == "workspace" for t in kept)
+
+
+def test_ratio_keeps_all_work_topics():
+    accepted = [_work(f"w{i}") for i in range(8)]
+    kept, dropped = enforce_lifestyle_ratio(accepted, [], [])
+    assert len(kept) == 8 and not dropped
+
+
+def test_ratio_handles_empty_input():
+    assert enforce_lifestyle_ratio([], [], []) == ([], [])
+
+
+def test_ratio_handles_queue_entry_missing_from_topics():
+    # topics に無い slug がキューにあっても落ちない（仕事側として数える）
+    kept, dropped = enforce_lifestyle_ratio([_life("l1")], [{"slug": "ghost"}], [])
+    assert len(kept) + len(dropped) == 1
 
 
 if __name__ == "__main__":
