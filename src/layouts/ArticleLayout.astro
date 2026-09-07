@@ -6,7 +6,6 @@ import RelatedArticles from '../components/RelatedArticles.astro';
 import { relatedArticles } from '../utils/related';
 import ServiceCard from '../components/ServiceCard.astro';
 import Sidebar from '../components/Sidebar.astro';
-import ShiftyPromo from '../components/ShiftyPromo.astro';
 import ProductMention from '../components/ProductMention.astro';
 import { categoryBySlug } from '../data/taxonomy';
 import { SITE_NAME } from '../consts';
@@ -212,7 +211,6 @@ const itemListLd = {
 
     <RelatedArticles articles={related} />
 
-    <ShiftyPromo />
 
     <nav class="mt-12 space-y-2 text-sm">
       {cat && (
