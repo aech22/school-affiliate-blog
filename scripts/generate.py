@@ -297,6 +297,14 @@ def main() -> None:
 
     try:
         fm, body, violations = build_topic(topic, today)
+    except anthropic.APIError as e:
+        # API に届かなかった・断られた日は「失敗」として赤くする。
+        # 2026-09-10〜17 にクレジット残高切れ（400 "credit balance is too low"）で8日間
+        # 生成が止まったが、ここで return して終了コード0だったため Actions は緑のままで、
+        # 誰にも通知が届かなかった。ゲート落ち（下）だけが「見送り＝緑」で、API側の
+        # 障害は毎回赤くして GitHub の失敗通知に乗せる。キューは触らないので翌日そのまま再試行になる。
+        print(f"::error::{item['slug']}: {type(e).__name__}: {e}")
+        sys.exit(1)
     except Exception as e:
         print(f"[ERROR] {item['slug']}: {type(e).__name__}: {e}")
         return

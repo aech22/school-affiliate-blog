@@ -65,7 +65,7 @@
 - **記事ページは `BlogPosting` の構造化データを出す**（`ArticleLayout.astro`）。headline / datePublished / dateModified / author（Person「トウジ」・about へリンク）/ publisher（Organization「コドナビ」・logo は `/ogp.png`）を含む。BaseLayout 側の Organization と WebSite には `@id` を振って、publisher から参照できるようにしてある
 - **記事末に関連記事4本を機械的に置く**（`RelatedArticles.astro` ＋ `src/utils/related.ts`）。スコアは 共通 serviceId・共通 productId が各3点、同カテゴリ2点、同 type 1点で、同点は新しい順。**LLM にリンク先を書かせない**（存在しない slug を書くため）。教育訓練給付金の記事群のように同じ制度を別角度から書いた記事が互いに繋がる
 - **`taxonomy.ts` は `metaTitle` と `intro` を持つ**。`label` はナビ用の短い名前、`metaTitle` はカテゴリページの `<title>` 用で読者が実際に検索する語を入れる（例: `qualification` → 「資格講座・教育訓練給付金」）。`intro` はカテゴリページ本文の導入で、一覧だけの薄いページにしないために置いている。`blurb` は meta description のまま
-- **sitemap は記事に `<lastmod>` を出す**（`astro.config.mjs`）。Content Collections は設定ファイルから読めないので frontmatter を直接パースしている（`.md` / `.mdx` 両対応）。priority はトップ1.0・記事0.8・カテゴリ0.6・固定ページ0.3。`/404` は sitemap から除外
+- **sitemap は記事に `<lastmod>` を出す**（`astro.config.mjs`）。Content Collections は設定ファイルから読めないので frontmatter を直接パースしている（`.md` / `.mdx` 両対応）。priority はトップ1.0・記事0.8・カテゴリ0.6・固定ページ0.3。`/404` は sitemap から除外。**トップとカテゴリページにも `lastmod` を出す**（2026-09-18。載っている記事のいちばん新しい `updated`/`date`）。09-18 の実測で Google の `site:` 検索に出るトップの title と description が 09-05 の作り直し前の文言のままで、一覧ページだけ再クロールの手がかりが無かったため。検証は `grep -o '<lastmod>' dist/sitemap-0.xml | wc -l` が「記事数＋1＋記事のあるカテゴリ数」に一致すること（09-18 時点で 28＋1＋4＝33）
 - **`404.astro` を置いた**（GitHub Pages が `dist/404.html` を使う）。`noindex` 付きで、カテゴリへ戻す導線だけを持つ
 - **生成プロンプトに検索語のルールを入れた**。`generate.py` の `BODY_RULES` は「テーマの中心の語を導入と最初の H2 で言い換えない」「H2 を検索の言い回しに寄せる」、`description` は全角90〜120字でその記事だけの要約。`replenish.py` は `title` に `sourceQuery` の中心の語をそのまま含めさせる。**数値ルール（台帳照合・上限表記・計算禁止）はそのまま**で、SEO 指示が優先することはない
 
@@ -145,6 +145,7 @@ Service = { id, name, subCategory, tags[], priceNote, target,
 - 両ワークフローの `concurrency` は `pages-deploy` で共有し、gh-pages への同時デプロイを直列化している。peaceiris は force なしで push するので、競合すると後発が非 fast-forward で失敗する
 - **金額・率は `facts.json` の `numbers[]` をプロンプトへ明示的に列挙して渡す**（`77f64b0`）。渡さないと台帳外の数値が創作されてゲートに落ちる（実例: `kyufu-taisho-kouza-sagashikata` の「1万円」）
 - ゲートに落ちたらキューを進めず再試行。**3回連続で落ちたら `blocked: true` にして末尾へ送る**（無いと更新が静かに止まる）
+- ⚠️ **API に断られた日は赤、ゲート落ちの日は緑**（2026-09-18）。`generate.py` は `anthropic.APIError` を握らず `sys.exit(1)` で落とす。2026-09-10〜17 に Anthropic API のクレジット残高切れ（400 "credit balance is too low"）で8日間生成が止まったが、当時は例外を握って `return` していたので Actions は緑のままで通知が出なかった。**キューは触らない**ので翌日そのまま再試行になる。テストは `python3 scripts/test_generate.py`（4件・CIで生成の前に走る）。⚠️ **同じキーを picknavi と The Japan Desk も使っている**ので、残高切れは3サイト同時に止まる（AFFILIATE.md ハマりどころ28）
 - ⚠️ **日次なので `queue.json` の残り件数＝あと何日もつか。** 残り3件以下になると `scripts/replenish.py` が生成の前に走り、需要データからトピックを補充する（目標8件）
 
 ## キューの自動補充（2026-09-05 追加）
@@ -197,6 +198,8 @@ gh workflow run replenish-check.yml --repo aech22/school-affiliate-blog --ref ma
 
 ## 残タスク
 
+- [ ] 🔴 **Anthropic API のクレジット購入**（人間ステップ・2026-09-18）。09-10 から残高切れで日次生成が止まっている。購入すれば `generate.yml` が翌日から何もしなくても再開する（キューは17件残っている。先頭2本は金額ルール改定で再生成待ちの既存記事 `senmon-jissen-hatarakinagara` / `zaitaku-work-30dai-mikeiken`）
+- [ ] 🔴 **Search Console にアクセスできる Google アカウントの特定**（人間ステップ・2026-09-18）。Chrome にログイン中の p.bee0062@gmail.com と hiroshi.nishio.00@gmail.com のどちらも `https://code-navi.net/` のプロパティに「アクセス権がありません」と出る。`public/google5958bb822f03eeaa.html` は本番で200を返しているので、どちらかのアカウントでプロパティを追加して「HTMLファイル」方式を選べばその場で確認が通るはず。通るまで検索クエリ・表示回数・インデックス状況は読めない
 - [ ] **programming カテゴリの提携申請**（下の「提携申請状況」表。**ユーザーが A8 管理画面で行う人間ステップ**。2026-09-05 に `daytra` が承認されて2件になったが、記事3本に対してはまだ薄い）
 - [ ] 2026-09-05 追加15件の記事はキュー待ち（トピック7本を追加済み）。日次生成で順に公開される
 - [ ] **2026-09-05 追加6件の記事はキューの先頭4本**（`enquete-monitor-sukima` / `zaitaku-kaisen-erabikata` / `dokuritsu-junbi-meishi-inkan` / `font-erabi-douga-design`）。**新しい案件が先に公開されるよう既存17件より前に入れた**ので、4日で全部出る
