@@ -13,17 +13,26 @@ os.environ.setdefault("ANTHROPIC_API_KEY", "test-dummy-key")
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import anthropic
-import httpx
 import generate
 
 
-def _api_error(status: int, message: str) -> anthropic.APIStatusError:
-    req = httpx.Request("POST", "https://api.anthropic.com/v1/messages")
-    res = httpx.Response(status, request=req)
-    body = {"type": "error", "error": {"type": "invalid_request_error", "message": message}}
-    if status == 400:
-        return anthropic.BadRequestError(message, response=res, body=body)
-    return anthropic.APIStatusError(message, response=res, body=body)
+class _FakeAPIError(anthropic.APIError):
+    """anthropic.APIError の最小の偽物。
+    本物は httpx の Request/Response を要求するが、CI の anthropic 1.x は httpx2 を使い
+    `import httpx` が通らない（2026-09-18 に実際に落ちた）。判定は isinstance だけなので
+    HTTP 層を持たない子クラスで足りる。"""
+
+    def __init__(self, status: int, message: str):
+        Exception.__init__(self, message)
+        self.message = message
+        self.status_code = status
+
+    def __str__(self) -> str:
+        return self.message
+
+
+def _api_error(status: int, message: str) -> anthropic.APIError:
+    return _FakeAPIError(status, message)
 
 
 def _run(monkey_build):
