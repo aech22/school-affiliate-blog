@@ -3,6 +3,8 @@
 # 何を守るか: 「API に断られた日は赤、ゲート落ちの日は緑」。
 # 2026-09-10〜17 にクレジット切れの 400 が8日間続いたが、当時は例外を握って return していたため
 # Actions が緑のまま生成だけが止まり、誰にも通知が届かなかった。
+import contextlib
+import io
 import os
 import sys
 from pathlib import Path
@@ -42,11 +44,14 @@ def _run(monkey_build):
     generate.build_topic = monkey_build
     generate._save_queue = lambda q: saved.append(q)
     try:
-        try:
-            generate.main()
-            code = 0
-        except SystemExit as e:
-            code = e.code
+        # main() は API エラーで `::error::` を print する。テスト中にそれを標準出力へ流すと
+        # GitHub Actions が緑の実行にエラー注釈を付けて紛らわしいので、ここで飲み込む。
+        with contextlib.redirect_stdout(io.StringIO()):
+            try:
+                generate.main()
+                code = 0
+            except SystemExit as e:
+                code = e.code
     finally:
         generate.build_topic, generate._save_queue = orig_build, orig_save
     return code, saved
