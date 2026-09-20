@@ -3,9 +3,11 @@
   "pending": [
     {
       "slug": "sns-unyo-fukugyo-jitsuzo",
-      "failures": 0,
+      "failures": 1,
       "blocked": false,
-      "lastViolations": []
+      "lastViolations": [
+        "30万円"
+      ]
     },
     {
       "slug": "zaitaku-work-40dai-shufu",
