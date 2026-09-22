@@ -3,9 +3,13 @@
   "pending": [
     {
       "slug": "zaitaku-work-40dai-shufu",
-      "failures": 0,
+      "failures": 1,
       "blocked": false,
-      "lastViolations": []
+      "lastViolations": [
+        "50万円",
+        "30万円",
+        "3万円"
+      ]
     },
     {
       "slug": "shanai-se-tenshoku-mikeiken",
