@@ -3,9 +3,11 @@
   "pending": [
     {
       "slug": "shanai-se-tenshoku-mikeiken",
-      "failures": 0,
+      "failures": 1,
       "blocked": false,
-      "lastViolations": []
+      "lastViolations": [
+        "96.5%"
+      ]
     },
     {
       "slug": "business-eikaiwa-hikaku",
