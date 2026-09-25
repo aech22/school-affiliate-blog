@@ -3,7 +3,7 @@
   "pending": [
     {
       "slug": "shanai-se-tenshoku-mikeiken",
-      "failures": 1,
+      "failures": 2,
       "blocked": false,
       "lastViolations": [
         "96.5%"
