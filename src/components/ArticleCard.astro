@@ -1,29 +1,45 @@
 ---
-// 記事一覧の1行。カードのグリッドではなく、日付・話題・タイトル・書き出しを縦に積んだ
-// ブログの目次の行として組む（2026-09-05）。トップとカテゴリページで共用する。
-// index.astro の絞り込みが .article-card と data-category を見るので、両方を保つこと。
+// 記事一覧の1行。カードのグリッドではなく、ブログの目次の行として組む（2026-09-05）。
+// 2026-10-02: 学び直しノートの意匠に合わせ、日付をノートの日付欄のように左の欄外へ出した
+// （幅640px未満では欄外を畳み、日付はメタ行に戻す）。トップとカテゴリページで共用する。
+// index.astro の絞り込みが .article-card と data-category / data-stage を見るので、すべて保つこと。
+// 外側の容器に .note-rule を付けると、行をまたいで余白線が1本につながる。
 import type { CollectionEntry } from 'astro:content';
 import { categoryBySlug } from '../data/taxonomy';
+import { readingMinutes, stageOf } from '../utils/reading';
 
-interface Props { article: CollectionEntry<'articles'>; }
-const { article } = Astro.props;
+// hideCategory: カテゴリページでは全行が同じカテゴリなので、行ごとのカテゴリ名を省く。
+interface Props { article: CollectionEntry<'articles'>; hideCategory?: boolean; }
+const { article, hideCategory = false } = Astro.props;
 const d = article.data;
 const cat = categoryBySlug(d.categorySlug);
-const fmtDate = (x: Date) => x.toISOString().slice(0, 10).replace(/-/g, '.');
+const stage = stageOf(d.type);
+const minutes = readingMinutes(article);
+const iso = d.date.toISOString().slice(0, 10);
+const [y, m, day] = iso.split('-');
 const compareCount = d.type === 'compare' ? (d.services?.length ?? 0) : 0;
 ---
 <a
   href={`${import.meta.env.BASE_URL}articles/${article.id}/`}
-  class="article-card group block border-b border-ink/10 py-6"
+  class="article-card note-grid group block border-b border-ink/10 py-6"
   data-category={d.categorySlug ?? ''}
+  data-stage={d.type ?? ''}
 >
-  <p class="text-xs text-ink/45">
-    <time datetime={d.date.toISOString().slice(0, 10)}>{fmtDate(d.date)}</time>
-    {cat && <span>　{cat.label}</span>}
-    {compareCount > 1 && <span>　{compareCount}件を比較</span>}
+  <p class="note-aside is-wide-only pt-0.5 text-ink/45" aria-hidden="true">
+    <span class="block font-serif text-lg font-semibold leading-none tabular-nums text-ink/75 transition-colors duration-150 group-hover:text-brand-700">{m}.{day}</span>
+    <span class="mt-1.5 block text-xs tabular-nums">{y}</span>
   </p>
-  <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-ink transition-colors duration-150 group-hover:text-brand-700 sm:text-xl">
-    {d.title}
-  </h3>
-  {d.description && <p class="mt-2 line-clamp-2 text-sm leading-relaxed text-ink/60">{d.description}</p>}
+  <div>
+    <p class="flex flex-wrap gap-x-3 text-xs text-ink/50">
+      <time datetime={iso} class="sm:sr-only">{y}.{m}.{day}</time>
+      {cat && !hideCategory && <span>{cat.label}</span>}
+      {stage && <span>{stage.label}</span>}
+      {compareCount > 1 && <span>{compareCount}件を比較</span>}
+      <span>約{minutes}分</span>
+    </p>
+    <h3 class="mt-1.5 font-serif text-lg font-semibold leading-snug text-ink transition-colors duration-150 group-hover:text-brand-700 sm:text-xl">
+      {d.title}
+    </h3>
+    {d.description && <p class="mt-2 line-clamp-2 text-sm leading-relaxed text-ink/60">{d.description}</p>}
+  </div>
 </a>

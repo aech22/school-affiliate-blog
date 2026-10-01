@@ -31,6 +31,56 @@
 html { scroll-behavior: smooth; }
 body { background-color: var(--color-cream); }
 
+/* ---- 学び直しノートの意匠（2026-10-02）----
+   サイト全体を「働きながら学び直している人のノート」に見立てる。使う記号は3つだけで、どれも実物のノートにあるもの。
+   ・ノート上部の「No. / Date」欄（.note-head）: 数字は実データ（記事数・最終更新日）で、飾りの数字は入れない。
+   ・左余白の縦線（.note-rule）: オレンジの1px。日付や話題などの欄外情報は線の左、本文は線の右に置く。
+   ・罫線: 行の区切りは既存の1px罫線をそのまま使う（新しい装飾は足さない）。
+   余白線は面の塗りでも影でもないので、上の「塗りつぶしの面は作らない・影は使わない」と両立する。 */
+.note-head {
+  display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.25rem 1.5rem;
+  font-size: 0.75rem; color: color-mix(in oklab, var(--color-ink) 55%, transparent);
+}
+.note-head > span { display: inline-flex; align-items: baseline; gap: 0.5rem; }
+.note-head b {
+  min-width: 6.5rem; padding: 0 0.25rem 0.125rem; border-bottom: 1px solid color-mix(in oklab, var(--color-ink) 35%, transparent);
+  font-family: var(--font-serif); font-weight: 600; font-size: 0.9375rem; color: var(--color-ink);
+  font-variant-numeric: tabular-nums; text-align: center;
+}
+
+/* 欄外（左）と本文（右）の割り付け。縦線そのものは外側の .note-rule が1本だけ引く。
+   --margin-w は容器ごとに変える（トップは広く、サイドバーのある一覧は狭く）。 */
+.note-rule { position: relative; --margin-w: 6.5rem; }
+.note-rule::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 0;
+  width: 1px; background: var(--color-brand-500); pointer-events: none;
+}
+/* 幅640px未満では欄外を畳み、余白線は本文の左端に残す（モバイルでノートの見立てが消えないように）。 */
+@media (max-width: 639.98px) {
+  .note-rule { padding-left: 0.875rem; }
+}
+@media (min-width: 640px) {
+  .note-rule::before { left: calc(var(--margin-w) + 0.75rem); }
+  .note-grid { display: grid; grid-template-columns: var(--margin-w) minmax(0, 1fr); column-gap: 1.5rem; }
+  .note-grid > .note-aside { grid-column: 1; text-align: right; }
+  .note-grid > :not(.note-aside) { grid-column: 2; }
+}
+@media (max-width: 639.98px) {
+  .note-grid > .note-aside.is-wide-only { display: none; }
+}
+
+/* 索引のボタン。選択中は文字を濃くして、余白線と同じオレンジの下線を引く。 */
+.idx-btn {
+  display: inline-flex; align-items: baseline; gap: 0.3rem; padding: 0.375rem 0;
+  color: color-mix(in oklab, var(--color-ink) 62%, transparent);
+  border-bottom: 2px solid transparent; transition: color 150ms, border-color 150ms;
+}
+.idx-btn:hover { color: var(--color-brand-700); }
+.idx-btn[aria-pressed="true"] { color: var(--color-ink); border-bottom-color: var(--color-brand-500); }
+.idx-btn .n { font-size: 0.75rem; font-variant-numeric: tabular-nums; color: color-mix(in oklab, var(--color-ink) 40%, transparent); }
+.idx-btn[data-empty="true"] { color: color-mix(in oklab, var(--color-ink) 30%, transparent); }
+.idx-btn:focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: 2px; }
+
 /* 記事本文。読み物として1行の長さと行間を優先する。 */
 .prose :where(h2, h3, h4) { font-family: var(--font-serif); }
 .prose :where(a) { text-underline-offset: 3px; }

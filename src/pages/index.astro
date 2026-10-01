@@ -3,15 +3,23 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import Jsonld from '../components/Jsonld.astro';
-import { CATEGORIES } from '../data/taxonomy';
+import { activeCategories } from '../data/taxonomy';
+import { STAGES } from '../utils/reading';
 import { SITE_NAME } from '../consts';
 
 const articles = (await getCollection('articles')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
-// 記事が存在するカテゴリだけ絞り込みに出す
-const usedCats = new Set(articles.map((a) => a.data.categorySlug).filter(Boolean));
-const catChips = CATEGORIES.filter((c) => usedCats.has(c.slug));
+// 索引に出すのは記事があるカテゴリと段階だけ（0本の選択肢は置かない）。
+const cats = activeCategories(articles.map((a) => a.data.categorySlug ?? ''));
+const stages = STAGES.filter((s) => articles.some((a) => a.data.type === s.key));
+const countBy = (pred: (a: (typeof articles)[number]) => boolean) => articles.filter(pred).length;
+
+// ノート上部の No. と Date は実データ。No. は記事の本数、Date はいちばん新しい公開日または更新日。
+const lastTouched = articles
+  .map((a) => (a.data.updated ?? a.data.date).valueOf())
+  .reduce((x, y) => Math.max(x, y), 0);
+const fmt = (t: number) => new Date(t).toISOString().slice(0, 10).replace(/-/g, '.');
 
 const site = Astro.site ?? new URL('https://aech22.github.io/school-affiliate-blog');
 const listLd = {
@@ -33,77 +41,119 @@ const listLd = {
 >
   <Jsonld data={listLd} />
 
-  <!-- 書き出し。ヒーローバナーは置かない（読み物として文章から始める） -->
-  <section class="mx-auto max-w-3xl px-4 pt-12 sm:pt-16">
-    <h1 class="font-serif text-2xl font-semibold leading-snug text-ink sm:text-[1.75rem]">
-      働きながら、学び直している人のためのブログです。
-    </h1>
-    <div class="mt-5 space-y-4 text-ink/75">
-      <p>
-        サービス業の現場で働きながら、講座や資格で学び直しています。仕事を変えたい、増やしたいと思って調べたこと——講座の費用、教育訓練給付金のような公的な制度、転職サービスの使い分け、在宅で働くための道具——を、次に同じことを調べる人のためにここへ置いています。
-      </p>
-      <p class="text-sm text-ink/55">
-        紹介しているサービスの料金や内容は、各社が公開している情報をもとにしています。広告を含む記事にはその旨を明記しています。
-      </p>
-    </div>
-    <p class="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm text-ink/55">
-      <span class="text-xs text-ink/40">話題から読む</span>
-      {catChips.map((c) => (
-        <a href={`${import.meta.env.BASE_URL}categories/${c.slug}/`} class="underline decoration-ink/20 underline-offset-4 transition-colors duration-150 hover:text-brand-700 hover:decoration-brand-700">{c.label}</a>
-      ))}
+  <!-- ページ全体を1冊のノートに見立てる。左の欄外とオレンジの余白線は、書き出しから記事の最後まで1本で続く。
+       ヒーローバナーは置かない（読み物として文章から始める・2026-09-05 の決めごと）。 -->
+  <div class="mx-auto max-w-5xl px-4 pt-8 sm:pt-12">
+    <p class="note-head" aria-label={`記事 ${articles.length} 本・最終更新 ${fmt(lastTouched)}`}>
+      <span>No.<b>{articles.length}</b></span>
+      <span>Date<b>{fmt(lastTouched)}</b></span>
     </p>
-  </section>
 
-  <!-- 記事一覧 -->
-  <main class="mx-auto max-w-3xl px-4 pb-4 pt-14">
-    <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-ink pb-2">
-      <h2 class="font-serif text-lg font-semibold text-ink">記事（{articles.length}）</h2>
-      <div id="cat-chips" class="flex flex-wrap gap-x-3 gap-y-1 text-xs text-ink/50">
-        <button type="button" data-category="all" class="chip-btn is-active transition-colors duration-150 hover:text-brand-700">すべて</button>
-        {catChips.map((c) => (
-          <button type="button" data-category={c.slug} class="chip-btn transition-colors duration-150 hover:text-brand-700">{c.label}</button>
-        ))}
-      </div>
+    <div class="note-rule mt-8 sm:mt-10" style="--margin-w: 8.5rem">
+      <section class="note-grid pb-14 sm:pb-20">
+        <p class="note-aside is-wide-only pt-3 font-serif text-sm text-ink/50">はじめに</p>
+        <div>
+          <h1 class="font-serif text-[1.75rem] font-semibold leading-[1.4] tracking-tight text-ink sm:text-[2.5rem] sm:leading-[1.35]">
+            働きながら、<br />学び直している人のためのブログです。
+          </h1>
+          <div class="mt-7 max-w-2xl space-y-4 text-ink/75 sm:text-base">
+            <p>
+              サービス業の現場で働きながら、講座や資格で学び直しています。仕事を変えたい、増やしたいと思って調べたこと——講座の費用、教育訓練給付金のような公的な制度、転職サービスの使い分け、在宅で働くための道具——を、次に同じことを調べる人のためにここへ置いています。
+            </p>
+            <p class="text-sm text-ink/55">
+              紹介しているサービスの料金や内容は、各社が公開している情報をもとにしています。広告を含む記事にはその旨を明記しています。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 索引。話題（カテゴリ）と段階（記事の型）の2軸で、下の記事一覧をその場で絞る。
+           各選択肢の数字は「もう一方の軸の選択を保ったまま選んだら何本残るか」で、押す前に0本かどうかが分かる。 -->
+      <section id="index" class="note-grid border-t border-ink pt-5 pb-6" aria-labelledby="index-title">
+        <h2 id="index-title" class="note-aside pt-1.5 font-serif text-base font-semibold text-ink">索引</h2>
+        <div>
+          <p class="text-sm text-ink/60">いまの自分に近いものを選ぶと、下の記事がその場で絞られます。</p>
+          <div class="mt-4 grid grid-cols-[minmax(0,1fr)] gap-y-2 sm:grid-cols-[3.5rem_minmax(0,1fr)] sm:gap-x-4">
+            <p class="pt-2 text-xs text-ink/45" id="axis-cat">話題</p>
+            <div class="flex flex-wrap gap-x-5" role="group" aria-labelledby="axis-cat">
+              <button type="button" class="idx-btn" data-axis="cat" data-value="all" aria-pressed="true">すべて<span class="n">{articles.length}</span></button>
+              {cats.map((c) => (
+                <button type="button" class="idx-btn" data-axis="cat" data-value={c.slug} aria-pressed="false">
+                  {c.label}<span class="n">{countBy((a) => a.data.categorySlug === c.slug)}</span>
+                </button>
+              ))}
+            </div>
+            <p class="pt-2 text-xs text-ink/45" id="axis-stage">段階</p>
+            <div>
+              <div class="flex flex-wrap gap-x-5" role="group" aria-labelledby="axis-stage">
+                <button type="button" class="idx-btn" data-axis="stage" data-value="all" aria-pressed="true">すべて<span class="n">{articles.length}</span></button>
+                {stages.map((s) => (
+                  <button type="button" class="idx-btn" data-axis="stage" data-value={s.key} aria-pressed="false" title={s.hint}>
+                    {s.label}<span class="n">{countBy((a) => a.data.type === s.key)}</span>
+                  </button>
+                ))}
+              </div>
+              <p class="mt-1 flex flex-wrap gap-x-4 text-xs leading-relaxed text-ink/45">
+                {stages.map((s) => (<span class="whitespace-nowrap">{s.label}＝{s.hint}</span>))}
+              </p>
+            </div>
+          </div>
+          <p class="mt-5 text-sm text-ink/60" aria-live="polite">
+            {articles.length}本のうち <b id="idx-count" class="font-serif text-base font-semibold tabular-nums text-ink">{articles.length}本</b> を表示しています。
+          </p>
+        </div>
+      </section>
+
+      <main>
+        <h2 class="sr-only">記事一覧</h2>
+        <div id="article-grid" class="border-t border-ink/10">
+          {articles.map((a) => <ArticleCard article={a} />)}
+        </div>
+        <p id="empty-msg" class="note-grid mt-6 hidden text-sm text-ink/50"><span>該当する記事がありません。</span></p>
+      </main>
     </div>
-
-    <div id="article-grid">
-      {articles.map((a) => <ArticleCard article={a} />)}
-    </div>
-    <p id="empty-msg" class="mt-6 hidden text-sm text-ink/50">該当する記事がありません。</p>
-  </main>
-
-  <style>
-    .chip-btn.is-active { color: var(--color-ink); text-decoration: underline; text-underline-offset: 4px; }
-  </style>
+  </div>
 
   <script is:inline>
     (function () {
-      let csel = 'all';
-      const grid = document.getElementById('article-grid');
-      const cards = grid ? Array.from(grid.querySelectorAll('.article-card')) : [];
-      const empty = document.getElementById('empty-msg');
+      var sel = { cat: 'all', stage: 'all' };
+      var grid = document.getElementById('article-grid');
+      var cards = grid ? Array.prototype.slice.call(grid.querySelectorAll('.article-card')) : [];
+      var buttons = Array.prototype.slice.call(document.querySelectorAll('.idx-btn'));
+      var empty = document.getElementById('empty-msg');
+      var count = document.getElementById('idx-count');
 
+      function matches(el, s) {
+        return (s.cat === 'all' || el.getAttribute('data-category') === s.cat) &&
+               (s.stage === 'all' || el.getAttribute('data-stage') === s.stage);
+      }
       function apply() {
-        let shown = 0;
-        cards.forEach((el) => {
-          const c = el.getAttribute('data-category');
-          const ok = (csel === 'all' || c === csel);
+        var shown = 0;
+        cards.forEach(function (el) {
+          var ok = matches(el, sel);
           el.style.display = ok ? '' : 'none';
           if (ok) shown++;
         });
         if (empty) empty.classList.toggle('hidden', shown !== 0);
-      }
-      const box = document.getElementById('cat-chips');
-      if (box) {
-        box.addEventListener('click', (e) => {
-          const btn = e.target.closest('button[data-category]');
-          if (!btn) return;
-          box.querySelectorAll('button').forEach((b) => b.classList.remove('is-active'));
-          btn.classList.add('is-active');
-          csel = btn.getAttribute('data-category');
-          apply();
+        if (count) count.textContent = shown + '本';
+        // 各ボタンの数字を、もう一方の軸の選択を保ったまま押したときの本数に更新する。
+        buttons.forEach(function (b) {
+          var axis = b.getAttribute('data-axis');
+          var trial = { cat: sel.cat, stage: sel.stage };
+          trial[axis] = b.getAttribute('data-value');
+          var n = cards.filter(function (el) { return matches(el, trial); }).length;
+          var badge = b.querySelector('.n');
+          if (badge) badge.textContent = n;
+          b.setAttribute('data-empty', n === 0 ? 'true' : 'false');
+          b.setAttribute('aria-pressed', sel[axis] === b.getAttribute('data-value') ? 'true' : 'false');
         });
       }
+      buttons.forEach(function (b) {
+        b.addEventListener('click', function () {
+          sel[b.getAttribute('data-axis')] = b.getAttribute('data-value');
+          apply();
+        });
+      });
     })();
   </script>
 </BaseLayout>
