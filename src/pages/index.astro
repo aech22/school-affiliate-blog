@@ -15,7 +15,7 @@ const cats = activeCategories(articles.map((a) => a.data.categorySlug ?? ''));
 const stages = STAGES.filter((s) => articles.some((a) => a.data.type === s.key));
 const countBy = (pred: (a: (typeof articles)[number]) => boolean) => articles.filter(pred).length;
 
-// ノート上部の No. と Date は実データ。No. は記事の本数、Date はいちばん新しい公開日または更新日。
+// ノート上部の記入欄は実データ。記事の本数と、いちばん新しい公開日または更新日。
 const lastTouched = articles
   .map((a) => (a.data.updated ?? a.data.date).valueOf())
   .reduce((x, y) => Math.max(x, y), 0);
@@ -45,8 +45,8 @@ const listLd = {
        ヒーローバナーは置かない（読み物として文章から始める・2026-09-05 の決めごと）。 -->
   <div class="mx-auto max-w-5xl px-4 pt-8 sm:pt-12">
     <p class="note-head" aria-label={`記事 ${articles.length} 本・最終更新 ${fmt(lastTouched)}`}>
-      <span>No.<b>{articles.length}</b></span>
-      <span>Date<b>{fmt(lastTouched)}</b></span>
+      <span>記事<b>{articles.length}</b>本</span>
+      <span>最終更新<b>{fmt(lastTouched)}</b></span>
     </p>
 
     <div class="note-rule mt-8 sm:mt-10" style="--margin-w: 8.5rem">
@@ -93,7 +93,7 @@ const listLd = {
                   </button>
                 ))}
               </div>
-              <p class="mt-1 flex flex-wrap gap-x-4 text-xs leading-relaxed text-ink/45">
+              <p class="mt-1 flex flex-wrap gap-x-4 text-xs leading-relaxed text-ink/60">
                 {stages.map((s) => (<span class="whitespace-nowrap">{s.label}＝{s.hint}</span>))}
               </p>
             </div>
@@ -109,7 +109,7 @@ const listLd = {
         <div id="article-grid" class="border-t border-ink/10">
           {articles.map((a) => <ArticleCard article={a} />)}
         </div>
-        <p id="empty-msg" class="note-grid mt-6 hidden text-sm text-ink/50"><span>該当する記事がありません。</span></p>
+        <p id="empty-msg" class="mt-6 hidden text-sm text-ink/50 sm:pl-[calc(var(--margin-w)+1.5rem)]">該当する記事がありません。上の索引で「すべて」を選ぶと全件に戻ります。</p>
       </main>
     </div>
   </div>

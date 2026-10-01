@@ -33,7 +33,8 @@ body { background-color: var(--color-cream); }
 
 /* ---- 学び直しノートの意匠（2026-10-02）----
    サイト全体を「働きながら学び直している人のノート」に見立てる。使う記号は3つだけで、どれも実物のノートにあるもの。
-   ・ノート上部の「No. / Date」欄（.note-head）: 数字は実データ（記事数・最終更新日）で、飾りの数字は入れない。
+   ・ノート上部の記入欄（.note-head）: 下線付きの欄に実データ（記事数・何本目・最終更新日）を書く。飾りの数字は入れない。
+     欄の意味はページで変わるので、「No.」「Date」のような記号ではなく日本語のラベルを添える（2026-10-02 の採点で意味が分からないと指摘された）。
    ・左余白の縦線（.note-rule）: オレンジの1px。日付や話題などの欄外情報は線の左、本文は線の右に置く。
    ・罫線: 行の区切りは既存の1px罫線をそのまま使う（新しい装飾は足さない）。
    余白線は面の塗りでも影でもないので、上の「塗りつぶしの面は作らない・影は使わない」と両立する。 */
@@ -43,7 +44,7 @@ body { background-color: var(--color-cream); }
 }
 .note-head > span { display: inline-flex; align-items: baseline; gap: 0.5rem; }
 .note-head b {
-  min-width: 6.5rem; padding: 0 0.25rem 0.125rem; border-bottom: 1px solid color-mix(in oklab, var(--color-ink) 35%, transparent);
+  min-width: 3rem; padding: 0 0.5rem 0.125rem; border-bottom: 1px solid color-mix(in oklab, var(--color-ink) 35%, transparent);
   font-family: var(--font-serif); font-weight: 600; font-size: 0.9375rem; color: var(--color-ink);
   font-variant-numeric: tabular-nums; text-align: center;
 }

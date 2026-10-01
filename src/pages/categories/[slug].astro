@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 }
 
 const { cat, articles, active } = Astro.props;
-// ノート上部の No. と Date は実データ。このカテゴリの記事数と、いちばん新しい公開日または更新日。
+// ノート上部の記入欄は実データ。このカテゴリの記事数と、いちばん新しい公開日または更新日。
 const lastTouched = articles
   .map((a) => (a.data.updated ?? a.data.date).valueOf())
   .reduce((x, y) => Math.max(x, y), 0);
@@ -62,8 +62,8 @@ const listLd = {
 
     {articles.length > 0 && (
       <p class="note-head mt-6" aria-label={`この話題の記事 ${articles.length} 本・最終更新 ${fmt(lastTouched)}`}>
-        <span>No.<b>{articles.length}</b></span>
-        <span>Date<b>{fmt(lastTouched)}</b></span>
+        <span>この話題<b>{articles.length}</b>本</span>
+        <span>最終更新<b>{fmt(lastTouched)}</b></span>
       </p>
     )}
 

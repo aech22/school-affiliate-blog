@@ -148,10 +148,10 @@ const itemListLd = {
       {cat && (<><span>／</span><a href={`${import.meta.env.BASE_URL}categories/${cat.slug}/`} class="transition-colors duration-150 hover:text-brand-700">{cat.label}</a></>)}
     </nav>
 
-    <!-- 記事の冒頭をノートの1ページとして組む。No. は何本目の記事か、Date は公開日（どちらも実データ）。 -->
+    <!-- 記事の冒頭をノートの1ページとして組む。何本目の記事かと公開日を記入欄に書く（どちらも実データ）。 -->
     <p class="note-head mt-6" aria-label={`${seq ? `${seq}本目の記事・` : ''}公開 ${dateStr}`}>
-      {seq && <span>No.<b>{seq}</b></span>}
-      <span>Date<b>{dateStr}</b></span>
+      {seq && <span><b>{seq}</b>本目</span>}
+      <span>公開<b>{dateStr}</b></span>
     </p>
 
     <header class="note-rule mt-6" style="--margin-w: 7rem">
@@ -210,7 +210,8 @@ const itemListLd = {
       data.type === 'compare' && resolved.length > 1 && (
         <section class="mt-14">
           <h2 class="border-b border-ink pb-2 font-serif text-xl font-semibold text-ink">比較まとめ</h2>
-          <div class="mt-4 overflow-x-auto">
+          <p class="mt-3 text-xs text-ink/50 sm:hidden">表は横にスクロールできます。</p>
+          <div class="mt-2 overflow-x-auto sm:mt-4">
             <table class="w-full min-w-[440px] border-collapse text-sm">
               <thead>
                 <tr class="border-b border-ink/20 text-left text-xs text-ink/50">
