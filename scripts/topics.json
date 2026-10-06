@@ -593,6 +593,45 @@
       "serviceIds": [
         "design-pocket"
       ]
+    },
+    {
+      "slug": "kyufu-senmon-kyoka-kakunin-zissai",
+      "type": "guide",
+      "title": "教育訓練給付金の対象講座一覧の探し方｜指定講座を確認する実際の手順",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "講座が本当に給付金対象なのか確認する方法を、検索システムの使い方から解説する。",
+      "factIds": [
+        "kyufu-kensaku-system"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "教育訓練給付金 対象講座一覧"
+    },
+    {
+      "slug": "night-study-desk-setup-single-monitor",
+      "type": "essay",
+      "title": "夜間の学習環境で机の上が狭いとき、照明と外部モニターの配置が変わる理由",
+      "categorySlug": "workspace",
+      "category": "働く環境",
+      "theme": "仕事後に勉強する人が画面とノートの両方を見たいとき、実は照明の位置と外部モニターの位置が連動している。",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "desk-light-led",
+        "mobile-monitor"
+      ],
+      "sourceQuery": "勉強 デスク 環境"
+    },
+    {
+      "slug": "30dai-miken-kaigyo-shoku-kumiwase",
+      "type": "problem",
+      "title": "30代未経験から業界を変えるとき、スクール卒業後の案件紹介でつまずく理由",
+      "categorySlug": "career",
+      "category": "転職・働き方",
+      "theme": "転職ではなく独立を目指す場合、スクール選びの次に案件紹介サービスをどう組み合わせるかが勝敗を分ける。",
+      "factIds": [],
+      "serviceIds": [],
+      "sourceQuery": "未経験 転職 it"
     }
   ]
 }
