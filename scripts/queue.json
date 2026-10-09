@@ -10,12 +10,6 @@
       ]
     },
     {
-      "slug": "kyufu-senmon-kyoka-kakunin-zissai",
-      "failures": 0,
-      "blocked": false,
-      "lastViolations": []
-    },
-    {
       "slug": "night-study-desk-setup-single-monitor",
       "failures": 0,
       "blocked": false,
@@ -23,6 +17,24 @@
     },
     {
       "slug": "30dai-miken-kaigyo-shoku-kumiwase",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "design-pocket-vs-daytra-video-editing",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "toraiz-vs-gaba-business-english",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "education-training-allowance-procedure",
       "failures": 0,
       "blocked": false,
       "lastViolations": []

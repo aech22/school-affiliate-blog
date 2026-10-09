@@ -632,6 +632,53 @@
       "factIds": [],
       "serviceIds": [],
       "sourceQuery": "未経験 転職 it"
+    },
+    {
+      "slug": "design-pocket-vs-daytra-video-editing",
+      "type": "compare",
+      "title": "動画編集スクール補助金で選ぶなら｜教育訓練給付金対応講座の実績で比べる",
+      "categorySlug": "programming",
+      "category": "プログラミング・IT",
+      "theme": "教育訓練給付金の対象になっている動画編集スクール同士を、給付率と案件紹介体制で比較する記事です。",
+      "factIds": [
+        "kyufu-ippan",
+        "kyufu-tokutei-ippan"
+      ],
+      "serviceIds": [
+        "design-pocket",
+        "daytra"
+      ],
+      "sourceQuery": "動画編集 スクール 補助金"
+    },
+    {
+      "slug": "toraiz-vs-gaba-business-english",
+      "type": "compare",
+      "title": "社会人の英会話スクール比較｜ビジネス中国語と通学・オンラインの選び方",
+      "categorySlug": "language",
+      "category": "語学・留学",
+      "theme": "ビジネス英会話を学ぶ社会人向けに、コーチング型と対面型の具体的な違いを複数スクール比較で示します。",
+      "factIds": [],
+      "serviceIds": [
+        "toraiz",
+        "gaba",
+        "shoba-chinese"
+      ],
+      "sourceQuery": "英会話スクール 比較 料金"
+    },
+    {
+      "slug": "education-training-allowance-procedure",
+      "type": "guide",
+      "title": "教育訓練給付金の手続きを始める前に｜支給申請書に必要な準備と流れ",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "教育訓練給付金を受け取るとき、支給申請書の作成前に講座指定確認を完了しておく必要がある理由と手順を解説します。",
+      "factIds": [
+        "kyufu-jizen-tetsuzuki",
+        "kyufu-kensaku-system",
+        "kyufu-shikyu-youken"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "教育訓練給付金支給申請書"
     }
   ]
 }
