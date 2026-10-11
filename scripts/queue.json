@@ -12,8 +12,9 @@
     {
       "slug": "design-pocket-vs-daytra-video-editing",
       "failures": 0,
-      "blocked": false,
-      "lastViolations": []
+      "blocked": true,
+      "lastViolations": [],
+      "blockedReason": "2026-10-12 週次需要チェックで停止。theme が design-pocket（フォント販売）と daytra を「教育訓練給付金の対象になっている動画編集スクール」として比べるが、services.json にも facts.json にも両者が給付金対象である根拠が無い。数値は台帳にあるのでゲートでは止まらない。theme と serviceIds を直してから blocked を false に戻す"
     },
     {
       "slug": "toraiz-vs-gaba-business-english",
