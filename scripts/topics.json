@@ -679,6 +679,74 @@
       ],
       "serviceIds": [],
       "sourceQuery": "教育訓練給付金支給申請書"
+    },
+    {
+      "slug": "reskilling-kyufukin-shikyu-yoken-individual",
+      "type": "guide",
+      "title": "リスキリング補助金は個人でも申請できるのか｜条件と手続きの流れ",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "リスキリング補助金の個人申請要件と、実際の支給判定までの手続きを具体的に解説します。",
+      "factIds": [
+        "reskilling-koubo-shuryo"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "リスキリング 補助金 個人"
+    },
+    {
+      "slug": "programming-school-online-transfer-support",
+      "type": "compare",
+      "title": "オンラインプログラミングスクールで案件紹介が充実している3社の実績を比較",
+      "categorySlug": "programming",
+      "category": "プログラミング・IT",
+      "theme": "未経験から在宅での案件獲得まで、実際の紹介事例で選べるスクール3社を並べて検証します。",
+      "factIds": [],
+      "serviceIds": [
+        "daytra",
+        "skillhacks",
+        "creators-japan"
+      ],
+      "sourceQuery": "オンライン プログラミングスクール 比較"
+    },
+    {
+      "slug": "english-conversation-school-business-comparison",
+      "type": "compare",
+      "title": "ビジネス英会話スクール4社で、通学とオンラインの料金と講師の質を比較",
+      "categorySlug": "language",
+      "category": "語学・留学",
+      "theme": "社会人が実務で使える英会話を学ぶとき、スクール選びで後悔しないための4社の実績と料金をまとめました。",
+      "factIds": [],
+      "serviceIds": [
+        "gaba",
+        "toraiz",
+        "nova"
+      ],
+      "sourceQuery": "英会話スクール 比較 料金"
+    },
+    {
+      "slug": "it-engineer-career-change-age-wall",
+      "type": "problem",
+      "title": "未経験からエンジニア転職するとき、30代と40代で求人数がなぜ減るのか",
+      "categorySlug": "career",
+      "category": "転職・働き方",
+      "theme": "スクール卒業後の求人サイト検索では見えない、年代別の採用ニーズの現実を整理します。",
+      "factIds": [],
+      "serviceIds": [],
+      "sourceQuery": "未経験 転職 it 業界"
+    },
+    {
+      "slug": "toeic-tanbou-beginner-start",
+      "type": "guide",
+      "title": "TOEIC単語帳を初心者が選ぶときに、金のフレーズと一般的な単語帳は何が違うのか",
+      "categorySlug": "language",
+      "category": "語学・留学",
+      "theme": "TOEIC対策の単語帳選びで、初心者がつまずきやすいポイントと選定基準を明確にします。",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "kin-no-phrase"
+      ],
+      "sourceQuery": "toeic 単語帳 初心者"
     }
   ]
 }
