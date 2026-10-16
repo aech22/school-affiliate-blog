@@ -747,6 +747,37 @@
         "kin-no-phrase"
       ],
       "sourceQuery": "toeic 単語帳 初心者"
+    },
+    {
+      "slug": "reskilling-hojokin-shokyusha-tetsuzuki",
+      "type": "guide",
+      "title": "リスキリング補助金を初心者が申請するとき、最初に確認する手続きの流れ",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "リスキリング補助金の申請条件と必要書類を、実際の手順に沿って解説します。",
+      "factIds": [
+        "reskilling-koubo-shuryo"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "リスキリング 補助金申請方法"
+    },
+    {
+      "slug": "douga-henshu-school-kyufukin-taisho-kosoku-hikaku",
+      "type": "compare",
+      "title": "動画編集スクール補助金で選ぶなら、教育訓練給付金対応講座の実績で比べる",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "教育訓練給付金の対象になっている動画編集スクール3社を、給付額と案件紹介の実績で比較します。",
+      "factIds": [
+        "kyufu-ippan",
+        "kyufu-kensaku-system"
+      ],
+      "serviceIds": [
+        "movie-hacks",
+        "video-editor-course",
+        "daytra"
+      ],
+      "sourceQuery": "動画編集 スクール 補助金"
     }
   ]
 }

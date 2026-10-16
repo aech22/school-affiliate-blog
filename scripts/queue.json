@@ -18,9 +18,11 @@
     },
     {
       "slug": "english-conversation-school-business-comparison",
-      "failures": 0,
+      "failures": 1,
       "blocked": false,
-      "lastViolations": []
+      "lastViolations": [
+        "1万円"
+      ]
     },
     {
       "slug": "it-engineer-career-change-age-wall",
@@ -30,6 +32,18 @@
     },
     {
       "slug": "toeic-tanbou-beginner-start",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "reskilling-hojokin-shokyusha-tetsuzuki",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "douga-henshu-school-kyufukin-taisho-kosoku-hikaku",
       "failures": 0,
       "blocked": false,
       "lastViolations": []
