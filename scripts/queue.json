@@ -17,14 +17,6 @@
       "blockedReason": "2026-10-12 週次需要チェックで停止。theme が design-pocket（フォント販売）と daytra を「教育訓練給付金の対象になっている動画編集スクール」として比べるが、services.json にも facts.json にも両者が給付金対象である根拠が無い。数値は台帳にあるのでゲートでは止まらない。theme と serviceIds を直してから blocked を false に戻す"
     },
     {
-      "slug": "english-conversation-school-business-comparison",
-      "failures": 1,
-      "blocked": false,
-      "lastViolations": [
-        "1万円"
-      ]
-    },
-    {
       "slug": "it-engineer-career-change-age-wall",
       "failures": 0,
       "blocked": false,
