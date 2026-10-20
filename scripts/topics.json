@@ -778,6 +778,34 @@
         "daytra"
       ],
       "sourceQuery": "動画編集 スクール 補助金"
+    },
+    {
+      "slug": "reskilling-subsidy-application-flow",
+      "type": "guide",
+      "title": "リスキリング補助金申請方法を初心者が最初に確認すること",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "リスキリング補助金の申請手続きは複雑に見えるが、まず確認すべき順番と必要書類を整理する。",
+      "factIds": [
+        "reskilling-koubo-shuryo"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "リスキリング 補助金申請方法"
+    },
+    {
+      "slug": "web-interview-lighting-setup-guide",
+      "type": "essay",
+      "title": "Web面接の照明を用意するとき、デスク配置から始まる理由",
+      "categorySlug": "workspace",
+      "category": "働く環境",
+      "theme": "オンライン面接で映りが決まるのは照明の強さではなく、パソコンとの距離と角度である。デスク環境から逆算して照明を選ぶ手順。",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "desk-light-led",
+        "ring-light"
+      ],
+      "sourceQuery": "web面接 照明 おすすめ"
     }
   ]
 }
