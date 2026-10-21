@@ -806,6 +806,75 @@
         "ring-light"
       ],
       "sourceQuery": "web面接 照明 おすすめ"
+    },
+    {
+      "slug": "reskilling-subsidy-individual-eligibility",
+      "type": "guide",
+      "title": "リスキリング補助金を個人が申請するときの対象講座と条件",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "リスキリング補助金は企業研修向けが主流ですが、個人でも一部講座で申請できる制度です。対象になる講座と必須条件を確認します。",
+      "factIds": [
+        "reskilling-koubo-shuryo"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "リスキリング 補助金 個人"
+    },
+    {
+      "slug": "night-study-desk-setup-monitor",
+      "type": "essay",
+      "title": "夜間の勉強時間が限られているとき、デスク配置と外部モニターの選び方が変わる理由",
+      "categorySlug": "workspace",
+      "category": "働く環境",
+      "theme": "ノートパソコンの画面だけでは、疲れやすく学習効率が落ちます。夜の限られた時間を活かすデスク環境の整え方を考えます。",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "laptop-stand",
+        "mobile-monitor",
+        "desk-light-led"
+      ],
+      "sourceQuery": "勉強 デスク 環境"
+    },
+    {
+      "slug": "online-interview-camera-position-lighting",
+      "type": "problem",
+      "title": "オンライン面接の照明を用意するとき、カメラの位置と机の配置から決まる理由",
+      "categorySlug": "workspace",
+      "category": "働く環境",
+      "theme": "オンライン面接で映りが悪くなるのは照明が足りないからではなく、カメラと照明の相対位置が決まっていないからです。逆算したセッティングを学びます。",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "ring-light",
+        "webcam-1080p"
+      ],
+      "sourceQuery": "web面接 照明"
+    },
+    {
+      "slug": "education-training-allowance-abroad",
+      "type": "guide",
+      "title": "教育訓練給付金は海外在住でも申請できるのか、条件と手続きの流れ",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "教育訓練給付金の基本条件は国内在住が前提ですが、一部の講座では海外での受講や申請が認められます。具体的な条件を確認します。",
+      "factIds": [
+        "kyufu-shikyu-youken",
+        "kyufu-jizen-tetsuzuki"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "教育訓練給付金 海外在住"
+    },
+    {
+      "slug": "underage-career-change-when-resume-counts",
+      "type": "essay",
+      "title": "未経験から業界を変えるとき、スクール卒業後に実務経験が評価される分岐点",
+      "categorySlug": "career",
+      "category": "転職・働き方",
+      "theme": "未経験転職の難しさは年齢や学歴より、実務経験までのステップをどう積むかで決まります。スクール選びと案件紹介の使い分けの実態を整理します。",
+      "factIds": [],
+      "serviceIds": [],
+      "sourceQuery": "未経験 転職 it"
     }
   ]
 }
