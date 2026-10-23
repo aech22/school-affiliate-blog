@@ -98,7 +98,7 @@ jobs:
         if: steps.commit.outputs.changed == 'true'
         uses: actions/setup-node@v7.0.0
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Build Astro site
         if: steps.commit.outputs.changed == 'true'
