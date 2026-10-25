@@ -24,12 +24,6 @@
       "blockedReason": "2026-10-19 週次需要チェックで停止。theme が movie-hacks・video-editor-course・daytra を「教育訓練給付金の対象になっている動画編集スクール3社」として給付額で比べるが、services.json にも facts.json にも3社が給付金対象である根拠が無い（daytra のタグは経産省のリスキリング事業で別制度）。数値は台帳にあるのでゲートでは止まらない。10-12 に止めた design-pocket-vs-daytra-video-editing と同じ欠陥。theme と serviceIds を直してから blocked を false に戻す"
     },
     {
-      "slug": "online-interview-camera-position-lighting",
-      "failures": 0,
-      "blocked": false,
-      "lastViolations": []
-    },
-    {
       "slug": "education-training-allowance-abroad",
       "failures": 0,
       "blocked": false,
@@ -37,6 +31,18 @@
     },
     {
       "slug": "underage-career-change-when-resume-counts",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "video-editing-school-subsidy-comparison",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "learning-plan-collapse-causes",
       "failures": 0,
       "blocked": false,
       "lastViolations": []
