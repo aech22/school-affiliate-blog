@@ -31,12 +31,6 @@
       "blockedReason": "2026-10-26 週次需要チェックで停止。theme が『一部の講座では海外での受講や申請が認められます』と制度の可否を断定しているが、facts.json の kyufu-shikyu-youken / kyufu-jizen-tetsuzuki に海外在住・海外受講に関する事実は無い。数値を含まないのでゲートでは止まらず、根拠の無い制度説明が公開される。海外在住者の扱いを一次情報（ハローワーク）で確認して台帳に足すか、theme を台帳の範囲に直してから blocked を false に戻す"
     },
     {
-      "slug": "underage-career-change-when-resume-counts",
-      "failures": 0,
-      "blocked": false,
-      "lastViolations": []
-    },
-    {
       "slug": "video-editing-school-subsidy-comparison",
       "failures": 0,
       "blocked": true,
@@ -45,6 +39,30 @@
     },
     {
       "slug": "learning-plan-collapse-causes",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "reskilling-kigyou-taishoku-teate",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "douga-henshu-kyufukin-3sha-hikaku",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "shainei-it-tenshokunavi-3sha-hikaku",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "kyuyo-shinsei-hitsuyou-shorui-junbi",
       "failures": 0,
       "blocked": false,
       "lastViolations": []

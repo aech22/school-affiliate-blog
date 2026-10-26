@@ -905,6 +905,66 @@
       "factIds": [],
       "serviceIds": [],
       "sourceQuery": "勉強 習慣化"
+    },
+    {
+      "slug": "reskilling-kigyou-taishoku-teate",
+      "type": "guide",
+      "title": "リスキリング補助金は離職中でも申請できるのか｜対象者と手続きの流れ",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "転職や退職後のリスキリング補助金申請に必要な要件と、実際の手続きを明確にします。",
+      "factIds": [
+        "reskilling-koubo-shuryo"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "リスキリング 補助金 対象講座"
+    },
+    {
+      "slug": "douga-henshu-kyufukin-3sha-hikaku",
+      "type": "compare",
+      "title": "動画編集スクール補助金対応の3社比較｜教育訓練給付金と実績で選ぶ",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "教育訓練給付金対応の動画編集スクールを、実績と受講費の実質負担で比較します。",
+      "factIds": [
+        "kyufu-ippan",
+        "kyufu-tokutei-ippan"
+      ],
+      "serviceIds": [
+        "video-editor-course",
+        "movie-hacks",
+        "skillhacks"
+      ],
+      "sourceQuery": "動画編集 スクール 補助金"
+    },
+    {
+      "slug": "shainei-it-tenshokunavi-3sha-hikaku",
+      "type": "compare",
+      "title": "社内SE転職の未経験向けエージェント3社比較｜実務経験の積み方で選ぶ",
+      "categorySlug": "career",
+      "category": "転職・働き方",
+      "theme": "社内SE職への未経験転職で、実務経験をどう積むかで転職エージェントを選び分けます。",
+      "factIds": [],
+      "serviceIds": [
+        "se-navi",
+        "meiko-career",
+        "r4career"
+      ],
+      "sourceQuery": "社内se 転職 未経験"
+    },
+    {
+      "slug": "kyuyo-shinsei-hitsuyou-shorui-junbi",
+      "type": "guide",
+      "title": "教育訓練給付金の支給申請書に必要な書類｜ハローワークに行く前に用意するもの",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "教育訓練給付金の支給申請時に、ハローワークで不備なく手続きするための事前準備を解説します。",
+      "factIds": [
+        "kyufu-jizen-tetsuzuki",
+        "kyufu-shikyu-youken"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "教育訓練給付金支給申請書 書き方"
     }
   ]
 }
