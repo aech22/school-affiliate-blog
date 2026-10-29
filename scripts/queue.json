@@ -38,12 +38,6 @@
       "blockedReason": "2026-10-26 週次需要チェックで停止。10-12・10-19 に止めた2件と同じ欠陥で、theme が5社を『教育訓練給付金の対象になっている動画編集スクール』としているが、services.json にも facts.json にも各社が給付金対象である根拠が無い（daytra のタグは経産省のリスキリング事業で別制度）。数値は台帳にあるのでゲートでは止まらない。theme と serviceIds を直してから blocked を false に戻す"
     },
     {
-      "slug": "douga-henshu-kyufukin-3sha-hikaku",
-      "failures": 0,
-      "blocked": false,
-      "lastViolations": []
-    },
-    {
       "slug": "shainei-it-tenshokunavi-3sha-hikaku",
       "failures": 0,
       "blocked": false,
@@ -51,6 +45,36 @@
     },
     {
       "slug": "kyuyo-shinsei-hitsuyou-shorui-junbi",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "reskilling-subsidy-eligibility-offline-employment",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "study-desk-setup-external-monitor-nighttime-limited-space",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "video-editing-school-subsidy-comparison-three-providers",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "toeic-study-timer-tool-selection-for-structured-learning",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "programming-school-dropout-structural-causes-not-willpower",
       "failures": 0,
       "blocked": false,
       "lastViolations": []

@@ -965,6 +965,77 @@
       ],
       "serviceIds": [],
       "sourceQuery": "教育訓練給付金支給申請書 書き方"
+    },
+    {
+      "slug": "reskilling-subsidy-eligibility-offline-employment",
+      "type": "guide",
+      "title": "リスキリング補助金は離職中でも申請できるのか｜対象者の要件と手続きの流れ",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "離職中の申請可否を明確にし、ハローワークでの手続き順を示す。",
+      "factIds": [
+        "reskilling-koubo-shuryo"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "リスキリング 補助金 ハローワーク"
+    },
+    {
+      "slug": "study-desk-setup-external-monitor-nighttime-limited-space",
+      "type": "essay",
+      "title": "夜間の勉強時間が限られているとき、デスク配置と外部モニターの選び方が変わる理由",
+      "categorySlug": "workspace",
+      "category": "働く環境",
+      "theme": "限られた時間を効率化する机配置と、そこに必要な道具選びの関係性。",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "laptop-stand",
+        "mobile-monitor",
+        "desk-light-led"
+      ],
+      "sourceQuery": "勉強 デスク 環境"
+    },
+    {
+      "slug": "video-editing-school-subsidy-comparison-three-providers",
+      "type": "compare",
+      "title": "動画編集スクール補助金対応の3社比較｜教育訓練給付金と実績で選ぶ",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "教育訓練給付金の対象講座と案件紹介実績で、補助金を活かしたスクール選びを実践的に示す。",
+      "factIds": [
+        "kyufu-ippan"
+      ],
+      "serviceIds": [
+        "movie-hacks",
+        "daytra",
+        "video-editor-course"
+      ],
+      "sourceQuery": "動画編集 スクール 補助金"
+    },
+    {
+      "slug": "toeic-study-timer-tool-selection-for-structured-learning",
+      "type": "essay",
+      "title": "TOEIC勉強のペースをつくるとき、タイマーの選択肢と机の配置が連動する",
+      "categorySlug": "language",
+      "category": "語学・留学",
+      "theme": "ポモドーロテクニックを実践する際、手元とモニターの位置から必要なタイマーが決まる。",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "study-timer"
+      ],
+      "sourceQuery": "勉強 タイマー おすすめ"
+    },
+    {
+      "slug": "programming-school-dropout-structural-causes-not-willpower",
+      "type": "problem",
+      "title": "プログラミング独学で挫折するのは、環境要因がほとんど｜3つの分岐点から見直す",
+      "categorySlug": "programming",
+      "category": "プログラミング・IT",
+      "theme": "意志の弱さではなく、机配置・回線・スクール選びの構造的な課題を特定し解決する。",
+      "factIds": [],
+      "serviceIds": [],
+      "sourceQuery": "プログラミング 独学 挫折"
     }
   ]
 }
