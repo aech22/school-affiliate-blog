@@ -39,9 +39,12 @@
     },
     {
       "slug": "shainei-it-tenshokunavi-3sha-hikaku",
-      "failures": 0,
+      "failures": 1,
       "blocked": false,
-      "lastViolations": []
+      "lastViolations": [
+        "96.5%",
+        "40%"
+      ]
     },
     {
       "slug": "kyuyo-shinsei-hitsuyou-shorui-junbi",
