@@ -40,14 +40,16 @@
     {
       "slug": "kyuyo-shinsei-hitsuyou-shorui-junbi",
       "failures": 0,
-      "blocked": false,
-      "lastViolations": []
+      "blocked": true,
+      "lastViolations": [],
+      "blockedReason": "2026-11-02 週次需要チェックで停止。題名が「支給申請書に必要な書類」だが、factIds の kyufu-jizen-tetsuzuki は受講前の受給資格確認、kyufu-shikyu-youken は被保険者期間の要件で、修了後の支給申請に要る書類は台帳に一つも無い。書類名は数値を含まないのでゲートでは止まらず、根拠の無い書類一覧が公開される。ハローワークの一次情報で支給申請の必要書類を確かめて facts.json に足すか、theme を台帳の範囲（受講前の手続き）に直してから blocked を false に戻す"
     },
     {
       "slug": "reskilling-subsidy-eligibility-offline-employment",
       "failures": 0,
-      "blocked": false,
-      "lastViolations": []
+      "blocked": true,
+      "lastViolations": [],
+      "blockedReason": "2026-11-02 週次需要チェックで停止。10-28 公開の reskilling-kigyou-taishoku-teate と題名がほぼ同一（「リスキリング補助金は離職中でも申請できるのか」）で、リスキリング補助金の記事は既に6本ある。台帳 reskilling-koubo-shuryo では公募は終了しており、theme の「ハローワークでの手続き順」はこの制度（経産省の事業）に根拠が無い。統合方針（10-26 提案1）が決まるまで止める"
     },
     {
       "slug": "study-desk-setup-external-monitor-nighttime-limited-space",
@@ -58,8 +60,9 @@
     {
       "slug": "video-editing-school-subsidy-comparison-three-providers",
       "failures": 0,
-      "blocked": false,
-      "lastViolations": []
+      "blocked": true,
+      "lastViolations": [],
+      "blockedReason": "2026-11-02 週次需要チェックで停止。10-12・10-19・10-26 に止めた3件と同じ欠陥の5回目で、theme が movie-hacks・daytra・video-editor-course を「教育訓練給付金の対象講座」として比べるが、services.json にも facts.json にも各社が給付金対象である根拠が無い。同じ題名の記事 douga-henshu-kyufukin-3sha-hikaku が 10-29 に公開済み。theme と serviceIds を直してから blocked を false に戻す"
     },
     {
       "slug": "toeic-study-timer-tool-selection-for-structured-learning",
