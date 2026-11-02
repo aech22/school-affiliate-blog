@@ -1036,6 +1036,34 @@
       "factIds": [],
       "serviceIds": [],
       "sourceQuery": "プログラミング 独学 挫折"
+    },
+    {
+      "slug": "reskilling-subsidy-application-requirements",
+      "type": "guide",
+      "title": "リスキリング補助金の対象講座と条件｜個人が申請するときに最初に確認すること",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "リスキリング補助金は個人でも申請できるのか、対象講座の判定基準と要件を実務的に解説します。",
+      "factIds": [
+        "reskilling-koubo-shuryo"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "リスキリング 補助金 個人"
+    },
+    {
+      "slug": "desktop-monitor-extension-limited-space",
+      "type": "essay",
+      "title": "ノートパソコン1枚で学ぶとき、外部モニターの配置が学習時間を変える理由",
+      "categorySlug": "workspace",
+      "category": "働く環境",
+      "theme": "ノートパソコンだけでは画面が狭く学習効率が落ちます。限られたデスク空間で、モニターをどう置くかで勉強の続き方が変わります。",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "laptop-stand",
+        "mobile-monitor"
+      ],
+      "sourceQuery": "ノートパソコン スタンド おすすめ"
     }
   ]
 }

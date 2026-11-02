@@ -52,12 +52,6 @@
       "blockedReason": "2026-11-02 週次需要チェックで停止。10-28 公開の reskilling-kigyou-taishoku-teate と題名がほぼ同一（「リスキリング補助金は離職中でも申請できるのか」）で、リスキリング補助金の記事は既に6本ある。台帳 reskilling-koubo-shuryo では公募は終了しており、theme の「ハローワークでの手続き順」はこの制度（経産省の事業）に根拠が無い。統合方針（10-26 提案1）が決まるまで止める"
     },
     {
-      "slug": "study-desk-setup-external-monitor-nighttime-limited-space",
-      "failures": 0,
-      "blocked": false,
-      "lastViolations": []
-    },
-    {
       "slug": "video-editing-school-subsidy-comparison-three-providers",
       "failures": 0,
       "blocked": true,
@@ -84,6 +78,18 @@
         "96.5%",
         "40%"
       ]
+    },
+    {
+      "slug": "reskilling-subsidy-application-requirements",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "desktop-monitor-extension-limited-space",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
     }
   ]
 }
