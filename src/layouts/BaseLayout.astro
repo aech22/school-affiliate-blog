@@ -153,6 +153,10 @@ const breadcrumbLd = breadcrumbs && breadcrumbs.length
         <p class="mt-5 text-xs leading-relaxed text-ink/45">
           当サイトはアフィリエイト広告を利用しています。掲載しているサービスの料金・内容は変動する場合があります。最新の情報は各社の公式サイトをご確認ください。
         </p>
+        {/* GetSongBPM API の利用条件（被リンク必須）。運営者が DJ 用途で API を使うため。外すと API キーが止められる */}
+        <p class="mt-3 text-xs text-ink/45">
+          音楽のBPM検索: <a href="https://getsongbpm.com" class="underline transition-colors duration-150 hover:text-brand-700">GetSongBPM</a>
+        </p>
         <p class="mt-3 text-xs text-ink/35">© {year} {SITE_NAME}</p>
       </div>
     </footer>
