@@ -1064,6 +1064,65 @@
         "mobile-monitor"
       ],
       "sourceQuery": "ノートパソコン スタンド おすすめ"
+    },
+    {
+      "slug": "reskilling-koseigyosha-taisho",
+      "type": "guide",
+      "title": "リスキリング補助金は個人事業主・フリーランスが対象なのか｜条件と手続きの流れ",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "リスキリング補助金の対象者に個人事業主やフリーランスが含まれるのか、申請条件と実際の流れを明確にする。",
+      "factIds": [
+        "reskilling-koubo-shuryo"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "リスキリング 補助金 個人"
+    },
+    {
+      "slug": "kyufu-shikyu-moushikomi-jun",
+      "type": "guide",
+      "title": "教育訓練給付金の支給申請書を出す前に｜必要な書類と申し込み順序",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "支給申請書を提出するタイミングで初めて気付く書類不足を防ぎ、実際の手続き順序を示す。",
+      "factIds": [
+        "kyufu-jizen-tetsuzuki",
+        "kyufu-shikyu-youken"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "教育訓練給付金支給申請書 書き方"
+    },
+    {
+      "slug": "douga-henshu-school-3sha-kyufu-hikaku",
+      "type": "compare",
+      "title": "動画編集スクール補助金対応の3社比較｜教育訓練給付金と案件紹介の実績で選ぶ",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "補助金が使える動画編集スクールの中から、給付率と卒業後の案件獲得実績で3社を比較する。",
+      "factIds": [
+        "kyufu-ippan"
+      ],
+      "serviceIds": [
+        "movie-hacks",
+        "video-editor-course",
+        "daytra"
+      ],
+      "sourceQuery": "動画編集 スクール 補助金"
+    },
+    {
+      "slug": "shainai-se-tenni-mikenken-3sha-hikaku",
+      "type": "compare",
+      "title": "社内SE転職は未経験からでも可能か｜実務経験で選ぶエージェント3社の求人基準",
+      "categorySlug": "career",
+      "category": "転職・働き方",
+      "theme": "社内SE転職を目指す未経験者が、エージェントの求人基準の違いで選ぶべき3社を比較する。",
+      "factIds": [],
+      "serviceIds": [
+        "se-navi",
+        "r4career",
+        "meiko-career"
+      ],
+      "sourceQuery": "社内se 転職 未経験"
     }
   ]
 }

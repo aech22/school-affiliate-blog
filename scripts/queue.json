@@ -59,12 +59,6 @@
       "blockedReason": "2026-11-02 週次需要チェックで停止。10-12・10-19・10-26 に止めた3件と同じ欠陥の5回目で、theme が movie-hacks・daytra・video-editor-course を「教育訓練給付金の対象講座」として比べるが、services.json にも facts.json にも各社が給付金対象である根拠が無い。同じ題名の記事 douga-henshu-kyufukin-3sha-hikaku が 10-29 に公開済み。theme と serviceIds を直してから blocked を false に戻す"
     },
     {
-      "slug": "programming-school-dropout-structural-causes-not-willpower",
-      "failures": 0,
-      "blocked": false,
-      "lastViolations": []
-    },
-    {
       "slug": "shainei-it-tenshokunavi-3sha-hikaku",
       "failures": 3,
       "blocked": true,
@@ -81,6 +75,30 @@
     },
     {
       "slug": "desktop-monitor-extension-limited-space",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "reskilling-koseigyosha-taisho",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "kyufu-shikyu-moushikomi-jun",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "douga-henshu-school-3sha-kyufu-hikaku",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "shainai-se-tenni-mikenken-3sha-hikaku",
       "failures": 0,
       "blocked": false,
       "lastViolations": []
