@@ -68,12 +68,6 @@
       ]
     },
     {
-      "slug": "kyufu-shikyu-moushikomi-jun",
-      "failures": 0,
-      "blocked": false,
-      "lastViolations": []
-    },
-    {
       "slug": "douga-henshu-school-3sha-kyufu-hikaku",
       "failures": 0,
       "blocked": false,
@@ -81,6 +75,18 @@
     },
     {
       "slug": "shainai-se-tenni-mikenken-3sha-hikaku",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "reskilling-subsidy-individual-application-requirements",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "education-grant-application-documents-checklist",
       "failures": 0,
       "blocked": false,
       "lastViolations": []

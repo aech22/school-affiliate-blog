@@ -1123,6 +1123,33 @@
         "meiko-career"
       ],
       "sourceQuery": "社内se 転職 未経験"
+    },
+    {
+      "slug": "reskilling-subsidy-individual-application-requirements",
+      "type": "guide",
+      "title": "リスキリング補助金を個人が申請するときの対象講座と条件",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "個人事業主やフリーランスがリスキリング補助金に申請するために必要な要件と、対象講座の確認方法を整理。",
+      "factIds": [
+        "reskilling-koubo-shuryo"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "リスキリング 補助金 個人"
+    },
+    {
+      "slug": "education-grant-application-documents-checklist",
+      "type": "guide",
+      "title": "教育訓練給付金支給申請書に必要な書類と申し込み順序",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "ハローワークに支給申請書を出すとき、事前に揃える書類と手続きの順番を、実際の流れに沿って解説。",
+      "factIds": [
+        "kyufu-jizen-tetsuzuki",
+        "kyufu-shikyu-youken"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "教育訓練給付金支給申請書"
     }
   ]
 }
