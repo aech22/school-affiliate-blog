@@ -1150,6 +1150,103 @@
       ],
       "serviceIds": [],
       "sourceQuery": "教育訓練給付金支給申請書"
+    },
+    {
+      "slug": "reskilling-subsidy-application-individual",
+      "type": "guide",
+      "title": "リスキリング補助金を個人が申請するときの対象講座と条件",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "個人でも申請できるリスキリング補助金の対象者要件と講座選びの実際の流れを解説",
+      "factIds": [
+        "reskilling-koubo-shuryo"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "リスキリング 補助金 個人"
+    },
+    {
+      "slug": "kyuka-kyufukin-requirements-timing",
+      "type": "guide",
+      "title": "教育訓練休暇給付金の対象と支給まで、実際に何日かかるのか",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "働きながら学ぶための新しい制度の対象者判定と実際の手続き期間を明確にする",
+      "factIds": [
+        "kyuka-kyufukin"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "教育訓練給付金 条件"
+    },
+    {
+      "slug": "programming-online-school-case-study",
+      "type": "compare",
+      "title": "オンラインプログラミングスクールで案件紹介が実際に機能している3社の実績を比較",
+      "categorySlug": "programming",
+      "category": "プログラミング・IT",
+      "theme": "スクール卒業後の実務案件獲得で分かれる3社の紹介体制と成功事例",
+      "factIds": [],
+      "serviceIds": [
+        "creators-japan",
+        "daytra",
+        "skillhacks"
+      ],
+      "sourceQuery": "オンライン プログラミングスクール 比較"
+    },
+    {
+      "slug": "single-laptop-external-monitor-layout",
+      "type": "essay",
+      "title": "ノートパソコン1枚で学ぶとき、外部モニターの配置が学習時間を変える理由",
+      "categorySlug": "workspace",
+      "category": "働く環境",
+      "theme": "画面が1枚の環境で外部モニターを足すことで、実際に何が改善され時間効率が上がるのか",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "mobile-monitor",
+        "laptop-stand"
+      ],
+      "sourceQuery": "ノートパソコン スタンド おすすめ"
+    },
+    {
+      "slug": "business-chinese-school-comparison",
+      "type": "compare",
+      "title": "ビジネス中国語の教室・オンライン講座、通学とオンラインの料金と講師の質で比較",
+      "categorySlug": "language",
+      "category": "語学・留学",
+      "theme": "社会人向けビジネス中国語を学ぶとき、通学とオンラインのどちらが実務に活きるのか",
+      "factIds": [],
+      "serviceIds": [
+        "shoba-chinese",
+        "toraiz",
+        "gaba"
+      ],
+      "sourceQuery": "中国語 教室 東京"
+    },
+    {
+      "slug": "social-se-transition-experience-barrier",
+      "type": "problem",
+      "title": "社内SE転職で未経験が見落とす、実務経験の評価が分かれる分岐点",
+      "categorySlug": "career",
+      "category": "転職・働き方",
+      "theme": "スクール卒業後から実務評価に至るまでに、企業が何を見ているのかを読み解く",
+      "factIds": [],
+      "serviceIds": [
+        "se-navi",
+        "meiko-career",
+        "r4career"
+      ],
+      "sourceQuery": "社内se 転職 未経験"
+    },
+    {
+      "slug": "study-plan-collapse-environment-factor",
+      "type": "essay",
+      "title": "学習計画が崩れるのは、意志の問題ではないことが多い",
+      "categorySlug": "workspace",
+      "category": "働く環境",
+      "theme": "計画が続かない原因を、心理ではなく環境・タイミング・道具の側から見直す",
+      "factIds": [],
+      "serviceIds": [],
+      "sourceQuery": "勉強 習慣化 できない"
     }
   ]
 }
