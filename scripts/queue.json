@@ -76,11 +76,11 @@
     },
     {
       "slug": "shainai-se-tenni-mikenken-3sha-hikaku",
-      "failures": 1,
+      "failures": 2,
       "blocked": false,
       "lastViolations": [
-        "96.5%",
-        "40%"
+        "40%",
+        "96.5%"
       ]
     },
     {
