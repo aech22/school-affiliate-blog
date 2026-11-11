@@ -75,15 +75,6 @@
       "blockedReason": "2026-11-09 週次需要チェックで停止。題名と theme が movie-hacks・video-editor-course・daytra を「補助金対応」「給付率で比較」としているが、3社が教育訓練給付の対象講座である根拠が services.json にも facts.json にも無い（給付金対象の根拠が無い動画編集スクール比較の6回目。10-29 公開の douga-henshu-kyufukin-3sha-hikaku と同型）。"
     },
     {
-      "slug": "shainai-se-tenni-mikenken-3sha-hikaku",
-      "failures": 2,
-      "blocked": false,
-      "lastViolations": [
-        "40%",
-        "96.5%"
-      ]
-    },
-    {
       "slug": "reskilling-subsidy-individual-application-requirements",
       "failures": 0,
       "blocked": true,
@@ -138,6 +129,15 @@
       "failures": 0,
       "blocked": false,
       "lastViolations": []
+    },
+    {
+      "slug": "shainai-se-tenni-mikenken-3sha-hikaku",
+      "failures": 3,
+      "blocked": true,
+      "lastViolations": [
+        "96.5%",
+        "40%"
+      ]
     }
   ]
 }
