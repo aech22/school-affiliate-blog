@@ -89,12 +89,6 @@
       "blockedReason": "2026-11-09 週次需要チェックで停止。参照する kyufu-jizen-tetsuzuki・kyufu-shikyu-youken はどちらも支給申請の必要書類を含まず、題名の「必要な書類」に応える根拠が台帳に無い。11-08 公開の kyufu-shikyu-moushikomi-jun とも題名が重複する。"
     },
     {
-      "slug": "programming-online-school-case-study",
-      "failures": 0,
-      "blocked": false,
-      "lastViolations": []
-    },
-    {
       "slug": "single-laptop-external-monitor-layout",
       "failures": 0,
       "blocked": false,
