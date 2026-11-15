@@ -91,8 +91,9 @@
     {
       "slug": "business-chinese-school-comparison",
       "failures": 0,
-      "blocked": false,
-      "lastViolations": []
+      "blocked": true,
+      "lastViolations": [],
+      "blockedReason": "2026-11-16 週次需要チェックで停止。中国語の比較なのに serviceIds の3社中2社（toraiz・gaba）が英語スクールで、比較として成り立たない。題名の「料金」を比べる根拠も台帳に無い（3社とも priceNote は公式確認のみ）。中国語の教室が services.json に2社以上入るまで再開しない。"
     },
     {
       "slug": "social-se-transition-experience-barrier",
@@ -103,8 +104,9 @@
     {
       "slug": "study-plan-collapse-environment-factor",
       "failures": 0,
-      "blocked": false,
-      "lastViolations": []
+      "blocked": true,
+      "lastViolations": [],
+      "blockedReason": "2026-11-16 週次需要チェックで停止。題名「学習計画が崩れるのは、意志の問題ではないことが多い」が公開済みの gakushu-keikaku-ga-kuzureru（09-05）と learning-plan-collapse-causes（10-27）の2本と完全に一致し、出れば同じ題名の3本目になる。"
     },
     {
       "slug": "shainai-se-tenni-mikenken-3sha-hikaku",
