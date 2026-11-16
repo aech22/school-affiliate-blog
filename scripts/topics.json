@@ -1247,6 +1247,104 @@
       "factIds": [],
       "serviceIds": [],
       "sourceQuery": "勉強 習慣化 できない"
+    },
+    {
+      "slug": "reskilling-subsidy-application-checklist",
+      "type": "guide",
+      "title": "リスキリング補助金申請方法｜個人が必要な書類と対象講座の確認ステップ",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "リスキリング補助金を個人が申請するときの実際の手続きと、事前に確認すべき対象講座の条件を整理します。",
+      "factIds": [
+        "reskilling-koubo-shuryo"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "リスキリング 補助金申請方法"
+    },
+    {
+      "slug": "programming-school-case-study-job-referral",
+      "type": "compare",
+      "title": "オンラインプログラミングスクール3社の案件紹介｜卒業後の実務経験で選ぶ",
+      "categorySlug": "programming",
+      "category": "プログラミング・IT",
+      "theme": "プログラミング未経験者が卒業後に実際に案件を獲得できるスクールを、実績ベースで比較します。",
+      "factIds": [],
+      "serviceIds": [
+        "creators-japan",
+        "skillhacks",
+        "groovement-agent"
+      ],
+      "sourceQuery": "オンライン プログラミングスクール 比較"
+    },
+    {
+      "slug": "night-study-desk-setup-monitor-placement",
+      "type": "essay",
+      "title": "夜間の勉強を効率化する、ノートパソコン＋外部モニターのデスク配置",
+      "categorySlug": "workspace",
+      "category": "働く環境",
+      "theme": "帰宅後の限られた時間で学習効果を上げるために、画面配置と照明がどう連動するのかを考えます。",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "laptop-stand",
+        "mobile-monitor",
+        "desk-light-led"
+      ],
+      "sourceQuery": "ノートパソコン スタンド おすすめ"
+    },
+    {
+      "slug": "web-interview-camera-lighting-setup",
+      "type": "problem",
+      "title": "Web面接のカメラ位置と照明｜デスク配置から見落とされている理由",
+      "categorySlug": "workspace",
+      "category": "働く環境",
+      "theme": "オンライン面接で第一印象が決まる映りの問題は、カメラの角度と照明だけでなく机の高さが影響します。",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "ring-light",
+        "laptop-stand"
+      ],
+      "sourceQuery": "オンライン面接 カメラの位置"
+    },
+    {
+      "slug": "business-chinese-course-comparison",
+      "type": "compare",
+      "title": "ビジネス中国語の教室・オンライン講座｜通学と遠隔の料金と講師で比べる",
+      "categorySlug": "language",
+      "category": "語学・留学",
+      "theme": "社会人がビジネス中国語を学ぶとき、通学講座とオンラインスクールの選択肢を実際の料金と講師の質で比較します。",
+      "factIds": [],
+      "serviceIds": [
+        "shoba-chinese",
+        "toraiz"
+      ],
+      "sourceQuery": "中国語 教室"
+    },
+    {
+      "slug": "study-progress-collapses-not-willpower",
+      "type": "essay",
+      "title": "学習計画が続かないのは、意志の問題ではなく環境要因である",
+      "categorySlug": "workspace",
+      "category": "働く環境",
+      "theme": "勉強が続かない理由を、根気や動機づけではなく、実際の机の配置や時間帯の使い方から解き明かします。",
+      "factIds": [],
+      "serviceIds": [],
+      "sourceQuery": "勉強 習慣化 できない"
+    },
+    {
+      "slug": "social-se-career-transition-underage",
+      "type": "problem",
+      "title": "社内SE転職は未経験からでも可能か｜30代で求人数が減る理由と対策",
+      "categorySlug": "career",
+      "category": "転職・働き方",
+      "theme": "社内SE求人が年代によって変わる背景と、未経験者がどの時期に動く必要があるのかを転職エージェントの求人基準から整理します。",
+      "factIds": [],
+      "serviceIds": [
+        "se-navi",
+        "meiko-career"
+      ],
+      "sourceQuery": "社内se 転職 未経験"
     }
   ]
 }

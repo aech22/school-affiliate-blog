@@ -97,9 +97,12 @@
     },
     {
       "slug": "social-se-transition-experience-barrier",
-      "failures": 0,
+      "failures": 1,
       "blocked": false,
-      "lastViolations": []
+      "lastViolations": [
+        "96.5%",
+        "40%"
+      ]
     },
     {
       "slug": "study-plan-collapse-environment-factor",
@@ -116,6 +119,48 @@
         "96.5%",
         "40%"
       ]
+    },
+    {
+      "slug": "reskilling-subsidy-application-checklist",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "programming-school-case-study-job-referral",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "night-study-desk-setup-monitor-placement",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "web-interview-camera-lighting-setup",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "business-chinese-course-comparison",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "study-progress-collapses-not-willpower",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "social-se-career-transition-underage",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
     }
   ]
 }
