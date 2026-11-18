@@ -96,15 +96,6 @@
       "blockedReason": "2026-11-16 週次需要チェックで停止。中国語の比較なのに serviceIds の3社中2社（toraiz・gaba）が英語スクールで、比較として成り立たない。題名の「料金」を比べる根拠も台帳に無い（3社とも priceNote は公式確認のみ）。中国語の教室が services.json に2社以上入るまで再開しない。"
     },
     {
-      "slug": "social-se-transition-experience-barrier",
-      "failures": 2,
-      "blocked": false,
-      "lastViolations": [
-        "96.5%",
-        "40%"
-      ]
-    },
-    {
       "slug": "study-plan-collapse-environment-factor",
       "failures": 0,
       "blocked": true,
@@ -161,6 +152,15 @@
       "failures": 0,
       "blocked": false,
       "lastViolations": []
+    },
+    {
+      "slug": "social-se-transition-experience-barrier",
+      "failures": 3,
+      "blocked": true,
+      "lastViolations": [
+        "96.5%",
+        "40%"
+      ]
     }
   ]
 }
