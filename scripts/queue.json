@@ -127,9 +127,11 @@
     },
     {
       "slug": "social-se-career-transition-underage",
-      "failures": 0,
+      "failures": 1,
       "blocked": false,
-      "lastViolations": []
+      "lastViolations": [
+        "96.5%"
+      ]
     },
     {
       "slug": "social-se-transition-experience-barrier",
@@ -139,6 +141,36 @@
         "96.5%",
         "40%"
       ]
+    },
+    {
+      "slug": "reskilling-subsidy-application-steps",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "social-se-transition-30s-40s-job-market",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "english-conversation-school-business-chinese-comparison",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "programming-school-job-placement-track-record",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "web-interview-lighting-desk-camera-positioning",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
     }
   ]
 }

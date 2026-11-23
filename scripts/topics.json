@@ -1345,6 +1345,77 @@
         "meiko-career"
       ],
       "sourceQuery": "社内se 転職 未経験"
+    },
+    {
+      "slug": "reskilling-subsidy-application-steps",
+      "type": "guide",
+      "title": "リスキリング補助金申請方法を初心者が最初に確認する手順",
+      "categorySlug": "qualification",
+      "category": "学び・スキル講座",
+      "theme": "リスキリング補助金の申請は段取りが重要。対象者の要件と書類提出の流れを、実際の手続き順に整理する",
+      "factIds": [
+        "reskilling-koubo-shuryo"
+      ],
+      "serviceIds": [],
+      "sourceQuery": "リスキリング 補助金申請方法"
+    },
+    {
+      "slug": "social-se-transition-30s-40s-job-market",
+      "type": "essay",
+      "title": "社内SE転職は30代と40代で求人数がなぜ減るのか、実装経験が分岐点になる理由",
+      "categorySlug": "career",
+      "category": "転職・働き方",
+      "theme": "未経験からの社内SE転職は年代で市場の条件が変わる。なぜ30代から募集が限定されるのか、実務スキルの評価軸から考える",
+      "factIds": [],
+      "serviceIds": [],
+      "sourceQuery": "社内se 転職 未経験"
+    },
+    {
+      "slug": "english-conversation-school-business-chinese-comparison",
+      "type": "compare",
+      "title": "社会人の英会話とビジネス中国語、通学とオンラインの料金と講師で比較する",
+      "categorySlug": "language",
+      "category": "語学・留学",
+      "theme": "社会人向けの語学スクールは、通学とオンラインで講師の質と料金体系が異なる。英会話と中国語の相場を実績で比べる",
+      "factIds": [],
+      "serviceIds": [
+        "gaba",
+        "toraiz",
+        "nova",
+        "shoba-chinese"
+      ],
+      "sourceQuery": "中国語 教室"
+    },
+    {
+      "slug": "programming-school-job-placement-track-record",
+      "type": "compare",
+      "title": "オンラインプログラミングスクール3社の案件紹介｜卒業後の実務経験で選ぶ",
+      "categorySlug": "programming",
+      "category": "プログラミング・IT",
+      "theme": "スクール卒業後、案件紹介がどの程度機能するかで転職成功の分岐が決まる。実装経験を積める3社の実績で比較する",
+      "factIds": [],
+      "serviceIds": [
+        "skillhacks",
+        "creators-japan",
+        "buildjob"
+      ],
+      "sourceQuery": "オンライン プログラミングスクール 比較"
+    },
+    {
+      "slug": "web-interview-lighting-desk-camera-positioning",
+      "type": "essay",
+      "title": "Web面接のカメラ位置と照明は、デスク配置から決まる理由",
+      "categorySlug": "workspace",
+      "category": "働く環境",
+      "theme": "オンライン面接で見落とされるのは、カメラの高さと照明の当て方がデスク配置と連動しているという事実。機器選びの前に机の向きから考える",
+      "factIds": [],
+      "serviceIds": [],
+      "productIds": [
+        "ring-light",
+        "desk-light-led",
+        "webcam-1080p"
+      ],
+      "sourceQuery": "web面接 照明"
     }
   ]
 }
