@@ -126,14 +126,6 @@
       "blockedReason": "2026-11-23 週次需要チェックで停止。公開済みの gakushu-keikaku-ga-kuzureru（09-05）と learning-plan-collapse-causes（10-27）が同じ主題「学習計画が崩れるのは意志の問題ではない」で、11-16 に止めた study-plan-collapse-environment-factor の入れ直し。出れば同主題の3本目になる。replenish.py に既存題名との重複検査が入るまで再開しない。"
     },
     {
-      "slug": "social-se-career-transition-underage",
-      "failures": 2,
-      "blocked": false,
-      "lastViolations": [
-        "96.5%"
-      ]
-    },
-    {
       "slug": "social-se-transition-experience-barrier",
       "failures": 3,
       "blocked": true,
@@ -171,6 +163,14 @@
       "failures": 0,
       "blocked": false,
       "lastViolations": []
+    },
+    {
+      "slug": "social-se-career-transition-underage",
+      "failures": 3,
+      "blocked": true,
+      "lastViolations": [
+        "96.5%"
+      ]
     }
   ]
 }
