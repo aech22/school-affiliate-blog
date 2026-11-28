@@ -1416,6 +1416,31 @@
         "webcam-1080p"
       ],
       "sourceQuery": "web面接 照明"
+    },
+    {
+      "slug": "chinese-business-language-classroom-online-comparison",
+      "type": "compare",
+      "title": "ビジネス中国語の教室・オンライン講座を比較｜通学と遠隔の料金と講師で選ぶ",
+      "categorySlug": "language",
+      "category": "語学・留学",
+      "theme": "中国語が必要になった社会人が、通学とオンラインの実際の料金と講師の質の違いを理解して選べます。",
+      "factIds": [],
+      "serviceIds": [
+        "shoba-chinese",
+        "toraiz"
+      ],
+      "sourceQuery": "中国語 教室 オンライン"
+    },
+    {
+      "slug": "unrealistic-quick-career-change-at-30-when-no-offer",
+      "type": "problem",
+      "title": "30代未経験から業界を変えるとき、スクール卒業後に実務経験が評価される分岐点",
+      "categorySlug": "career",
+      "category": "転職・働き方",
+      "theme": "スクール卒業後、実務経験がどの段階から本当に評価されるのかが不明確で、無職期間が長引く人が多い状況を整理します。",
+      "factIds": [],
+      "serviceIds": [],
+      "sourceQuery": "未経験 転職 it"
     }
   ]
 }

@@ -135,12 +135,6 @@
       ]
     },
     {
-      "slug": "english-conversation-school-business-chinese-comparison",
-      "failures": 0,
-      "blocked": false,
-      "lastViolations": []
-    },
-    {
       "slug": "programming-school-job-placement-track-record",
       "failures": 0,
       "blocked": false,
@@ -159,6 +153,18 @@
       "lastViolations": [
         "96.5%"
       ]
+    },
+    {
+      "slug": "chinese-business-language-classroom-online-comparison",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
+    },
+    {
+      "slug": "unrealistic-quick-career-change-at-30-when-no-offer",
+      "failures": 0,
+      "blocked": false,
+      "lastViolations": []
     }
   ]
 }
